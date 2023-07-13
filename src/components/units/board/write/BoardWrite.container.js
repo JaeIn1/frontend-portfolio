@@ -16,6 +16,7 @@ export default function BoardWrite() {
   const [passwordError, setPasswordError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
+  const [ischecked, setIsChecked] = useState(false);
 
   const [createBoard] = useMutation(CREATE_BOARD);
 
@@ -24,12 +25,24 @@ export default function BoardWrite() {
     if (event.target.value !== "") {
       setWriterError("");
     }
+    if (event.target.value === "") {
+      setIsChecked(false);
+    }
+    if (event.target.value && password && title && contents) {
+      setIsChecked(true);
+    }
   };
 
   const onChangePassword = (event) => {
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");
+    }
+    if (event.target.value === "") {
+      setIsChecked(false);
+    }
+    if (writer && event.target.value && title && contents) {
+      setIsChecked(true);
     }
   };
 
@@ -38,12 +51,24 @@ export default function BoardWrite() {
     if (event.target.value !== "") {
       setTitleError("");
     }
+    if (event.target.value === "") {
+      setIsChecked(false);
+    }
+    if (writer && password && event.target.value && contents) {
+      setIsChecked(true);
+    }
   };
 
   const onChangeContents = (event) => {
     setContents(event.target.value);
     if (event.target.value !== "") {
       setContentsError("");
+    }
+    if (event.target.value === "") {
+      setIsChecked(false);
+    }
+    if (writer && password && title && event.target.value) {
+      setIsChecked(true);
     }
   };
 
@@ -91,6 +116,7 @@ export default function BoardWrite() {
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
+      ischecked={ischecked}
     />
   );
 }

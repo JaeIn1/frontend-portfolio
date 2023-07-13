@@ -164,8 +164,6 @@ export const SubmitButton = styled.button`
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;
-
-  background-color: yellow;
 `;
 
 export const Error = styled.div`
