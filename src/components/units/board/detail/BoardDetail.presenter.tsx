@@ -1,6 +1,8 @@
 import * as S from "./BoardDetail.styles";
+import { getDate } from "../../../../../src/commons/libraries/utils";
+import { IBoardDetailUIProps } from "./BoardDetail.types";
 
-export default function BoardDetailUI(props) {
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -9,7 +11,9 @@ export default function BoardDetailUI(props) {
             <S.Avatar src="/images/avatar.png" />
             <S.Info>
               <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
-              <S.CreatedAt>{props.data?.fetchBoard?.createdAt}</S.CreatedAt>
+              <S.CreatedAt>
+                {getDate(props.data?.fetchBoard?.createdAt)}
+              </S.CreatedAt>
             </S.Info>
           </S.AvatarWrapper>
         </S.Header>
@@ -19,14 +23,9 @@ export default function BoardDetailUI(props) {
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
-        <S.Button onClick={props.onClickReturnBoard}>목록으로</S.Button>
-        <S.Button>수정하기</S.Button>
-        <S.Button
-          onClick={props.onClickBoardDelete}
-          id={`${props.data?.fetchBoard?._id}`}
-        >
-          삭제하기
-        </S.Button>
+        <S.Button onClick={props.onClickMoveList}>목록으로</S.Button>
+        <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
+        <S.Button onClick={props.onClickDeletelist}>삭제하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );
