@@ -9,29 +9,31 @@ import {
   IMutationCreateBoardCommentArgs,
 } from "../../../../commons/types/generated/types";
 
-export default function BoardCommentWrite() {
+export default function BoardCommentWrite(): JSX.Element {
   const router = useRouter();
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
   const [contents, setContents] = useState("");
+  const [star, setStar] = useState(0);
 
   const [createBoardComment] = useMutation<
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
 
-  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
     setWriter(event.target.value);
   };
 
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
     setPassword(event.target.value);
   };
 
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     setContents(event.target.value);
   };
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   const onClickWrite = async () => {
     try {
       if (typeof router.query.boardId !== "string") {
@@ -45,7 +47,7 @@ export default function BoardCommentWrite() {
             writer,
             password,
             contents,
-            rating: 0,
+            rating: star,
           },
           boardId: router.query.boardId,
         },
@@ -56,6 +58,9 @@ export default function BoardCommentWrite() {
           },
         ],
       });
+      setWriter("");
+      setPassword("");
+      setContents("");
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -68,6 +73,9 @@ export default function BoardCommentWrite() {
       onChangeContents={onChangeContents}
       onClickWrite={onClickWrite}
       contents={contents}
+      writer={writer}
+      password={password}
+      setStar={setStar}
     />
   );
 }

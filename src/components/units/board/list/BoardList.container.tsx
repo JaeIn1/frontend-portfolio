@@ -8,19 +8,21 @@ import {
 } from "../../../../commons/types/generated/types";
 import { MouseEvent } from "react";
 
-export default function BoardList() {
+export default function BoardList(): JSX.Element {
   const router = useRouter();
   const { data } = useQuery<Pick<IQuery, "fetchBoards">, IQueryFetchBoardsArgs>(
     FETCH_BOARDS
   );
 
-  const onClickMoveToBoardNew = () => {
-    router.push("/boards/new");
+  const onClickMoveToBoardNew = (): void => {
+    void router.push("/boards/new");
   };
 
-  const onClickMoveToBoardDetail = (event: MouseEvent<HTMLDivElement>) => {
+  const onClickMoveToBoardDetail = (
+    event: MouseEvent<HTMLDivElement>
+  ): void => {
     if (event.target instanceof HTMLDivElement)
-      router.push(`/boards/${event.target.id}`);
+      void router.push(`/boards/${event.target.id}`);
   };
 
   return (

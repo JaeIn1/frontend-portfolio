@@ -30,6 +30,7 @@ export const WriterWrapper = styled.div`
 export const Writer = styled.div`
   font-size: 20px;
   font-weight: bold;
+  margin-right: 10px;
 `;
 export const Contents = styled.div``;
 
