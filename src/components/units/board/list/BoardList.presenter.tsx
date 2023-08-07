@@ -1,4 +1,5 @@
 import { getDate } from "../../../../commons/libraries/utils";
+import PagenationPage from "../../../commons/pagination/A/paginationA.container";
 import * as S from "./BoardList.styles";
 import { IBoardListUIProps } from "./BoardList.types";
 
@@ -25,6 +26,7 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
         </S.Row>
       ))}
       <S.TableBottom />
+      <PagenationPage refetch={props.refetch} count={props.count} />
       <S.Footer>
         <S.Button onClick={props.onClickMoveToBoardNew}>
           <S.PencilIcon src="/images/board/list/write.png" />

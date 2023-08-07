@@ -1,11 +1,21 @@
 import * as S from "./BoardDetail.styles";
 import { getDate } from "../../../../../src/commons/libraries/utils";
 import type { IBoardDetailUIProps } from "./BoardDetail.types";
-import { Tooltip } from "antd";
+import { Tooltip, Modal } from "antd";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (
     <S.Wrapper>
+      {props.deleteModal && (
+        <Modal
+          title="Basic Modal"
+          open={true}
+          onOk={props.onClickDeleteList}
+          onCancel={props.onClickDeleteModal}
+        >
+          <p>정말 게시글을 삭제하시겠습니까?</p>
+        </Modal>
+      )}
       <S.CardWrapper>
         <S.Header>
           <S.AvatarWrapper>
@@ -42,9 +52,9 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
-        <S.Button>목록으로</S.Button>
+        <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
         <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
-        <S.Button>삭제하기</S.Button>
+        <S.Button onClick={props.onClickDeleteModal}>삭제하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

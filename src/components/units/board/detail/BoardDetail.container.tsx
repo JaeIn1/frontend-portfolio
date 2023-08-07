@@ -1,13 +1,17 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import type {
+  IMutation,
+  IMutationDeleteBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { FETCH_BOARD } from "./BoardDetail.queries";
+import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import { MouseEvent, useState } from "react";
 
 export default function BoardDetail(): JSX.Element {
+  const [deleteModal, setDeleteModal] = useState(false);
   const router = useRouter();
   if (typeof router.query.boardId !== "string") return <></>;
 
@@ -15,6 +19,10 @@ export default function BoardDetail(): JSX.Element {
     FETCH_BOARD,
     { variables: { boardId: router.query.boardId } }
   );
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
 
   const onClickMoveToBoardEdit = (): void => {
     if (typeof router.query.boardId !== "string") {
@@ -25,10 +33,32 @@ export default function BoardDetail(): JSX.Element {
     void router.push(`/boards/${router.query.boardId}/edit`);
   };
 
+  const onClickReturnList = (): void => {
+    void router.push("/boards");
+  };
+
+  const onClickDeleteList = (): any => {
+    if (typeof router.query.boardId !== "string") return <></>;
+    const result = deleteBoard({
+      variables: {
+        boardId: router.query.boardId,
+      },
+    });
+    console.log(result);
+    void router.push("/boards");
+  };
+  const onClickDeleteModal = (event: MouseEvent<HTMLElement>): void => {
+    setDeleteModal((prev) => !prev);
+  };
+
   return (
     <BoardDetailUI
       data={data}
       onClickMoveToBoardEdit={onClickMoveToBoardEdit}
+      onClickReturnList={onClickReturnList}
+      onClickDeleteList={onClickDeleteList}
+      onClickDeleteModal={onClickDeleteModal}
+      deleteModal={deleteModal}
     />
   );
 }
