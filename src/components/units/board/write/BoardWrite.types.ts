@@ -18,7 +18,9 @@ export interface IBoardWriteUIProps {
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAddressSearch: () => void;
+
   onCompleteAddressSearch: (data: any) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   isActive: boolean;
@@ -27,6 +29,7 @@ export interface IBoardWriteUIProps {
   isOpen: boolean;
   zipcode: string;
   address: string;
+  fileUrls: string[];
 }
 
 export interface ISubmitButtonProps {

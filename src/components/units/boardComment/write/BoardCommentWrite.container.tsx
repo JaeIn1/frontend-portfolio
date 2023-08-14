@@ -1,15 +1,24 @@
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
 import BoardCommentWriteUI from "./BoardCommentWrite.presenter";
 import { FETCH_BOARD_COMMENTS } from "../list/BoardCommentList.queries";
-import { CREATE_BOARD_COMMENT } from "./BoardCommentWrite.queries";
 import {
+  CREATE_BOARD_COMMENT,
+  UPDATE_BOARD_COMMENT,
+} from "./BoardCommentWrite.queries";
+import type {
   IMutation,
   IMutationCreateBoardCommentArgs,
+  IMutationUpdateBoardCommentArgs,
+  IUpdateBoardCommentInput,
 } from "../../../../commons/types/generated/types";
+import type { IBoardCommentWriteProps } from "./BoardCommentWrite.types";
 
-export default function BoardCommentWrite(): JSX.Element {
+export default function BoardCommentWrite(
+  props: IBoardCommentWriteProps
+): JSX.Element {
   const router = useRouter();
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +29,11 @@ export default function BoardCommentWrite(): JSX.Element {
     Pick<IMutation, "createBoardComment">,
     IMutationCreateBoardCommentArgs
   >(CREATE_BOARD_COMMENT);
+
+  const [updateBoardComment] = useMutation<
+    Pick<IMutation, "updateBoardComment">,
+    IMutationUpdateBoardCommentArgs
+  >(UPDATE_BOARD_COMMENT);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
     setWriter(event.target.value);
@@ -33,8 +47,7 @@ export default function BoardCommentWrite(): JSX.Element {
     setContents(event.target.value);
   };
 
-  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-  const onClickWrite = async () => {
+  const onClickWrite = async (): Promise<void> => {
     try {
       if (typeof router.query.boardId !== "string") {
         alert("시스템에 문제가 있습니다.");
@@ -58,9 +71,49 @@ export default function BoardCommentWrite(): JSX.Element {
           },
         ],
       });
-      setWriter("");
-      setPassword("");
-      setContents("");
+    } catch (error) {
+      if (error instanceof Error) alert(error.message);
+    }
+
+    setWriter("");
+    setPassword("");
+    setContents("");
+  };
+  const onClickUpdate = (): void => {
+    if (!contents) {
+      alert("내용을 입력하세요");
+      return;
+    }
+    if (!password) {
+      alert("비밀번호를 입력하세요");
+      return;
+    }
+    try {
+      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
+      if (contents !== "") updateBoardCommentInput.contents = contents;
+      if (star !== props.el?.rating) updateBoardCommentInput.rating = star;
+
+      if (typeof props.el?._id !== "string") {
+        alert("시스템에 문제가 있습니다.");
+        return;
+      }
+
+      void updateBoardComment({
+        variables: {
+          updateBoardCommentInput,
+          password,
+          boardCommentId: props.el?._id,
+        },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD_COMMENTS,
+            variables: {
+              boardId: router.query.boardId,
+            },
+          },
+        ],
+      });
+      props.setIsEdit?.(false);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -72,10 +125,13 @@ export default function BoardCommentWrite(): JSX.Element {
       onChangePassword={onChangePassword}
       onChangeContents={onChangeContents}
       onClickWrite={onClickWrite}
-      contents={contents}
+      onClickUpdate={onClickUpdate}
       writer={writer}
       password={password}
+      contents={contents}
       setStar={setStar}
+      el={props.el}
+      isEdit={props.isEdit}
     />
   );
 }

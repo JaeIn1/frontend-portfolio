@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -26,6 +26,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -127,6 +128,18 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
+  const onChangeFileUrls = (fileUrl: string, index: number): void => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    const images = props.data?.fetchBoard.images;
+    console.log(images);
+    if (images !== undefined && images !== null) setFileUrls([...images]);
+  }, [props.data]);
+
   const onCompleteAddressSearch = (data: Address): void => {
     setAddress(data.address);
     setZipcode(data.zonecode);
@@ -161,6 +174,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 address,
                 addressDetail,
               },
+              images: [...fileUrls],
             },
           },
         });
@@ -179,13 +193,17 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   };
 
   const onClickUpdate = async (): Promise<void> => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
     if (
       title === "" &&
       contents === "" &&
       youtubeUrl === "" &&
       address === "" &&
       addressDetail === "" &&
-      zipcode === ""
+      zipcode === "" &&
+      !isChangedFiles
     ) {
       alert("수정한 내용이 없습니다.");
       return;
@@ -207,6 +225,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       if (addressDetail !== "")
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
 
     try {
       if (typeof router.query.boardId !== "string") {
@@ -246,6 +265,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isActive={isActive}
@@ -254,6 +274,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       isOpen={isOpen}
       zipcode={zipcode}
       address={address}
+      fileUrls={fileUrls}
     />
   );
 }

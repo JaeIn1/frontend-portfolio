@@ -122,6 +122,9 @@ export const UploadButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+export const UploadButtonDiv = styled.div`
+  display: flex;
+`;
 
 export const OptionWrapper = styled.div`
   width: 996px;

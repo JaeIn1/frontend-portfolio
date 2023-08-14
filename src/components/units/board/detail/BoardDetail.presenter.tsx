@@ -41,6 +41,16 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
+          <S.ImageWrapper>
+            {props.data?.fetchBoard.images
+              ?.filter((el) => el)
+              .map((el) => (
+                <S.Image
+                  key={el}
+                  src={`https://storage.googleapis.com/${el}`}
+                />
+              ))}
+          </S.ImageWrapper>
           <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
           {props.data?.fetchBoard.youtubeUrl !== "" && (
             <S.Youtube
