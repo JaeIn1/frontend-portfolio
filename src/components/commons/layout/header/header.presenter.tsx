@@ -7,7 +7,7 @@ export default function LayoutHeaderUI(): JSX.Element {
         <S.HeaderIconDiv>
           <img src="/images/layout/header/eggplant.png" />
           <span>가지마켓</span>
-          <input type="text" placeholder="물품을 검색하세요!" />
+          {/* <input type="text" placeholder="물품을 검색하세요!" /> */}
         </S.HeaderIconDiv>
         <S.HeaderSettingDiv>
           <img src="/images/layout/header/chat.png" />
