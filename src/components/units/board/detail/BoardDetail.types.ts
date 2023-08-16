@@ -8,4 +8,5 @@ export interface IBoardDetailUIProps {
   onClickDeleteList: () => void;
   onClickDeleteModal: (event: MouseEvent<HTMLElement>) => void;
   deleteModal: boolean;
+  settings: any;
 }

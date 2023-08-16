@@ -125,13 +125,21 @@ export const DislikeCount = styled.div`
 
 export const LinkIcon = styled.img``;
 
-export const ImageWrapper = styled.div`
+export const ImageWrapperDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const Image = styled.img`
-  width: 300px;
-  height: 380px;
-  margin-bottom: 30px;
+export const ImageWrapper = styled.div`
+  width: 40%;
+  padding-top: 50px;
+  height: 400px;
+`;
+
+export const SliderItem = styled.img`
+  width: 200px;
+  height: 300px;
+  margin: auto;
+  border-radius: 15px;
 `;

@@ -2,6 +2,7 @@ import * as S from "./BoardDetail.styles";
 import { getDate } from "../../../../../src/commons/libraries/utils";
 import type { IBoardDetailUIProps } from "./BoardDetail.types";
 import { Tooltip, Modal } from "antd";
+import Slider from "react-slick";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (
@@ -41,16 +42,20 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
         </S.Header>
         <S.Body>
           <S.Title>{props.data?.fetchBoard?.title}</S.Title>
-          <S.ImageWrapper>
-            {props.data?.fetchBoard.images
-              ?.filter((el) => el)
-              .map((el) => (
-                <S.Image
-                  key={el}
-                  src={`https://storage.googleapis.com/${el}`}
-                />
-              ))}
-          </S.ImageWrapper>
+          <S.ImageWrapperDiv>
+            <S.ImageWrapper>
+              <Slider {...props.settings}>
+                {props.data?.fetchBoard.images
+                  ?.filter((el) => el)
+                  .map((el) => (
+                    <S.SliderItem
+                      key={el}
+                      src={`https://storage.googleapis.com/${el}`}
+                    />
+                  ))}
+              </Slider>
+            </S.ImageWrapper>
+          </S.ImageWrapperDiv>
           <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
           {props.data?.fetchBoard.youtubeUrl !== "" && (
             <S.Youtube

@@ -51,6 +51,14 @@ export default function BoardDetail(): JSX.Element {
     setDeleteModal((prev) => !prev);
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <BoardDetailUI
       data={data}
@@ -59,6 +67,7 @@ export default function BoardDetail(): JSX.Element {
       onClickDeleteList={onClickDeleteList}
       onClickDeleteModal={onClickDeleteModal}
       deleteModal={deleteModal}
+      settings={settings}
     />
   );
 }
