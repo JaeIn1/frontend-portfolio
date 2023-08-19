@@ -44,8 +44,16 @@ export const HeaderSettingDiv = styled.div`
   padding-top: 20px;
   margin-left: 30px;
   margin-right: 30px;
-
-  & img {
-    margin-right: 5px;
-  }
+`;
+export const HeaderSettingLoginSpan = styled.div`
+  margin: 10px;
+  cursor: pointer;
+`;
+export const HeaderSettingJoinSpan = styled.div`
+  margin: 10px;
+  color: white;
+  background-color: #b173d6;
+  padding: 10px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 `;

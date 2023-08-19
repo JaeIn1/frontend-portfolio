@@ -1,0 +1,78 @@
+import styled from "@emotion/styled";
+
+export const Wrapper = styled.div`
+  width: 500px;
+  padding: 20px;
+  //border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const HeaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 1%;
+`;
+
+export const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  & span {
+    color: #b173d8;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-left: 5px;
+    font-weight: bold;
+  }
+`;
+
+export const BodyWrapper = styled.div`
+  padding: 30px;
+  padding-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const BodyInputDid = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  margin-bottom: 5px;
+
+  & span {
+    padding-left: 10px;
+    margin-bottom: 3px;
+  }
+`;
+
+export const BodyInput = styled.input`
+  width: 100%;
+  line-height: 3rem;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+  padding-left: 20px;
+`;
+
+export const LoginStay = styled.span`
+  text-align: left;
+  color: rgba(0, 0, 0, 0.6);
+  margin-left: 5px;
+`;
+
+export const LoginBtn = styled.button`
+  width: 100%;
+  background-color: #b173d8;
+  border-radius: 10px;
+  color: white;
+  border: none;
+  padding: 17px 20px;
+  margin-top: 25px;
+  cursor: pointer;
+`;
