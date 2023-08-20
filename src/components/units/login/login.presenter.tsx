@@ -27,13 +27,15 @@ export default function LoginPageUI(props: ILoginProps): JSX.Element {
           <S.LoginStayImg />
           <S.LoginStay>로그인 상태 유지</S.LoginStay>
         </S.LoginStayDiv>
-        <S.LoginBtn onClick={props.onClickLoginBtn}>로그인</S.LoginBtn>
+        <S.LoginBtn onClick={props.onClickLoginBtn} isActive={props.isActive}>
+          로그인
+        </S.LoginBtn>
       </S.BodyWrapper>
       <S.FooteWrapper>
         <S.breakLine></S.breakLine>
         <S.LoginSettingDiv>
           <span>이메일 찾기</span>|<span>비밀번호 찾기</span>|
-          <span>회원가입</span>
+          <span onClick={props.onClickMoveSignUp}>회원가입</span>
         </S.LoginSettingDiv>
       </S.FooteWrapper>
     </S.Wrapper>

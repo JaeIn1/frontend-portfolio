@@ -1,5 +1,6 @@
 import { CheckCircleOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
+import { ISubmitButtonProps } from "./login.types";
 
 export const Wrapper = styled.div`
   width: 550px;
@@ -68,12 +69,14 @@ export const LoginStay = styled.span`
 
 export const LoginBtn = styled.button`
   width: 100%;
-  background-color: #b173d8;
   border-radius: 8px;
-  color: white;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+
+  background-color: ${(props: ISubmitButtonProps) =>
+    props.isActive ? "#B173D8" : "none"};
+  color: ${(props: ISubmitButtonProps) => (props.isActive ? "white" : "black")};
 `;
 
 export const FooteWrapper = styled.div`

@@ -17,6 +17,7 @@ export default function LoginPage(): JSX.Element {
   const [password, setPassword] = useState("");
   const [idError, setIdError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
@@ -29,6 +30,11 @@ export default function LoginPage(): JSX.Element {
     if (email !== "") {
       setIdError("");
     }
+    if (event.currentTarget.value !== "" && password !== "") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -36,6 +42,11 @@ export default function LoginPage(): JSX.Element {
 
     if (password !== "") {
       setPasswordError("");
+    }
+    if (email !== "" && event.currentTarget.value !== "") {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
     }
   };
 
@@ -70,6 +81,10 @@ export default function LoginPage(): JSX.Element {
       }
     }
   };
+
+  const onClickMoveSignUp = (): void => {
+    void router.push("/signup");
+  };
   return (
     <>
       <LoginPageUI
@@ -78,6 +93,8 @@ export default function LoginPage(): JSX.Element {
         idError={idError}
         passwordError={passwordError}
         onClickLoginBtn={onClickLoginBtn}
+        isActive={isActive}
+        onClickMoveSignUp={onClickMoveSignUp}
       />
     </>
   );

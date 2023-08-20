@@ -52,7 +52,6 @@ export const LoginHeaderSettingDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 20px;
-  position: relative;
 `;
 export const HeaderSettingLoginSpan = styled.div`
   margin: 10px;
@@ -78,10 +77,10 @@ export const UserIconMenu = styled(CaretDownOutlined)`
 `;
 
 export const UserModal = styled(Modal)`
-  position: absolute;
   max-width: 250px;
-  right: 100px;
-  top: 60px;
+  position: fixed;
+  top: 6%;
+  right: 23%;
 `;
 export const UserModalDiv = styled.div`
   margin-bottom: 10px;

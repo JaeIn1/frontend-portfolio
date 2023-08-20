@@ -6,6 +6,25 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
   return (
     <S.Wrapper>
       <S.ItemWrapper>
+        {props.isOpen && (
+          <S.UserModal
+            open={true}
+            onOk={props.ToggleModal}
+            onCancel={props.ToggleModal}
+            footer={null}
+            mask={false}
+          >
+            <S.UserModalDiv>
+              <S.UserIcon />
+              <S.UserModalSpan>
+                {props.data?.fetchUserLoggedIn.name}
+              </S.UserModalSpan>
+            </S.UserModalDiv>
+            <S.UserModalLine></S.UserModalLine>
+            <div>충전하기</div>
+            <div>로그아웃</div>
+          </S.UserModal>
+        )}
         <S.HeaderIconDiv>
           <img src="/images/layout/header/eggplant.png" />
           <span>가지마켓</span>
@@ -16,22 +35,6 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
           <S.LoginHeaderSettingDiv>
             <S.UserIcon />
             <S.UserIconMenu onClick={props.ToggleModal}></S.UserIconMenu>
-            {props.isOpen && (
-              <S.UserModal
-                open={true}
-                onOk={props.ToggleModal}
-                onCancel={props.ToggleModal}
-              >
-                <S.UserModalDiv>
-                  <S.UserIcon />
-                  <S.UserModalSpan>
-                    {props.data?.fetchUserLoggedIn.name}
-                  </S.UserModalSpan>
-                </S.UserModalDiv>
-                <S.UserModalLine></S.UserModalLine>
-                <span>로그아웃</span>
-              </S.UserModal>
-            )}
           </S.LoginHeaderSettingDiv>
         ) : (
           <S.HeaderSettingDiv>

@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { ISignUpBtnProps } from "./signup.types";
+import { Modal } from "antd";
 
 export const Wrapper = styled.div`
   width: 500px;
@@ -68,11 +70,40 @@ export const LoginStay = styled.span`
 
 export const LoginBtn = styled.button`
   width: 100%;
-  background-color: #b173d8;
   border-radius: 10px;
-  color: white;
   border: none;
   padding: 17px 20px;
   margin-top: 25px;
+  cursor: pointer;
+  background-color: ${(props: ISignUpBtnProps) =>
+    props.isActive ? "#B173D8" : "none"};
+  color: ${(props: ISignUpBtnProps) => (props.isActive ? "white" : "black")};
+`;
+export const Error = styled.div`
+  width: 100%;
+  padding-left: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: red;
+  margin-bottom: 15px;
+`;
+
+export const SignUpModal = styled(Modal)`
+  max-width: 300px;
+`;
+export const SignUpModalText = styled.div`
+  margin-top: 30px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+`;
+export const SignUpModalBtn = styled.button`
+  margin-top: 50px;
+  width: 100%;
+  background-color: #b173d8;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
   cursor: pointer;
 `;
