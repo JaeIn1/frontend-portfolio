@@ -1,4 +1,6 @@
+import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 
 export const Wrapper = styled.div`
   height: 100px;
@@ -45,6 +47,13 @@ export const HeaderSettingDiv = styled.div`
   margin-left: 30px;
   margin-right: 30px;
 `;
+export const LoginHeaderSettingDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  position: relative;
+`;
 export const HeaderSettingLoginSpan = styled.div`
   margin: 10px;
   cursor: pointer;
@@ -56,4 +65,31 @@ export const HeaderSettingJoinSpan = styled.div`
   padding: 10px 10px;
   border-radius: 5px;
   cursor: pointer;
+`;
+
+export const UserIcon = styled(UserOutlined)`
+  font-size: 25px;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+export const UserIconMenu = styled(CaretDownOutlined)`
+  cursor: pointer;
+  position: relative;
+`;
+
+export const UserModal = styled(Modal)`
+  position: absolute;
+  max-width: 250px;
+  right: 100px;
+  top: 60px;
+`;
+export const UserModalDiv = styled.div`
+  margin-bottom: 10px;
+`;
+export const UserModalLine = styled.div`
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
+`;
+export const UserModalSpan = styled.span`
+  font-size: 15px;
 `;

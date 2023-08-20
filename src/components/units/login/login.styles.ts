@@ -2,7 +2,7 @@ import { CheckCircleOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 500px;
+  width: 550px;
   padding: 20px;
   //border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -96,4 +96,12 @@ export const LoginSettingDiv = styled.div`
     margin: 5px;
     cursor: pointer;
   }
+`;
+export const Error = styled.div`
+  width: 100%;
+  padding-left: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: red;
+  margin-bottom: 15px;
 `;
