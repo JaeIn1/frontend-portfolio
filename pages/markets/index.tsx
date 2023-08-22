@@ -1,7 +1,6 @@
-import { withAuth } from "../../src/components/commons/hocs/withAuth";
+import { useAuth } from "../../src/components/commons/hooks/useAuth";
 
-function MarketsPage(): JSX.Element {
+export default function MarketsPage(): JSX.Element {
+  useAuth();
   return <div>markets</div>;
 }
-
-export default withAuth(MarketsPage);

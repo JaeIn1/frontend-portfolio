@@ -80,7 +80,7 @@ export const UserModal = styled(Modal)`
   max-width: 250px;
   position: fixed;
   top: 6%;
-  right: 23%;
+  right: 10%;
 `;
 export const UserModalDiv = styled.div`
   margin-bottom: 10px;

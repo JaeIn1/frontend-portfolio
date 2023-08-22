@@ -1,7 +1,6 @@
-import { withAuth } from "../../src/components/commons/hocs/withAuth";
+import { useAuth } from "../../src/components/commons/hooks/useAuth";
 
-function MyPages(): JSX.Element {
+export default function MyPages(): JSX.Element {
+  useAuth();
   return <div>mypages</div>;
 }
-
-export default withAuth(MyPages);
