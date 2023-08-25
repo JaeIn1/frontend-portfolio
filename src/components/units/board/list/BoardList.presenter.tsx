@@ -10,6 +10,30 @@ const SECRET = "@#$%";
 export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
   return (
     <S.Wrapper>
+      <S.BoardBestTitle>베스트 게시글</S.BoardBestTitle>
+      <S.BoardBestWrapper>
+        {props.dataBest?.fetchBoardsOfTheBest.map((el) => (
+          <S.BoardBestDiv key={el._id} onClick={props.onClickBestBoard(el)}>
+            <S.BoardBestImg
+              src={`https://storage.googleapis.com/${el.images?.[0]}`}
+            />
+            <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
+            <S.Header>
+              <S.AvatarWrapper>
+                <S.Avatar src="/images/avatar.png" />
+                <S.Info>
+                  <S.Writer>{el.writer}</S.Writer>
+                  <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
+                </S.Info>
+              </S.AvatarWrapper>
+              <S.BestBoardLikeCountDiv>
+                <img src="/images/board/detail/good.png" />
+                <div>{el.likeCount}</div>
+              </S.BestBoardLikeCountDiv>
+            </S.Header>
+          </S.BoardBestDiv>
+        ))}
+      </S.BoardBestWrapper>
       <Searchbars01
         refetch={props.refetch}
         refetchBoardsCount={props.refetchBoardsCount}

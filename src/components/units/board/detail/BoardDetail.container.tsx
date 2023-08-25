@@ -3,11 +3,18 @@ import { useRouter } from "next/router";
 import type {
   IMutation,
   IMutationDeleteBoardArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
   IQuery,
   IQueryFetchBoardArgs,
 } from "../../../../commons/types/generated/types";
 import BoardDetailUI from "./BoardDetail.presenter";
-import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import {
+  FETCH_BOARD,
+  DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
+} from "./BoardDetail.queries";
 import { MouseEvent, useState } from "react";
 
 export default function BoardDetail(): JSX.Element {
@@ -23,6 +30,16 @@ export default function BoardDetail(): JSX.Element {
     Pick<IMutation, "deleteBoard">,
     IMutationDeleteBoardArgs
   >(DELETE_BOARD);
+
+  const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+  >(LIKE_BOARD);
+
+  const [disLikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
 
   const onClickMoveToBoardEdit = (): void => {
     if (typeof router.query.boardId !== "string") {
@@ -51,6 +68,35 @@ export default function BoardDetail(): JSX.Element {
     setDeleteModal((prev) => !prev);
   };
 
+  const onClickBoardLike = async (): Promise<void> => {
+    if (typeof router.query.boardId !== "string") return;
+    await likeBoard({
+      variables: {
+        boardId: router.query.boardId,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.boardId },
+        },
+      ],
+    });
+  };
+  const onClickBoardDisLike = async (): Promise<void> => {
+    if (typeof router.query.boardId !== "string") return;
+    await disLikeBoard({
+      variables: {
+        boardId: router.query.boardId,
+      },
+      refetchQueries: [
+        {
+          query: FETCH_BOARD,
+          variables: { boardId: router.query.boardId },
+        },
+      ],
+    });
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -66,6 +112,8 @@ export default function BoardDetail(): JSX.Element {
       onClickReturnList={onClickReturnList}
       onClickDeleteList={onClickDeleteList}
       onClickDeleteModal={onClickDeleteModal}
+      onClickBoardLike={onClickBoardLike}
+      onClickBoardDisLike={onClickBoardDisLike}
       deleteModal={deleteModal}
       settings={settings}
     />

@@ -143,3 +143,40 @@ export const SliderItem = styled.img`
   margin: auto;
   border-radius: 15px;
 `;
+
+export const BoardLikeDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+
+  & div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const BoardLikeBtn = styled.img`
+  width: 25px;
+  height: 25px;
+  margin: 30px;
+  margin-bottom: 10px;
+  color: #ffd600;
+  cursor: pointer;
+`;
+export const BoardLikeSpan = styled.span`
+  color: #ffd600;
+`;
+
+export const BoardDisLikeSpan = styled.span`
+  color: #828282;
+`;
+export const BoardBadBtn = styled.img`
+  width: 25px;
+  height: 25px;
+  margin: 30px;
+  margin-bottom: 10px;
+  cursor: pointer;
+`;

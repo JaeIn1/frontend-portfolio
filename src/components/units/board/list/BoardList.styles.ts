@@ -80,3 +80,73 @@ export const Button = styled.button`
 export const TextToken = styled.span`
   color: ${(props: ITextTokenProps) => (props.isMatched ? "red" : "black")};
 `;
+
+export const BoardBestTitle = styled.div`
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 30px;
+`;
+export const BoardBestWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+`;
+export const BoardBestDiv = styled.div`
+  width: 24%;
+  height: 200px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+`;
+export const BoardBestImg = styled.img`
+  border-radius: 20px 20px 0px 0px;
+  width: 100%;
+  height: 45%;
+  object-fit: cover;
+`;
+export const BoardBestSpan = styled.span`
+  margin: 10px;
+  font-weight: bolder;
+`;
+export const Header = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #bdbdbd;
+  padding-bottom: 20px;
+  margin: 10px;
+`;
+export const AvatarWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const Avatar = styled.img`
+  margin-right: 10px;
+  width: 20%;
+  height: 20%;
+`;
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+export const Writer = styled.div``;
+
+export const CreatedAt = styled.div``;
+
+export const BestBoardLikeCountDiv = styled.div`
+  padding-right: 20px;
+
+  & div {
+    color: #ffd600;
+    font-weight: bolder;
+  }
+`;

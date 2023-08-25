@@ -4,34 +4,37 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
-  height: 400px;
+  height: 270px;
   background-color: white;
-  padding-top: 50px;
 `;
 const SlickItem = styled.img`
-  margin: auto;
-  height: 300px;
+  margin: 0;
+  width: 100%;
+  height: 270px;
 `;
 
 export default function LayoutBanner(): JSX.Element {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    arrows: true,
+    autoplaySpeed: 5000,
   };
   return (
     <Wrapper>
       <Slider {...settings}>
         <div>
-          <SlickItem src="/images/layout/banner/item1.png" />
+          <SlickItem src="/images/layout/banner/banner-img03.png" />
         </div>
         <div>
-          <SlickItem src="/images/layout/banner/item1.png" />
+          <SlickItem src="/images/layout/banner/banner-img02.png" />
         </div>
         <div>
-          <SlickItem src="/images/layout/banner/item1.png" />
+          <SlickItem src="/images/layout/banner/banner-img01.png" />
         </div>
       </Slider>
     </Wrapper>

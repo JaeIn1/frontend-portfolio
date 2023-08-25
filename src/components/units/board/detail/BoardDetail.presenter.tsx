@@ -64,6 +64,26 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
               height="240px"
             />
           )}
+          <S.BoardLikeDiv>
+            <div>
+              <S.BoardLikeBtn
+                src="/images/board/detail/good.png"
+                onClick={props.onClickBoardLike}
+              />
+              <S.BoardLikeSpan>
+                {props.data?.fetchBoard.likeCount}
+              </S.BoardLikeSpan>
+            </div>
+            <div>
+              <S.BoardBadBtn
+                src="/images/board/detail/bad.png"
+                onClick={props.onClickBoardDisLike}
+              />
+              <S.BoardDisLikeSpan>
+                {props.data?.fetchBoard.dislikeCount}
+              </S.BoardDisLikeSpan>
+            </div>
+          </S.BoardLikeDiv>
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>

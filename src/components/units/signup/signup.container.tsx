@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 import { ChangeEvent, useState } from "react";
 import LoginPageUI from "./signup.presenter";
 import { useRouter } from "next/router";
@@ -135,8 +136,12 @@ export default function SignUpPage(): JSX.Element {
         ToggleModal();
       }
     } catch (error) {
-      if (error instanceof Error) alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message);
+        return;
+      }
     }
+    // void router.push(visitePage);
   };
   return (
     <>

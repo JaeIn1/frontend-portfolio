@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { LOGIN_USER } from "./login.queries";
 import { useMutation } from "@apollo/client";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/stores";
+import { accessTokenState, visitedPageState } from "../../../commons/stores";
 import {
   IMutation,
   IMutationLoginUserArgs,
@@ -18,6 +18,7 @@ export default function LoginPage(): JSX.Element {
   const [idError, setIdError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [visitePage] = useRecoilState(visitedPageState);
 
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
@@ -74,8 +75,10 @@ export default function LoginPage(): JSX.Element {
         }
         setAccessToken(accessToken);
         alert("로그인에 성공했습니다!");
+
+        console.log(visitePage);
+        void router.push(visitePage);
         localStorage.setItem("accessToken", accessToken);
-        void router.push("/markets");
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }

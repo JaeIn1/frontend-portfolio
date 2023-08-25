@@ -1,8 +1,13 @@
 import BoardListUI from "./BoardList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARDS, FETCH_BOARDS_COUNT } from "./BoardList.queries";
+import {
+  FETCH_BOARDS,
+  FETCH_BOARDS_COUNT,
+  FETCH_BOARD_BEST,
+} from "./BoardList.queries";
 import { useRouter } from "next/router";
 import type {
+  IBoard,
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
@@ -18,6 +23,9 @@ export default function BoardList(): JSX.Element {
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
   >(FETCH_BOARDS);
+
+  const { data: dataBest } =
+    useQuery<Pick<IQuery, "fetchBoardsOfTheBest">>(FETCH_BOARD_BEST);
 
   const { data: dataBoardsCount, refetch: refetchBoardsCount } = useQuery<
     Pick<IQuery, "fetchBoardsCount">,
@@ -38,16 +46,24 @@ export default function BoardList(): JSX.Element {
     setKeyword(value);
   };
 
+  const onClickBestBoard = (el: IBoard) => (): void => {
+    void router.push(`boards/${el._id}`);
+  };
+
   return (
-    <BoardListUI
-      data={data}
-      onClickMoveToBoardNew={onClickMoveToBoardNew}
-      onClickMoveToBoardDetail={onClickMoveToBoardDetail}
-      refetch={refetch}
-      refetchBoardsCount={refetchBoardsCount}
-      count={dataBoardsCount?.fetchBoardsCount}
-      keyword={keyword}
-      onChangeKeyword={onChangeKeyword}
-    />
+    <>
+      <BoardListUI
+        data={data}
+        dataBest={dataBest}
+        onClickMoveToBoardNew={onClickMoveToBoardNew}
+        onClickMoveToBoardDetail={onClickMoveToBoardDetail}
+        refetch={refetch}
+        refetchBoardsCount={refetchBoardsCount}
+        count={dataBoardsCount?.fetchBoardsCount}
+        keyword={keyword}
+        onChangeKeyword={onChangeKeyword}
+        onClickBestBoard={onClickBestBoard}
+      />
+    </>
   );
 }

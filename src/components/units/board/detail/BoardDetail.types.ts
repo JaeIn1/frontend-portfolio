@@ -7,6 +7,8 @@ export interface IBoardDetailUIProps {
   onClickReturnList: () => void;
   onClickDeleteList: () => void;
   onClickDeleteModal: (event: MouseEvent<HTMLElement>) => void;
+  onClickBoardLike: () => Promise<void>;
+  onClickBoardDisLike: () => Promise<void>;
   deleteModal: boolean;
   settings: any;
 }
