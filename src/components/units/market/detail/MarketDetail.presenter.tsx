@@ -72,6 +72,7 @@ export default function MarketDetailUI(
       <S.BottomWrapper>
         <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
         <S.Button>구매하기</S.Button>
+        <S.Button>수정하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );
