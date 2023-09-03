@@ -1,9 +1,15 @@
 import styled from "@emotion/styled";
-import { Rate } from "antd";
+
+interface IMarketCommentWriteProps {
+  isEdit?: boolean;
+  isReply?: boolean;
+}
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 0px 100px;
+  width: ${(props: IMarketCommentWriteProps) =>
+    props.isEdit ? "1140px" : props.isReply ? "1120px" : "1200px"};
+  margin: ${(props: IMarketCommentWriteProps) =>
+    props.isEdit ? "0px" : props.isReply ? "0 70px" : "0px 100px"};
 `;
 
 export const PencilIcon = styled.img``;
@@ -31,6 +37,20 @@ export const ContentsWrapper = styled.div`
   border: 1px solid lightgray;
 `;
 
+export const ReplyWrapper = styled.div`
+  display: flex;
+`;
+export const ReplyWrapperImg = styled.div`
+  margin-right: 10px;
+  margin-top: 20px;
+`;
+export const ContentsWrapperReply = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid lightgray;
+  margin-bottom: 30px;
+`;
+
 export const Input = styled.input`
   width: 180px;
   height: 52px;
@@ -40,6 +60,13 @@ export const Input = styled.input`
 `;
 
 export const Contents = styled.textarea`
+  width: 100%;
+  min-height: 108px;
+  padding: 20px;
+  border: none;
+  border-bottom: 1px solid lightgray;
+`;
+export const ContentsReply = styled.textarea`
   width: 100%;
   min-height: 108px;
   padding: 20px;
@@ -64,9 +91,11 @@ export const ContentsLength = styled.div`
 export const Button = styled.button`
   width: 91px;
   height: 51px;
-  background-color: black;
-  color: white;
+  background-color: ${(props: IMarketCommentWriteProps) =>
+    props.isEdit ? "#FFD600" : "black"};
+  color: ${(props: IMarketCommentWriteProps) =>
+    props.isEdit ? "black" : "white"};
+  border: ${(props: IMarketCommentWriteProps) =>
+    props.isEdit ? "none" : "none"};
   cursor: pointer;
 `;
-
-export const Star = styled(Rate)``;

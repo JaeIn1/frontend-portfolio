@@ -18,18 +18,18 @@ export const CREATE_MARKET_COMMENT = gql`
   }
 `;
 
-export const UPDATE_BOARD_COMMENT = gql`
-  mutation updateBoardComment(
-    $updateBoardCommentInput: UpdateBoardCommentInput!
-    $password: String
-    $boardCommentId: ID!
+export const UPDATE_MARKET_COMMENT = gql`
+  mutation updateUseditemQuestion(
+    $updateUseditemQuestionInput: UpdateUseditemQuestionInput!
+    $useditemQuestionId: ID!
   ) {
-    updateBoardComment(
-      updateBoardCommentInput: $updateBoardCommentInput
-      password: $password
-      boardCommentId: $boardCommentId
+    updateUseditemQuestion(
+      updateUseditemQuestionInput: $updateUseditemQuestionInput
+      useditemQuestionId: $useditemQuestionId
     ) {
       _id
+      contents
+      createdAt
     }
   }
 `;

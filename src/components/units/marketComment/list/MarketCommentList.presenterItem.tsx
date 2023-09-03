@@ -20,6 +20,7 @@ export default function MarketCommentListUIItem(
   const router = useRouter();
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isReply, setIsReply] = useState(false);
 
   const [deleteBoardComment] = useMutation<
     Pick<IMutation, "deleteUseditemQuestion">,
@@ -55,6 +56,10 @@ export default function MarketCommentListUIItem(
     setIsEdit(true);
   };
 
+  const onClickReply = (): void => {
+    setIsReply((prev) => !prev);
+  };
+
   return (
     <>
       {isOpenDeleteModal && (
@@ -67,11 +72,39 @@ export default function MarketCommentListUIItem(
         </S.PasswordModal>
       )}
       {isEdit ? (
-        <MarketCommentWrite
-          el={props.el}
-          isEdit={isEdit}
-          setIsEdit={setIsEdit}
-        />
+        <>
+          <S.ItemWrapper key={props.el._id}>
+            <S.FlexWrapper>
+              <S.Avatar src="/images/avatar.png" />
+              <S.MainWrapper>
+                <S.WriterWrapper>
+                  <S.Writer>{props.el.user.name}</S.Writer>
+                </S.WriterWrapper>
+                <MarketCommentWrite
+                  el={props.el}
+                  isEdit={isEdit}
+                  setIsEdit={setIsEdit}
+                />
+              </S.MainWrapper>
+            </S.FlexWrapper>
+            <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
+          </S.ItemWrapper>
+        </>
+      ) : isReply ? (
+        <S.ItemWrapper key={props.el._id}>
+          <S.FlexWrapper>
+            <S.Avatar src="/images/avatar.png" />
+            <S.MainWrapper>
+              <S.WriterWrapper>
+                <S.Writer>{props.el.user.name}</S.Writer>
+              </S.WriterWrapper>
+              <S.Contents>{props.el.contents}</S.Contents>
+              <S.Reply onClick={onClickReply}>답글 달기</S.Reply>
+            </S.MainWrapper>
+          </S.FlexWrapper>
+          <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
+          <MarketCommentWrite el={props.el} isReply={isReply} />
+        </S.ItemWrapper>
       ) : (
         <S.ItemWrapper key={props.el._id}>
           <S.FlexWrapper>
@@ -81,6 +114,7 @@ export default function MarketCommentListUIItem(
                 <S.Writer>{props.el.user.name}</S.Writer>
               </S.WriterWrapper>
               <S.Contents>{props.el.contents}</S.Contents>
+              <S.Reply onClick={onClickReply}>답글 달기</S.Reply>
             </S.MainWrapper>
             <S.OptionWrapper>
               <S.UpdateIcon

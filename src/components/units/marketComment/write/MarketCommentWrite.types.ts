@@ -3,6 +3,7 @@ import type { IUseditemQuestion } from "../../../../commons/types/generated/type
 
 export interface IMarketCommentWriteProps {
   isEdit?: boolean;
+  isReply?: boolean;
   setIsEdit?: Dispatch<SetStateAction<boolean>>;
   el?: IUseditemQuestion;
 }
@@ -13,5 +14,6 @@ export interface IMarketCommentWriteUIProps {
   onClickUpdate: () => void;
   contents: string;
   isEdit?: boolean;
+  isReply?: boolean;
   el?: IUseditemQuestion;
 }

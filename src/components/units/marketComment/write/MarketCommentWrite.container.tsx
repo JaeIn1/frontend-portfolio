@@ -4,13 +4,13 @@ import { useState } from "react";
 import type { ChangeEvent } from "react";
 import {
   CREATE_MARKET_COMMENT,
-  UPDATE_BOARD_COMMENT,
+  UPDATE_MARKET_COMMENT,
 } from "./MarketCommentWrite.queries";
 import type {
   IMutation,
   IMutationCreateUseditemQuestionArgs,
-  IMutationUpdateBoardCommentArgs,
-  IUpdateBoardCommentInput,
+  IMutationUpdateUseditemQuestionArgs,
+  IUpdateUseditemQuestionInput,
 } from "../../../../commons/types/generated/types";
 import type { IMarketCommentWriteProps } from "./MarketCommentWrite.types";
 import MarketCommentWriteUI from "./MarketCommentWrite.presenter";
@@ -27,10 +27,10 @@ export default function MarketCommentWrite(
     IMutationCreateUseditemQuestionArgs
   >(CREATE_MARKET_COMMENT);
 
-  const [updateBoardComment] = useMutation<
-    Pick<IMutation, "updateBoardComment">,
-    IMutationUpdateBoardCommentArgs
-  >(UPDATE_BOARD_COMMENT);
+  const [updateMarketComment] = useMutation<
+    Pick<IMutation, "updateUseditemQuestion">,
+    IMutationUpdateUseditemQuestionArgs
+  >(UPDATE_MARKET_COMMENT);
 
   const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>): void => {
     setContents(event.target.value);
@@ -68,24 +68,26 @@ export default function MarketCommentWrite(
       return;
     }
     try {
-      const updateBoardCommentInput: IUpdateBoardCommentInput = {};
-      if (contents !== "") updateBoardCommentInput.contents = contents;
+      const updateUseditemQuestionInput: IUpdateUseditemQuestionInput = {
+        contents: "",
+      };
+      if (contents !== "") updateUseditemQuestionInput.contents = contents;
 
       if (typeof props.el?._id !== "string") {
         alert("시스템에 문제가 있습니다.");
         return;
       }
 
-      void updateBoardComment({
+      void updateMarketComment({
         variables: {
-          updateBoardCommentInput,
-          boardCommentId: props.el?._id,
+          updateUseditemQuestionInput,
+          useditemQuestionId: props.el?._id,
         },
         refetchQueries: [
           {
             query: FETCH_MARKET_COMMENTS,
             variables: {
-              boardId: router.query.boardId,
+              useditemId: router.query.marketId,
             },
           },
         ],
@@ -104,6 +106,7 @@ export default function MarketCommentWrite(
       contents={contents}
       el={props.el}
       isEdit={props.isEdit}
+      isReply={props.isReply}
     />
   );
 }
