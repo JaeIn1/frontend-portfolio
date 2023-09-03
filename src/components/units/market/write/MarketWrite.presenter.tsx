@@ -21,7 +21,6 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
               placeholder="상품명을 작성해주세요"
               onChange={props.onChangeItemNamer}
               defaultValue={props.data?.fetchUseditem.name ?? ""}
-              readOnly={Boolean(props.data?.fetchUseditem.name)}
             />
             <S.Error>{props.nameError}</S.Error>
           </S.InputWrapper>
@@ -50,7 +49,7 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.ItemPrice
             placeholder="판매 가격을 입력해주세요"
             onChange={props.onChangePrice}
-            defaultValue={String(props.data?.fetchUseditem.price)}
+            defaultValue={String(props.data?.fetchUseditem.price ?? "")}
           />
           <S.Error>{props.pricesError}</S.Error>
         </S.InputWrapper>
@@ -59,6 +58,7 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.ItemTag
             placeholder="#태그 #태그 #태그"
             onChange={props.onChangeTag}
+            defaultValue={String(`${props.data?.fetchUseditem.tags ?? ""}`)}
           />
           <S.Error>{props.tagsError}</S.Error>
         </S.InputWrapper>
@@ -115,7 +115,7 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
         </S.OptionWrapper>
         <S.ButtonWrapper>
           <S.SubmitButton
-            onClick={props.onClickSubmit}
+            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
             isActive={props.isEdit ? true : props.isActive}
           >
             {props.isEdit ? "수정하기" : "등록하기"}

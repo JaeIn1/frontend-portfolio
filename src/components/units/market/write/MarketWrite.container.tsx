@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import BoardWriteUI from "./MarketWrite.presenter";
-import { CREATE_ITEM } from "./MarketWrite.queries";
+import { CREATE_ITEM, UPDATE_ITEM } from "./MarketWrite.queries";
 import type {
   IMutation,
   IMutationCreateUseditemArgs,
+  IMutationUpdateUseditemArgs,
+  IUpdateUseditemInput,
 } from "../../../../commons/types/generated/types";
 import type { IMarketWriteProps } from "./MarketWrite.types";
 import type { Address } from "react-daum-postcode";
+import MarketWriteUI from "./MarketWrite.presenter";
 
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
@@ -37,10 +39,10 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     IMutationCreateUseditemArgs
   >(CREATE_ITEM);
 
-  /* const [updateBoard] = useMutation<
-    Pick<IMutation, "updateBoard">,
-    IMutationUpdateBoardArgs
-  >(UPDATE_BOARD); */
+  const [updateItem] = useMutation<
+    Pick<IMutation, "updateUseditem">,
+    IMutationUpdateUseditemArgs
+  >(UPDATE_ITEM);
 
   const onChangeItemNamer = (event: ChangeEvent<HTMLInputElement>): void => {
     setName(event.target.value);
@@ -195,13 +197,16 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     }
   };
 
-  /* const onClickUpdate = async (): Promise<void> => {
+  const onClickUpdate = async (): Promise<void> => {
     const currentFiles = JSON.stringify(fileUrls);
-    const defaultFiles = JSON.stringify(props.data?.fetchBoard.images);
+    const defaultFiles = JSON.stringify(props.data?.fetchUseditem.images);
     const isChangedFiles = currentFiles !== defaultFiles;
     if (
-      title === "" &&
+      name === "" &&
+      remarks === "" &&
       contents === "" &&
+      price === "" &&
+      JSON.stringify(tags) === "" &&
       address === "" &&
       addressDetail === "" &&
       zipcode === "" &&
@@ -211,45 +216,46 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       return;
     }
 
-    const updateBoardInput: IUpdateBoardInput = {};
-    if (title !== "") updateBoardInput.title = title;
-    if (contents !== "") updateBoardInput.contents = contents;
-    if (youtubeUrl !== "") updateBoardInput.youtubeUrl = youtubeUrl;
+    const updateUseditemInput: IUpdateUseditemInput = {};
+    if (name !== "") updateUseditemInput.name = name;
+    if (remarks !== "") updateUseditemInput.remarks = remarks;
+    if (contents !== "") updateUseditemInput.contents = contents;
+    if (price !== "") updateUseditemInput.price = Number(price);
+    if (JSON.stringify(tags) !== "") updateUseditemInput.tags = tags;
     if (zipcode !== "" || address !== "" || addressDetail !== "") {
-      updateBoardInput.boardAddress = {};
-      if (zipcode !== "") updateBoardInput.boardAddress.zipcode = zipcode;
-      if (address !== "") updateBoardInput.boardAddress.address = address;
+      updateUseditemInput.useditemAddress = {};
+      if (zipcode !== "") updateUseditemInput.useditemAddress.zipcode = zipcode;
+      if (address !== "") updateUseditemInput.useditemAddress.address = address;
       if (addressDetail !== "")
-        updateBoardInput.boardAddress.addressDetail = addressDetail;
+        updateUseditemInput.useditemAddress.addressDetail = addressDetail;
     }
-    if (isChangedFiles) updateBoardInput.images = fileUrls;
+    if (isChangedFiles) updateUseditemInput.images = fileUrls;
 
     try {
-      if (typeof router.query.boardId !== "string") {
+      if (typeof router.query.marketId !== "string") {
         alert("시스템에 문제가 있습니다.");
         return;
       }
-      const result = await updateBoard({
+      const result = await updateItem({
         variables: {
-          boardId: router.query.boardId,
-          password,
-          updateBoardInput,
+          useditemId: router.query.marketId,
+          updateUseditemInput,
         },
       });
 
-      if (result.data?.updateBoard._id === undefined) {
+      if (result.data?.updateUseditem._id === undefined) {
         alert("요청에 문제가 있습니다.");
         return;
       }
-
-      void router.push(`/boards/${result.data?.updateBoard._id}`);
+      alert("상품이 수정되었습니다.");
+      void router.push(`/markets/${result.data?.updateUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
-  }; */
+  };
 
   return (
-    <BoardWriteUI
+    <MarketWriteUI
       nameError={nameError}
       remarksError={remarksError}
       contentsError={contentsError}
@@ -265,7 +271,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFileUrls={onChangeFileUrls}
       onClickSubmit={onClickSubmit}
-      // onClickUpdate={onClickUpdate}
+      onClickUpdate={onClickUpdate}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}

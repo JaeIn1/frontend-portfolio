@@ -16,14 +16,14 @@ export default function MarketDetail(): JSX.Element {
     IQueryFetchUseditemArgs
   >(FETCH_MARKET_ITEM, { variables: { useditemId: router.query.marketId } });
 
-  /* const onClickMoveToBoardEdit = (): void => {
-    if (typeof router.query.boardId !== "string") {
+  const onClickMoveToMarketEdit = (): void => {
+    if (typeof router.query.marketId !== "string") {
       alert("시스템에 문제가 있습니다.");
       return;
     }
 
-    void router.push(`/markets/${router.query.boardId}/edit`);
-  }; */
+    void router.push(`/markets/${router.query.marketId}/edit`);
+  };
 
   const onClickReturnList = (): void => {
     void router.push("/markets");
@@ -40,7 +40,7 @@ export default function MarketDetail(): JSX.Element {
   return (
     <MarketDetailUI
       data={data}
-      // onClickMoveToBoardEdit={onClickMoveToBoardEdit}
+      onClickMoveToMarketEdit={onClickMoveToMarketEdit}
       onClickReturnList={onClickReturnList}
       settings={settings}
     />

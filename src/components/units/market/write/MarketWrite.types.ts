@@ -3,7 +3,7 @@ import type { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IMarketWriteProps {
   isEdit: boolean;
-  data?: Pick<IQuery, "fetchUseditem">;
+  data?: Pick<IQuery, "fetchUseditem"> | undefined;
 }
 
 export interface IBoardWriteUIProps {
@@ -23,7 +23,7 @@ export interface IBoardWriteUIProps {
   onCompleteAddressSearch: (data: any) => void;
   onChangeFileUrls: (fileUrls: string, index: number) => void;
   onClickSubmit: () => void;
-  // onClickUpdate: () => void;
+  onClickUpdate: () => void;
   isActive: boolean;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchUseditem">;

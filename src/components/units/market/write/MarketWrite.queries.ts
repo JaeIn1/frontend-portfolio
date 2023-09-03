@@ -8,18 +8,32 @@ export const CREATE_ITEM = gql`
   }
 `;
 
-export const UPDATE_BOARD = gql`
-  mutation updateBoard(
-    $boardId: ID!
-    $password: String
-    $updateBoardInput: UpdateBoardInput!
+export const UPDATE_ITEM = gql`
+  mutation updateUseditem(
+    $updateUseditemInput: UpdateUseditemInput!
+    $useditemId: ID!
   ) {
-    updateBoard(
-      boardId: $boardId
-      password: $password
-      updateBoardInput: $updateBoardInput
+    updateUseditem(
+      updateUseditemInput: $updateUseditemInput
+      useditemId: $useditemId
     ) {
       _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      pickedCount
+      useditemAddress {
+        zipcode
+        address
+        addressDetail
+      }
+      seller {
+        name
+      }
+      createdAt
     }
   }
 `;
