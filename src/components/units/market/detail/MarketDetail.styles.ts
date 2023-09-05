@@ -123,14 +123,14 @@ export const ImageWrapperDiv = styled.div`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 40%;
+  width: 50%;
   padding-top: 50px;
-  height: 400px;
+  height: 600px;
 `;
 
 export const SliderItem = styled.img`
-  width: 200px;
-  height: 300px;
+  width: 300px;
+  height: 400px;
   margin: auto;
   border-radius: 15px;
 `;

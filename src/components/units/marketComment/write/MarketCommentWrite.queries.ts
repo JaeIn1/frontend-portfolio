@@ -17,6 +17,31 @@ export const CREATE_MARKET_COMMENT = gql`
     }
   }
 `;
+export const CREATE_MARKET_COMMENT_REPLY = gql`
+  mutation createUseditemQuestionAnswer(
+    $createUseditemQuestionAnswerInput: CreateUseditemQuestionAnswerInput!
+    $useditemQuestionId: ID!
+  ) {
+    createUseditemQuestionAnswer(
+      createUseditemQuestionAnswerInput: $createUseditemQuestionAnswerInput
+      useditemQuestionId: $useditemQuestionId
+    ) {
+      _id
+    }
+  }
+`;
+
+export const FETCH_MARKET_COMMENT_REPLY = gql`
+  query fetchUseditemQuestionAnswers($useditemQuestionId: ID!) {
+    fetchUseditemQuestionAnswers(useditemQuestionId: $useditemQuestionId) {
+      _id
+      contents
+      user {
+        name
+      }
+    }
+  }
+`;
 
 export const UPDATE_MARKET_COMMENT = gql`
   mutation updateUseditemQuestion(
@@ -30,6 +55,29 @@ export const UPDATE_MARKET_COMMENT = gql`
       _id
       contents
       createdAt
+    }
+  }
+`;
+
+export const DELETE_MARKET_COMMENT_REPLY = gql`
+  mutation deleteUseditemQuestionAnswer($useditemQuestionAnswerId: ID!) {
+    deleteUseditemQuestionAnswer(
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    )
+  }
+`;
+
+export const UPDATE_MARKET_COMMENT_REPLY = gql`
+  mutation updateUseditemQuestionAnswer(
+    $updateUseditemQuestionAnswerInput: UpdateUseditemQuestionAnswerInput!
+    $useditemQuestionAnswerId: ID!
+  ) {
+    updateUseditemQuestionAnswer(
+      updateUseditemQuestionAnswerInput: $updateUseditemQuestionAnswerInput
+      useditemQuestionAnswerId: $useditemQuestionAnswerId
+    ) {
+      _id
+      contents
     }
   }
 `;

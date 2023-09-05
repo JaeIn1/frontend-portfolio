@@ -1,104 +1,111 @@
-import { useMutation } from "@apollo/client";
-import { useState } from "react";
-import type { ChangeEvent, MouseEvent } from "react";
-import type {
+import { ChangeEvent, useState } from "react";
+import {
   IMutation,
-  IMutationDeleteBoardCommentArgs,
+  IMutationCreateUseditemQuestionAnswerArgs,
+  IQuery,
+  IQueryFetchUseditemQuestionAnswersArgs,
+  IUseditemQuestion,
 } from "../../../../commons/types/generated/types";
-import { getDate } from "../../../../commons/libraries/utils";
+import * as S from "./MarketCommentReply.styles";
+import {
+  CREATE_MARKET_COMMENT_REPLY,
+  FETCH_MARKET_COMMENT_REPLY,
+} from "../write/MarketCommentWrite.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import MarketCommentReplyUI from "./MarketCommentListReplyItem";
 
-export default function BoardCommentListUIItem(
-  props: IBoardCommentListUIItemProps
-): JSX.Element {
-  const router = useRouter();
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-  const [password, setPassword] = useState("");
-  const [isEdit, setIsEdit] = useState(false);
+interface IReplyProps {
+  el: IUseditemQuestion;
+}
 
-  const [deleteBoardComment] = useMutation<
-    Pick<IMutation, "deleteBoardComment">,
-    IMutationDeleteBoardCommentArgs
-  >(DELETE_BOARD_COMMENT);
+export default function MarketCommentReply(props: IReplyProps): JSX.Element {
+  const [replyContents, setReplyContents] = useState("");
+  const [isOpen, setIsOpen] = useState(true);
+  const [replyId, setReplyId] = useState("");
 
-  const onClickDelete = async (
-    event: MouseEvent<HTMLButtonElement>
-  ): Promise<void> => {
-    // const password = prompt("비밀번호를 입력하세요.");
+  const [createMarketCommentReply] = useMutation<
+    Pick<IMutation, "createUseditemQuestionAnswer">,
+    IMutationCreateUseditemQuestionAnswerArgs
+  >(CREATE_MARKET_COMMENT_REPLY);
+
+  const { data } = useQuery<
+    Pick<IQuery, "fetchUseditemQuestionAnswers">,
+    IQueryFetchUseditemQuestionAnswersArgs
+  >(FETCH_MARKET_COMMENT_REPLY, {
+    variables: {
+      useditemQuestionId: props.el?._id,
+    },
+  });
+
+  const onChangeReplyContents = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    setReplyContents(event.target.value);
+  };
+
+  const onClickReplyWrite = async (): Promise<void> => {
     try {
-      await deleteBoardComment({
+      if (typeof props.el?._id !== "string") {
+        alert("시스템에 문제가 있습니다.");
+        return;
+      }
+
+      const result = await createMarketCommentReply({
         variables: {
-          password,
-          boardCommentId: props.el._id,
+          createUseditemQuestionAnswerInput: {
+            contents: replyContents,
+          },
+          useditemQuestionId: props.el?._id,
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            query: FETCH_MARKET_COMMENT_REPLY,
+            variables: { useditemQuestionId: props.el?._id },
           },
         ],
       });
-      setIsOpenDeleteModal(false);
+      if (typeof result.data?.createUseditemQuestionAnswer._id !== "string") {
+        alert("시스템에 문제가 있습니다.");
+        return;
+      }
+      setReplyId(result.data?.createUseditemQuestionAnswer._id);
+      setIsOpen(false);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
   };
 
-  const onClickOpenToggle = (event: MouseEvent<HTMLElement>): void => {
-    setIsOpenDeleteModal((prev) => !prev);
-  };
-
-  const onChangeDeletePassword = (
-    event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setPassword(event.target.value);
-  };
-
-  const onClickUpdate = (): void => {
-    setIsEdit(true);
-  };
-
   return (
     <>
-      {isOpenDeleteModal && (
-        <S.PasswordModal
-          visible={true}
-          onOk={onClickDelete}
-          onCancel={onClickOpenToggle}
-        >
-          <div>비밀번호 입력: </div>
-          <S.PasswordInput type="password" onChange={onChangeDeletePassword} />
-        </S.PasswordModal>
-      )}
-      {isEdit ? (
-        <BoardCommentWrite
-          el={props.el}
-          isEdit={isEdit}
-          setIsEdit={setIsEdit}
+      {data?.fetchUseditemQuestionAnswers.map((el) => (
+        <MarketCommentReplyUI
+          el={el}
+          pel={props.el}
+          key={el._id}
+          setIsOpen={setIsOpen}
+          replyId={replyId}
         />
-      ) : (
-        <S.ItemWrapper key={props.el._id}>
-          <S.FlexWrapper>
-            <S.Avatar src="/images/avatar.png" />
-            <S.MainWrapper>
-              <S.WriterWrapper>
-                <S.Writer>{props.el.writer}</S.Writer>
-                <S.Star value={props.el.rating} disabled />
-              </S.WriterWrapper>
-              <S.Contents>{props.el.contents}</S.Contents>
-            </S.MainWrapper>
-            <S.OptionWrapper>
-              <S.UpdateIcon
-                src="/images/boardComment/list/option_update_icon.png/"
-                onClick={onClickUpdate}
-              />
-              <S.DeleteIcon
-                src="/images/boardComment/list/option_delete_icon.png/"
-                onClick={onClickOpenToggle}
-              />
-            </S.OptionWrapper>
-          </S.FlexWrapper>
-          <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
-        </S.ItemWrapper>
+      ))}
+      {isOpen && (
+        <S.ReplyWrapper>
+          <S.ReplyWrapperImg>
+            <img src="/images/marketComment/reply.png" />
+          </S.ReplyWrapperImg>
+          <S.ContentsWrapperReply>
+            <S.ContentsReply
+              maxLength={100}
+              onChange={onChangeReplyContents}
+              placeholder="답글을 달아주세요."
+            />
+            <S.BottomWrapper>
+              <S.ContentsLength>
+                {replyContents.length}
+                /100
+              </S.ContentsLength>
+              <S.Button onClick={onClickReplyWrite}>답글등록</S.Button>
+            </S.BottomWrapper>
+          </S.ContentsWrapperReply>
+        </S.ReplyWrapper>
       )}
     </>
   );
