@@ -148,6 +148,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   }, [props.data]);
 
   const onCompleteAddressSearch = (data: Address): void => {
+    console.log(data);
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen((prev) => !prev);

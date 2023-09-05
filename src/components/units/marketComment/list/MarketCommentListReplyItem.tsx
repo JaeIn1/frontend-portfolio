@@ -94,6 +94,10 @@ export default function MarketCommentReplyUI(
   };
 
   const onClickUpdateReply = async (): Promise<void> => {
+    if (props.el.contents === replyContents) {
+      alert("수정된 내용이 없습니다");
+      return;
+    }
     await updateCommentReply({
       variables: {
         updateUseditemQuestionAnswerInput: {
