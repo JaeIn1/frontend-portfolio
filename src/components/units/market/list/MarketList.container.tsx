@@ -1,9 +1,8 @@
 import BoardListUI from "./MarketList.presenter";
 import { useQuery } from "@apollo/client";
-import { FETCH_BOARD_BEST, FETCH_MARKETS } from "./MarketList.queries";
+import { FETCH_MARKET_ITEM_BEST, FETCH_MARKETS } from "./MarketList.queries";
 import { useRouter } from "next/router";
 import type {
-  IBoard,
   IQuery,
   IQueryFetchUseditemsArgs,
   IUseditem,
@@ -21,15 +20,17 @@ export default function MarketList(): JSX.Element {
 
   console.log(data?.fetchUseditems[8].images?.[0]);
 
-  const { data: dataBest } =
-    useQuery<Pick<IQuery, "fetchBoardsOfTheBest">>(FETCH_BOARD_BEST);
+  const { data: dataBest } = useQuery<Pick<IQuery, "fetchUseditemsOfTheBest">>(
+    FETCH_MARKET_ITEM_BEST
+  );
+  console.log(dataBest);
 
   const onChangeKeyword = (value: string): void => {
     setKeyword(value);
   };
 
-  const onClickBestBoard = (el: IBoard) => (): void => {
-    void router.push(`boards/${el._id}`);
+  const onClickBestBoard = (el: IUseditem) => (): void => {
+    void router.push(`markets/${el._id}`);
   };
 
   const onLoadMore = (): void => {

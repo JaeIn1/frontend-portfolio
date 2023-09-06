@@ -1,5 +1,4 @@
 import InfiniteScroll from "react-infinite-scroller";
-import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./MarketList.styles";
 import type { IBoardListUIProps } from "./MarketList.types";
 import { v4 as uuidv4 } from "uuid";
@@ -9,23 +8,22 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
     <S.Wrapper>
       <S.MarketBestTitle>베스트 상품</S.MarketBestTitle>
       <S.BoardBestWrapper>
-        {props.dataBest?.fetchBoardsOfTheBest.map((el) => (
+        {props.dataBest?.fetchUseditemsOfTheBest.map((el) => (
           <S.BoardBestDiv key={el._id} onClick={props.onClickBestBoard(el)}>
             <S.BoardBestImg
               src={`https://storage.googleapis.com/${el.images?.[0]}`}
             />
-            <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
             <S.Header>
               <S.AvatarWrapper>
-                <S.Avatar src="/images/avatar.png" />
                 <S.Info>
-                  <S.Writer>{el.writer}</S.Writer>
-                  <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
+                  <S.BoardBestSpan>{el.name}</S.BoardBestSpan>
+                  <S.BestItemName>{el.remarks}</S.BestItemName>
+                  <S.BestItemPrice>{el.price}원</S.BestItemPrice>
                 </S.Info>
               </S.AvatarWrapper>
               <S.BestBoardLikeCountDiv>
-                <img src="/images/board/detail/good.png" />
-                <div>{el.likeCount}</div>
+                <img src="/images/market/marketItem_love.png" />
+                <span>{el.pickedCount}</span>
               </S.BestBoardLikeCountDiv>
             </S.Header>
           </S.BoardBestDiv>

@@ -28,17 +28,28 @@ export const FETCH_BOARDS_COUNT = gql`
   }
 `;
 
-export const FETCH_BOARD_BEST = gql`
+export const FETCH_MARKET_ITEM_BEST = gql`
   query {
-    fetchBoardsOfTheBest {
+    fetchUseditemsOfTheBest {
       _id
-      writer
-      title
+      name
+      remarks
       contents
-      youtubeUrl
-      likeCount
-      dislikeCount
+      price
+      tags
       images
+      pickedCount
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
+      seller {
+        name
+      }
       createdAt
     }
   }

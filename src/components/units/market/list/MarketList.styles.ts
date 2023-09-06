@@ -44,22 +44,22 @@ export const BoardBestWrapper = styled.div`
   margin-bottom: 40px;
 `;
 export const BoardBestDiv = styled.div`
-  width: 24%;
-  height: 200px;
-  border-radius: 20px;
+  width: 22%;
+  height: 350px;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  overflow: hidden;
 `;
 export const BoardBestImg = styled.img`
   border-radius: 20px 20px 0px 0px;
   width: 100%;
-  height: 45%;
+  height: 250px;
+  padding: 15px;
   object-fit: cover;
 `;
-export const BoardBestSpan = styled.span`
-  margin: 10px;
+export const BoardBestSpan = styled.div`
   font-weight: bolder;
 `;
 export const Header = styled.div`
@@ -87,16 +87,25 @@ export const Info = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-export const Writer = styled.div``;
+export const BestItemName = styled.div`
+  margin-bottom: 7px;
+  font-size: 14px;
+`;
 
 export const CreatedAt = styled.div``;
 
+export const BestItemPrice = styled.span`
+  font-weight: bolder;
+`;
+
 export const BestBoardLikeCountDiv = styled.div`
   padding-right: 20px;
-
-  & div {
-    color: #ffd600;
-    font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img {
+    width: 30px;
+    height: 30px;
   }
 `;
 
