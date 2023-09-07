@@ -77,9 +77,32 @@ export const Contents = styled.textarea`
   border: 1px solid #bdbdbd;
 `;
 
+export const KakaoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const KakaoMapDiv = styled.div`
+  width: 40%;
+  margin-right: 20px;
+`;
+
+export const KakaoMap = styled.div`
+  width: 400px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+`;
+export const KakaoMapInfo = styled.div`
+  width: 60%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+`;
 export const ZipcodeWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  width: 100%;
 `;
 
 export const Zipcode = styled.input`
@@ -99,16 +122,9 @@ export const SearchButton = styled.button`
 `;
 
 export const Address = styled.input`
-  width: 996px;
+  width: 590px;
   height: 52px;
   margin-top: 16px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-`;
-
-export const Youtube = styled.input`
-  width: 996px;
-  height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `;

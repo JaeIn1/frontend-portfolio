@@ -63,35 +63,42 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
           <S.Error>{props.tagsError}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
-          <S.Label>주소</S.Label>
-          <S.ZipcodeWrapper>
-            <S.Zipcode
-              placeholder="07250"
-              readOnly
-              value={
-                props.zipcode !== ""
-                  ? props.zipcode
-                  : props.data?.fetchUseditem.useditemAddress?.zipcode ?? ""
-              }
-            />
-            <S.SearchButton onClick={props.onClickAddressSearch}>
-              우편번호 검색
-            </S.SearchButton>
-          </S.ZipcodeWrapper>
-          <S.Address
-            readOnly
-            value={
-              props.address !== ""
-                ? props.address
-                : props.data?.fetchUseditem.useditemAddress?.address ?? ""
-            }
-          />
-          <S.Address
-            onChange={props.onChangeAddressDetail}
-            defaultValue={
-              props.data?.fetchUseditem.useditemAddress?.addressDetail ?? ""
-            }
-          />
+          <S.Label>거래위치</S.Label>
+          <S.KakaoWrapper>
+            <S.KakaoMapDiv>
+              <S.KakaoMap id="map"></S.KakaoMap>
+            </S.KakaoMapDiv>
+            <S.KakaoMapInfo>
+              <S.ZipcodeWrapper>
+                <S.Zipcode
+                  placeholder="07250"
+                  readOnly
+                  value={
+                    props.zipcode !== ""
+                      ? props.zipcode
+                      : props.data?.fetchUseditem.useditemAddress?.zipcode ?? ""
+                  }
+                />
+                <S.SearchButton onClick={props.onClickAddressSearch}>
+                  우편번호 검색
+                </S.SearchButton>
+              </S.ZipcodeWrapper>
+              <S.Address
+                readOnly
+                value={
+                  props.address !== ""
+                    ? props.address
+                    : props.data?.fetchUseditem.useditemAddress?.address ?? ""
+                }
+              />
+              <S.Address
+                onChange={props.onChangeAddressDetail}
+                defaultValue={
+                  props.data?.fetchUseditem.useditemAddress?.addressDetail ?? ""
+                }
+              />
+            </S.KakaoMapInfo>
+          </S.KakaoWrapper>
         </S.InputWrapper>
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>

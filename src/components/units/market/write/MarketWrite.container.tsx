@@ -13,8 +13,14 @@ import type { IMarketWriteProps } from "./MarketWrite.types";
 import type { Address } from "react-daum-postcode";
 import MarketWriteUI from "./MarketWrite.presenter";
 
+declare const window: typeof globalThis & {
+  kakao: any;
+};
+
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
+  const [lat, setLat] = useState();
+  const [lng, setLng] = useState();
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -143,15 +149,53 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
 
   useEffect(() => {
     const images = props.data?.fetchUseditem.images;
-    console.log(images);
     if (images !== undefined && images !== null) setFileUrls([...images]);
   }, [props.data]);
 
+  const OpenKakaoMap = (data: Address): void => {
+    const script = document.createElement("script");
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d04ecaaaaf8321b9e6f5e5d593940588&libraries=services";
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      console.log();
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
+        const options = {
+          // 지도를 생성할 때 필요한 기본 옵션
+          center: new window.kakao.maps.LatLng(lng, lat), // 지도의 중심좌표.
+          level: 5, // 지도의 레벨(확대, 축소 정도)
+        };
+        const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+        console.log(map);
+
+        const geocoder = new window.kakao.maps.services.Geocoder();
+        const callback = function (result: any, status: any): void {
+          if (status === window.kakao.maps.services.Status.OK) {
+            console.log(result);
+            setLat(result[0].x);
+            setLng(result[0].y);
+          }
+        };
+        geocoder.addressSearch(data.address, callback);
+
+        const coords = new window.kakao.maps.LatLng(lng, lat);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        const marker = new window.kakao.maps.Marker({
+          map,
+          position: coords,
+        });
+      });
+    };
+  };
+
   const onCompleteAddressSearch = (data: Address): void => {
-    console.log(data);
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen((prev) => !prev);
+    OpenKakaoMap(data);
   };
 
   const onClickSubmit = async (): Promise<void> => {
