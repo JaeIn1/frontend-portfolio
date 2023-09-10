@@ -21,6 +21,8 @@ export const FETCH_MARKET_ITEM = gql`
         zipcode
         address
         addressDetail
+        lat
+        lng
       }
     }
   }

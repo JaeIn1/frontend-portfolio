@@ -148,3 +148,8 @@ export const BoardLikeDiv = styled.div`
     align-items: center;
   }
 `;
+
+export const KaKaoMapDetail = styled.div`
+  height: 400px;
+  border: 1px solid lightgray;
+`;

@@ -67,6 +67,7 @@ export default function MarketDetailUI(
             ))}
           </S.Tags>
           <S.BreakLine></S.BreakLine>
+          <S.KaKaoMapDetail id="map"></S.KaKaoMapDetail>
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>

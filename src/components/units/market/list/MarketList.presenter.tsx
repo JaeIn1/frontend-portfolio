@@ -2,6 +2,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import * as S from "./MarketList.styles";
 import type { IBoardListUIProps } from "./MarketList.types";
 import { v4 as uuidv4 } from "uuid";
+import Searchbars02 from "../../../commons/searchbars/02/Searchbars02.container";
 
 export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
   return (
@@ -29,6 +30,10 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
           </S.BoardBestDiv>
         ))}
       </S.BoardBestWrapper>
+      <Searchbars02
+        refetch={props.refetch}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <S.MarketListWrapper>
         <S.MarketScrollerDiv style={{ height: "800px", overflow: "auto" }}>
           <InfiniteScroll

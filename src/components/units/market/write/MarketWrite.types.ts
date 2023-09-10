@@ -6,7 +6,7 @@ export interface IMarketWriteProps {
   data?: Pick<IQuery, "fetchUseditem"> | undefined;
 }
 
-export interface IBoardWriteUIProps {
+export interface IMarketWriteUIProps {
   nameError: string;
   remarksError: string;
   contentsError: string;

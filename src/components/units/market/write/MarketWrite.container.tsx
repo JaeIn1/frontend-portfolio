@@ -24,7 +24,6 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [lng, setLng] = useState(127.111906);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [kakaoMap, setKakaoMap] = useState({});
 
   const [name, setName] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -159,7 +158,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     if (images !== undefined && images !== null) setFileUrls([...images]);
   }, [props.data]);
 
-  const OpenKakaoMap = (data: Address): void => {
+  const OpenKakaoMap = (data: string): void => {
     window.kakao.maps.load(() => {
       const geocoder = new window.kakao.maps.services.Geocoder();
       const callback = function (result: any, status: any): void {
@@ -169,7 +168,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
           setLng(result[0].y);
         }
       };
-      geocoder.addressSearch(data.address, callback);
+      geocoder.addressSearch(data, callback);
     });
   };
 
@@ -191,6 +190,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
         map,
         position: coords,
       });
+      console.log(marker);
     });
   }, [lat, lng]);
 
@@ -198,9 +198,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen((prev) => !prev);
-    console.log(typeof data);
-    setKakaoMap(data);
-    OpenKakaoMap(data);
+    OpenKakaoMap(data.address);
   };
 
   const onClickSubmit = async (): Promise<void> => {
@@ -216,7 +214,14 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     if (price === "") {
       setPriceError("가격을 입력해주세요");
     }
-    if (name !== "" && remarks !== "" && contents !== "" && price !== "") {
+    if (
+      name !== "" &&
+      remarks !== "" &&
+      contents !== "" &&
+      price !== "" &&
+      lat &&
+      lng
+    ) {
       try {
         const result = await createItem({
           variables: {
@@ -230,6 +235,8 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
                 zipcode,
                 address,
                 addressDetail,
+                lat: Number(lat),
+                lng: Number(lng),
               },
               images: [...fileUrls],
             },
@@ -239,6 +246,10 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
           alert("요청에 문제가 있습니다.");
           return;
         }
+        console.log(
+          result.data?.createUseditem.useditemAddress?.lat,
+          result.data?.createUseditem.useditemAddress?.lng
+        );
         alert("상품이 등록되었습니다.");
         void router.push(`/markets`);
       } catch (error) {
@@ -279,6 +290,10 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       if (address !== "") updateUseditemInput.useditemAddress.address = address;
       if (addressDetail !== "")
         updateUseditemInput.useditemAddress.addressDetail = addressDetail;
+      if (props.data?.fetchUseditem.useditemAddress?.lng)
+        updateUseditemInput.useditemAddress.lng = Number(lng);
+      if (props.data?.fetchUseditem.useditemAddress?.lat)
+        updateUseditemInput.useditemAddress.lat = Number(lat);
     }
     if (isChangedFiles) updateUseditemInput.images = fileUrls;
 

@@ -1,9 +1,9 @@
 import Upload01 from "../../../commons/uploads/01/Upload01.container";
 import * as S from "./MarketWrite.styles";
-import type { IBoardWriteUIProps } from "./MarketWrite.types";
+import type { IMarketWriteUIProps } from "./MarketWrite.types";
 import { v4 as uuidv4 } from "uuid";
 
-export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
+export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
   return (
     <>
       {props.isOpen && (

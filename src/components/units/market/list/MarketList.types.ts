@@ -1,5 +1,7 @@
+import { ApolloQueryResult } from "@apollo/client";
 import type {
   IQuery,
+  IQueryFetchUseditemsArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
 
@@ -12,6 +14,9 @@ export interface IBoardListUIProps {
   onLoadMore: () => void;
   onClickMarketItem: (el: IUseditem) => () => void;
   onClickMoveToMarketNew: () => void;
+  refetch: (
+    variables?: Partial<IQueryFetchUseditemsArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 }
 
 export interface ITextTokenProps {
