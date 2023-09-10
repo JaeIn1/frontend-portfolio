@@ -1,5 +1,6 @@
+/* eslint-disable no-unneeded-ternary */
 import { useEffect, useState } from "react";
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, MouseEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_ITEM, UPDATE_ITEM } from "./MarketWrite.queries";
@@ -19,10 +20,11 @@ declare const window: typeof globalThis & {
 
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState(37.280231);
+  const [lng, setLng] = useState(127.111906);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [kakaoMap, setKakaoMap] = useState({});
 
   const [name, setName] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -147,54 +149,57 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     setFileUrls(newFileUrls);
   };
 
+  const onClickDeleteImg = (index: any): void => {
+    const arr = [...fileUrls];
+    arr[index] = "";
+    setFileUrls(arr);
+  };
   useEffect(() => {
     const images = props.data?.fetchUseditem.images;
     if (images !== undefined && images !== null) setFileUrls([...images]);
   }, [props.data]);
 
   const OpenKakaoMap = (data: Address): void => {
-    const script = document.createElement("script");
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d04ecaaaaf8321b9e6f5e5d593940588&libraries=services";
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      console.log();
-      window.kakao.maps.load(() => {
-        const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
-        const options = {
-          // 지도를 생성할 때 필요한 기본 옵션
-          center: new window.kakao.maps.LatLng(lng, lat), // 지도의 중심좌표.
-          level: 5, // 지도의 레벨(확대, 축소 정도)
-        };
-        const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-        console.log(map);
-
-        const geocoder = new window.kakao.maps.services.Geocoder();
-        const callback = function (result: any, status: any): void {
-          if (status === window.kakao.maps.services.Status.OK) {
-            console.log(result);
-            setLat(result[0].x);
-            setLng(result[0].y);
-          }
-        };
-        geocoder.addressSearch(data.address, callback);
-
-        const coords = new window.kakao.maps.LatLng(lng, lat);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        const marker = new window.kakao.maps.Marker({
-          map,
-          position: coords,
-        });
-      });
-    };
+    window.kakao.maps.load(() => {
+      const geocoder = new window.kakao.maps.services.Geocoder();
+      const callback = function (result: any, status: any): void {
+        if (status === window.kakao.maps.services.Status.OK) {
+          console.log(result);
+          setLat(result[0].x);
+          setLng(result[0].y);
+        }
+      };
+      geocoder.addressSearch(data.address, callback);
+    });
   };
+
+  useEffect(() => {
+    window.kakao.maps.load(() => {
+      const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
+      const options = {
+        // 지도를 생성할 때 필요한 기본 옵션
+        center: new window.kakao.maps.LatLng(lng, lat), // 지도의 중심좌표.
+        level: 5, // 지도의 레벨(확대, 축소 정도)
+      };
+      const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+      console.log(map);
+
+      const coords = new window.kakao.maps.LatLng(lng, lat);
+
+      // 결과값으로 받은 위치를 마커로 표시합니다
+      const marker = new window.kakao.maps.Marker({
+        map,
+        position: coords,
+      });
+    });
+  }, [lat, lng]);
 
   const onCompleteAddressSearch = (data: Address): void => {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen((prev) => !prev);
+    console.log(typeof data);
+    setKakaoMap(data);
     OpenKakaoMap(data);
   };
 
@@ -246,13 +251,14 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data?.fetchUseditem.images);
     const isChangedFiles = currentFiles !== defaultFiles;
+    console.log(JSON.stringify(tags));
     if (
       name === "" &&
       remarks === "" &&
       contents === "" &&
       price === "" &&
-      JSON.stringify(tags) === "" &&
       address === "" &&
+      JSON.stringify(tags) &&
       addressDetail === "" &&
       zipcode === "" &&
       !isChangedFiles
@@ -315,6 +321,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFileUrls={onChangeFileUrls}
+      onClickDeleteImg={onClickDeleteImg}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isActive={isActive}

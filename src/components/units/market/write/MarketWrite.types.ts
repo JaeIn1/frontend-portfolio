@@ -22,6 +22,7 @@ export interface IBoardWriteUIProps {
 
   onCompleteAddressSearch: (data: any) => void;
   onChangeFileUrls: (fileUrls: string, index: number) => void;
+  onClickDeleteImg?: (() => void) | undefined;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   isActive: boolean;

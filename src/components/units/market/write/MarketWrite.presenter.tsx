@@ -109,6 +109,7 @@ export default function MarketWriteUI(props: IBoardWriteUIProps): JSX.Element {
                 index={index}
                 fileUrls={el}
                 onChangeFileUrls={props.onChangeFileUrls}
+                onClickDeleteImg={props.onClickDeleteImg}
               />
             ))}
           </S.UploadButtonDiv>

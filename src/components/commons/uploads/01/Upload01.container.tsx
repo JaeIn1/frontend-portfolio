@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef } from "react";
+import { ChangeEvent, MouseEvent, useRef } from "react";
 import Upload01UI from "./Upload01.presenter";
 import { IUploads01Props } from "./Upload01.types";
 import { checkValidationImage } from "./Uploads01.validation";
@@ -36,12 +36,19 @@ export default function Upload01(props: IUploads01Props): JSX.Element {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
+
+  const onClickDeleteFile = (event: MouseEvent<HTMLButtonElement>): void => {
+    const cIndex = event.currentTarget.id;
+    props.onClickDeleteImg?.(cIndex);
+  };
   return (
     <Upload01UI
       fileRef={fileRef}
       fileUrls={props.fileUrls}
+      index={props.index}
       onClickUpload={onClickUpload}
       onChangeFile={onChangeFile}
+      onClickDeleteFile={onClickDeleteFile}
     />
   );
 }

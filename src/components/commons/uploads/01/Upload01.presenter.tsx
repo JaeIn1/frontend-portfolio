@@ -5,10 +5,18 @@ export default function Upload01UI(props: IUploads01UIProps): JSX.Element {
   return (
     <>
       {props.fileUrls !== "" ? (
-        <S.UploadImage
-          src={`https://storage.googleapis.com/${props.fileUrls}`}
-          onClick={props.onClickUpload}
-        />
+        <S.UploadImageWrapper>
+          <S.UploadImage
+            src={`https://storage.googleapis.com/${props.fileUrls}`}
+            onClick={props.onClickUpload}
+          />
+          <S.UploadImageCloseBtn
+            onClick={props.onClickDeleteFile}
+            id={String(props.index)}
+          >
+            x
+          </S.UploadImageCloseBtn>
+        </S.UploadImageWrapper>
       ) : (
         <S.UploadButton onClick={props.onClickUpload}>
           <span>+</span>
