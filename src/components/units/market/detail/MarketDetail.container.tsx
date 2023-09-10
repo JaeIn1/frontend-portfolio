@@ -1,10 +1,12 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import type {
+  IMutation,
+  IMutationDeleteUseditemArgs,
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_MARKET_ITEM } from "./MarketDetail.queries";
+import { FETCH_MARKET_ITEM, DELETE_ITEM } from "./MarketDetail.queries";
 import MarketDetailUI from "./MarketDetail.presenter";
 import { useEffect } from "react";
 
@@ -16,10 +18,17 @@ export default function MarketDetail(): JSX.Element {
   const router = useRouter();
   if (typeof router.query.marketId !== "string") return <></>;
 
+  const [deleteItem] = useMutation<
+    Pick<IMutation, "deleteUseditem">,
+    IMutationDeleteUseditemArgs
+  >(DELETE_ITEM);
+
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
   >(FETCH_MARKET_ITEM, { variables: { useditemId: router.query.marketId } });
+
+  console.log(data);
 
   const onClickMoveToMarketEdit = (): void => {
     if (typeof router.query.marketId !== "string") {
@@ -34,6 +43,24 @@ export default function MarketDetail(): JSX.Element {
     void router.push("/markets");
   };
 
+  const onClickDeleteItem = (): void => {
+    if (typeof router.query.marketId !== "string") {
+      alert("시스템에 문제가 있습니다.");
+      return;
+    }
+    try {
+      void deleteItem({
+        variables: {
+          useditemId: router.query.marketId,
+        },
+      });
+      alert("상품이 삭제되었습니다.");
+      void router.push("/markets");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     window.kakao.maps.load(() => {
       console.log(data?.fetchUseditem.useditemAddress);
@@ -41,8 +68,8 @@ export default function MarketDetail(): JSX.Element {
       const options = {
         // 지도를 생성할 때 필요한 기본 옵션
         center: new window.kakao.maps.LatLng(
-          data?.fetchUseditem.useditemAddress?.lng,
-          data?.fetchUseditem.useditemAddress?.lat
+          data?.fetchUseditem.useditemAddress?.lat,
+          data?.fetchUseditem.useditemAddress?.lng
         ), // 지도의 중심좌표.
         level: 5, // 지도의 레벨(확대, 축소 정도)
       };
@@ -50,8 +77,8 @@ export default function MarketDetail(): JSX.Element {
       console.log(map);
 
       const coords = new window.kakao.maps.LatLng(
-        data?.fetchUseditem.useditemAddress?.lng,
-        data?.fetchUseditem.useditemAddress?.lat
+        data?.fetchUseditem.useditemAddress?.lat,
+        data?.fetchUseditem.useditemAddress?.lng
       );
 
       // 결과값으로 받은 위치를 마커로 표시합니다
@@ -76,6 +103,7 @@ export default function MarketDetail(): JSX.Element {
       data={data}
       onClickMoveToMarketEdit={onClickMoveToMarketEdit}
       onClickReturnList={onClickReturnList}
+      onClickDeleteItem={onClickDeleteItem}
       settings={settings}
     />
   );

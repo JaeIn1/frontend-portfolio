@@ -4,5 +4,6 @@ export interface IMarketDetailUIProps {
   data?: Pick<IQuery, "fetchUseditem">;
   onClickMoveToMarketEdit: () => void;
   onClickReturnList: () => void;
+  onClickDeleteItem: () => void;
   settings: any;
 }

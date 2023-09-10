@@ -1,6 +1,6 @@
 /* eslint-disable no-unneeded-ternary */
 import { useEffect, useState } from "react";
-import type { ChangeEvent, MouseEvent } from "react";
+import type { ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_ITEM, UPDATE_ITEM } from "./MarketWrite.queries";
@@ -20,8 +20,8 @@ declare const window: typeof globalThis & {
 
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
-  const [lat, setLat] = useState(37.280231);
-  const [lng, setLng] = useState(127.111906);
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -164,8 +164,8 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       const callback = function (result: any, status: any): void {
         if (status === window.kakao.maps.services.Status.OK) {
           console.log(result);
-          setLat(result[0].x);
-          setLng(result[0].y);
+          setLng(result[0].x);
+          setLat(result[0].y);
         }
       };
       geocoder.addressSearch(data, callback);
@@ -177,13 +177,13 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
       const options = {
         // 지도를 생성할 때 필요한 기본 옵션
-        center: new window.kakao.maps.LatLng(lng, lat), // 지도의 중심좌표.
+        center: new window.kakao.maps.LatLng(lat, lng), // 지도의 중심좌표.
         level: 5, // 지도의 레벨(확대, 축소 정도)
       };
       const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
       console.log(map);
 
-      const coords = new window.kakao.maps.LatLng(lng, lat);
+      const coords = new window.kakao.maps.LatLng(lat, lng);
 
       // 결과값으로 받은 위치를 마커로 표시합니다
       const marker = new window.kakao.maps.Marker({
