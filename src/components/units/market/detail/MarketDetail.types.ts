@@ -5,5 +5,4 @@ export interface IMarketDetailUIProps {
   onClickMoveToMarketEdit: () => void;
   onClickReturnList: () => void;
   onClickDeleteItem: () => void;
-  settings: any;
 }

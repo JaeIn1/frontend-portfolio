@@ -90,21 +90,12 @@ export default function MarketDetail(): JSX.Element {
     });
   });
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
   return (
     <MarketDetailUI
       data={data}
       onClickMoveToMarketEdit={onClickMoveToMarketEdit}
       onClickReturnList={onClickReturnList}
       onClickDeleteItem={onClickDeleteItem}
-      settings={settings}
     />
   );
 }

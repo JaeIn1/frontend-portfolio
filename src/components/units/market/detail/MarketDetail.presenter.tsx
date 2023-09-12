@@ -2,11 +2,28 @@ import * as S from "./MarketDetail.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import type { IMarketDetailUIProps } from "./MarketDetail.types";
 import { Tooltip } from "antd";
-import Slider from "react-slick";
 
 export default function MarketDetailUI(
   props: IMarketDetailUIProps
 ): JSX.Element {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: (
+      <S.NextTo>
+        <img src="/images/banner/next_arrow.png" />
+      </S.NextTo>
+    ),
+    prevArrow: (
+      <S.Pre>
+        <img src="/images/banner/prev_arrow.png" />
+      </S.Pre>
+    ),
+  };
+
   return (
     <S.Wrapper>
       <S.CardWrapper>
@@ -48,7 +65,7 @@ export default function MarketDetailUI(
           </S.BoayHeader>
           <S.ImageWrapperDiv>
             <S.ImageWrapper>
-              <Slider {...props.settings}>
+              <S.StyledSlider {...settings}>
                 {props.data?.fetchUseditem.images
                   ?.filter((el) => el)
                   .map((el) => (
@@ -57,7 +74,7 @@ export default function MarketDetailUI(
                       src={`https://storage.googleapis.com/${el}`}
                     />
                   ))}
-              </Slider>
+              </S.StyledSlider>
             </S.ImageWrapper>
           </S.ImageWrapperDiv>
           <S.Contents>{props.data?.fetchUseditem?.contents}</S.Contents>

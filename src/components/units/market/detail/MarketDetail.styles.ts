@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Slider from "react-slick";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -77,6 +78,8 @@ export const ItemPrice = styled.h1`
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 100px;
+  height: 300px;
+  overflow: scroll;
 `;
 export const Tags = styled.div`
   color: #bdbdbd;
@@ -128,13 +131,46 @@ export const ImageWrapper = styled.div`
   height: 600px;
 `;
 
+export const StyledSlider = styled(Slider)`
+  height: 100%;
+  width: 100%;
+  position: relative;
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+`;
+
 export const SliderItem = styled.img`
   width: 300px;
   height: 400px;
   margin: auto;
   border-radius: 15px;
 `;
+export const Pre = styled.div`
+  position: absolute;
+  left: -20%;
+  z-index: 3;
 
+  & img {
+    border-radius: 50%;
+    background-color: lightgray;
+    padding: 20px;
+  }
+`;
+
+export const NextTo = styled.div`
+  position: absolute;
+  right: -13%;
+  z-index: 3;
+
+  & img {
+    border-radius: 50%;
+    background-color: lightgray;
+    padding: 20px;
+  }
+`;
 export const BoardLikeDiv = styled.div`
   display: flex;
   justify-content: center;
