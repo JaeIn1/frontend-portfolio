@@ -12,3 +12,9 @@ export const FETCH_MY_ITEM = gql`
     }
   }
 `;
+
+export const FETCH_MY_ITEM_COUNT = gql`
+  query {
+    fetchUseditemsCountISold
+  }
+`;

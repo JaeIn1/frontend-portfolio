@@ -106,7 +106,7 @@ export const Row = styled.div`
   border-bottom: 1px solid gray;
 
   :hover {
-    color: blue;
+    color: #b173d8;
   }
 `;
 export const ColumnHeaderNumber = styled.div`
@@ -130,7 +130,7 @@ export const ColumnTitle = styled.div`
   cursor: pointer;
 
   :hover {
-    color: blue;
+    color: #b173d8;
   }
 `;
 
