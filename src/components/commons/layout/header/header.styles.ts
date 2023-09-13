@@ -66,10 +66,12 @@ export const HeaderSettingJoinSpan = styled.div`
   cursor: pointer;
 `;
 
-export const UserIcon = styled(UserOutlined)`
+export const UserIcon = styled.img`
   font-size: 25px;
   margin-right: 10px;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
 `;
 export const UserIconMenu = styled(CaretDownOutlined)`
   cursor: pointer;

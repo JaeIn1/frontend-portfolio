@@ -76,10 +76,25 @@ export const ItemPrice = styled.h1`
 `;
 
 export const Contents = styled.div`
-  padding-top: 40px;
+  width: 100%;
+  height: 250px;
+  margin-top: 50px;
+  margin-bottom: 50px;
   padding-bottom: 100px;
-  height: 300px;
-  overflow: scroll;
+  overflow: hidden;
+  overflow-y: auto;
+  border: none;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
 `;
 export const Tags = styled.div`
   color: #bdbdbd;

@@ -15,7 +15,7 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
             mask={false}
           >
             <S.UserModalDiv>
-              <S.UserIcon />
+              <S.UserIcon src="/images/avatar.png" />
               <S.UserModalSpan>
                 {props.data?.fetchUserLoggedIn.name}
               </S.UserModalSpan>
@@ -33,7 +33,7 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
 
         {props.data ? (
           <S.LoginHeaderSettingDiv>
-            <S.UserIcon />
+            <S.UserIcon src="/images/avatar.png" />
             <S.UserIconMenu onClick={props.ToggleModal}></S.UserIconMenu>
           </S.LoginHeaderSettingDiv>
         ) : (

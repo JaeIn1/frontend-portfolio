@@ -5,7 +5,7 @@ import LayoutNavigation from "./navigation/navigaion.container";
 import { useRouter } from "next/router";
 
 const Body = styled.div`
-  height: 500px;
+  height: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
