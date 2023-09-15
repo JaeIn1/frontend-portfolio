@@ -6,8 +6,9 @@ import {
   IQueryFetchUseditemsISoldArgs,
 } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
+import { IMypageProps } from "./mypage.types";
 
-export default function MyPagePage(): JSX.Element {
+export default function MyPagePage(props: IMypageProps): JSX.Element {
   const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
@@ -40,6 +41,7 @@ export default function MyPagePage(): JSX.Element {
       onClickMoveMyPoint={onClickMoveMyPoint}
       onClickMoveMyProfile={onClickMoveMyProfile}
       count={dataCount?.fetchUseditemsCountISold}
+      isMyPage={props.isMyPage}
     />
   );
 }

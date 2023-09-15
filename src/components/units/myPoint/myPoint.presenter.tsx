@@ -22,15 +22,24 @@ export default function MyPointUI(props: IMypageUIProps): JSX.Element {
         <S.LeftPageFooter>
           <S.LeftPageFooterMenu>
             <img src="/images/mypage/mypage_myItem.png" />
-            <span onClick={props.onClickMoveMyItem}>내 장터</span>
+            <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyItem}>
+              내 장터
+            </S.LeftPageFooterMenuSpan>
           </S.LeftPageFooterMenu>
           <S.LeftPageFooterMenu>
             <img src="/images/mypage/mypage_point_pig_black.png" />
-            <span onClick={props.onClickMoveMyPoint}>내 포인트</span>
+            <S.LeftPageFooterMenuSpan
+              onClick={props.onClickMoveMyPoint}
+              isMyPoint={props.isMyPoint}
+            >
+              내 포인트
+            </S.LeftPageFooterMenuSpan>
           </S.LeftPageFooterMenu>
           <S.LeftPageFooterMenu>
             <img src="/images/avatar.png" />
-            <span onClick={props.onClickMoveMyProfile}>내 프로필</span>
+            <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyProfile}>
+              내 프로필
+            </S.LeftPageFooterMenuSpan>
           </S.LeftPageFooterMenu>
         </S.LeftPageFooter>
       </S.LeftWrapper>
@@ -42,7 +51,7 @@ export default function MyPointUI(props: IMypageUIProps): JSX.Element {
             <span>마이찜</span>
           </S.RightHeaderLeft>
           <div>
-            <input type="text" />
+            <span>point</span>
           </div>
         </S.RightHeader>
         <S.TableTop />

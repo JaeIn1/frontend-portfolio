@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IMyPageStyleProps } from "./mypage.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -22,9 +23,10 @@ export const LeftWrapper = styled.div`
 
 export const RightWrapper = styled.div`
   width: 1000px;
-  height: 1000px;
+  height: 700px;
   margin-left: 50px;
-  padding-top: 110px;
+  position: relative;
+  margin-bottom: 50px;
 `;
 
 export const LeftPageHeader = styled.div`
@@ -73,22 +75,20 @@ export const LeftPageFooterMenu = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
 
-  &:hover {
-    & span {
-      font-weight: bold;
-    }
-  }
-
-  & span {
-    margin-left: 8px;
-    font-weight: 400;
-  }
-
   & img {
     width: 25px;
     height: 25px;
   }
 `;
+export const LeftPageFooterMenuSpan = styled.span`
+  margin-left: 8px;
+  font-weight: ${(props: IMyPageStyleProps) => (props.isMyPage ? "bold" : "")};
+
+  &:hover {
+    font-weight: bold;
+  }
+`;
+
 export const TableTop = styled.div`
   border-top: 2px solid gray;
   margin-top: 20px;

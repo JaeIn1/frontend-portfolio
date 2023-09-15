@@ -3,5 +3,5 @@ import MyPagePage from "../../src/components/units/mypage/list/mypage.container"
 
 export default function MyPages(): JSX.Element {
   useAuth();
-  return <MyPagePage />;
+  return <MyPagePage isMyPage={true} />;
 }

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { IMyPointStyleProps } from "./myPoint.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -73,20 +74,18 @@ export const LeftPageFooterMenu = styled.div`
   margin-bottom: 10px;
   cursor: pointer;
 
-  &:hover {
-    & span {
-      font-weight: bold;
-    }
-  }
-
-  & span {
-    margin-left: 8px;
-    font-weight: 400;
-  }
-
   & img {
     width: 25px;
     height: 25px;
+  }
+`;
+export const LeftPageFooterMenuSpan = styled.span`
+  margin-left: 8px;
+  font-weight: ${(props: IMyPointStyleProps) =>
+    props.isMyPoint ? "bold" : ""};
+
+  &:hover {
+    font-weight: bold;
   }
 `;
 export const TableTop = styled.div`

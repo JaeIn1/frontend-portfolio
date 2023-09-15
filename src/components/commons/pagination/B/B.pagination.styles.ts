@@ -7,6 +7,9 @@ interface IPageProps {
 export const Wrapper = styled.div`
   margin-top: 10px;
   text-align: center;
+  position: absolute;
+  bottom: 20px;
+  right: 450px;
 `;
 
 export const Page = styled.span`

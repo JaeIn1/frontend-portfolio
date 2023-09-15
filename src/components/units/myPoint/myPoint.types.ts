@@ -5,6 +5,10 @@ import {
   IUseditem,
 } from "../../../commons/types/generated/types";
 
+export interface IMyPointProps {
+  isMyPoint?: boolean;
+}
+
 export interface IMypageUIProps {
   data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
   onClickMoveMyItem: () => void;
@@ -19,9 +23,14 @@ export interface IMypageUIProps {
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountISold">>>;
 
   count?: number;
+  isMyPoint?: boolean;
 }
 
 export interface IMypageItemProps {
   el: IUseditem;
   index: number;
+}
+
+export interface IMyPointStyleProps {
+  isMyPoint?: boolean;
 }
