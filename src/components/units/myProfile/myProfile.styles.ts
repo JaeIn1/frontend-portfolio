@@ -23,9 +23,10 @@ export const LeftWrapper = styled.div`
 
 export const RightWrapper = styled.div`
   width: 1000px;
-  height: 1000px;
+  height: 700px;
   margin-left: 50px;
-  padding-top: 110px;
+  position: relative;
+  margin-bottom: 50px;
 `;
 
 export const LeftPageHeader = styled.div`

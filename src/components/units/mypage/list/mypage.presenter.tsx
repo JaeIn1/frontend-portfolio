@@ -50,9 +50,7 @@ export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
             <span>|</span>
             <span>마이찜</span>
           </S.RightHeaderLeft>
-          <div>
-            <input type="text" />
-          </div>
+          <div>myItem</div>
         </S.RightHeader>
         <S.TableTop />
         <S.Row>
