@@ -70,7 +70,7 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
                 </S.MarketListFirstDiv>
                 <S.MarketListPriceDiv>
                   <img src="/images/market/Vector.png" />
-                  <span>{el.price}</span>
+                  <span>{el.price}원</span>
                 </S.MarketListPriceDiv>
               </S.MarketList>
             ))}

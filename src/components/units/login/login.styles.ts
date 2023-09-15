@@ -71,7 +71,7 @@ export const LoginBtn = styled.button`
   width: 100%;
   border-radius: 8px;
   border: none;
-  padding: 10px 20px;
+  padding: 15px 20px;
   cursor: pointer;
 
   background-color: ${(props: ISubmitButtonProps) =>

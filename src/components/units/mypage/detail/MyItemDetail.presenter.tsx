@@ -1,9 +1,9 @@
-import * as S from "./MarketDetail.styles";
+import * as S from "./MyItemDetail.styles";
 import { getDate } from "../../../../commons/libraries/utils";
-import type { IMarketDetailUIProps } from "./MarketDetail.types";
+import type { IMarketDetailUIProps } from "./MyItemDetail.types";
 import { Tooltip } from "antd";
 
-export default function MarketDetailUI(
+export default function MyItemDetailUI(
   props: IMarketDetailUIProps
 ): JSX.Element {
   const settings = {
@@ -89,7 +89,8 @@ export default function MarketDetailUI(
       </S.CardWrapper>
       <S.BottomWrapper>
         <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
-        <S.Button>구매하기</S.Button>
+        <S.Button onClick={props.onClickMoveToMarketEdit}>수정하기</S.Button>
+        <S.Button onClick={props.onClickDeleteItem}>삭제하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

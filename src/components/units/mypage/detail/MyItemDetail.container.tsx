@@ -1,20 +1,27 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import type {
+  IMutation,
+  IMutationDeleteUseditemArgs,
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_MARKET_ITEM } from "./MarketDetail.queries";
-import MarketDetailUI from "./MarketDetail.presenter";
+import { FETCH_MARKET_ITEM, DELETE_ITEM } from "./MyItemDetail.queries";
+import MarketDetailUI from "./MyItemDetail.presenter";
 import { useEffect } from "react";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function MarketDetail(): JSX.Element {
+export default function MyItemDetail(): JSX.Element {
   const router = useRouter();
   if (typeof router.query.marketId !== "string") return <></>;
+
+  const [deleteItem] = useMutation<
+    Pick<IMutation, "deleteUseditem">,
+    IMutationDeleteUseditemArgs
+  >(DELETE_ITEM);
 
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
@@ -23,8 +30,35 @@ export default function MarketDetail(): JSX.Element {
 
   console.log(data);
 
+  const onClickMoveToMarketEdit = (): void => {
+    if (typeof router.query.marketId !== "string") {
+      alert("시스템에 문제가 있습니다.");
+      return;
+    }
+
+    void router.push(`/mypages/${router.query.marketId}/edit`);
+  };
+
   const onClickReturnList = (): void => {
-    void router.push("/markets");
+    void router.push("/mypages");
+  };
+
+  const onClickDeleteItem = (): void => {
+    if (typeof router.query.marketId !== "string") {
+      alert("시스템에 문제가 있습니다.");
+      return;
+    }
+    try {
+      void deleteItem({
+        variables: {
+          useditemId: router.query.marketId,
+        },
+      });
+      alert("상품이 삭제되었습니다.");
+      void router.push("/mypages");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -56,5 +90,12 @@ export default function MarketDetail(): JSX.Element {
     });
   });
 
-  return <MarketDetailUI data={data} onClickReturnList={onClickReturnList} />;
+  return (
+    <MarketDetailUI
+      data={data}
+      onClickMoveToMarketEdit={onClickMoveToMarketEdit}
+      onClickReturnList={onClickReturnList}
+      onClickDeleteItem={onClickDeleteItem}
+    />
+  );
 }

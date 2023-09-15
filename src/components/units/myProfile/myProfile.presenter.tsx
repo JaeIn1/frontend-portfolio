@@ -1,10 +1,10 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
 import PagenationPage from "../../commons/pagination/B/paginationB.container";
-import MyPagePageItem from "./mypage.preseterItem";
-import * as S from "./mypage.styles";
-import { IMypageUIProps } from "./mypage.types";
+import MyPagePageItem from "./myProfile.preseterItem";
+import * as S from "./myProfile.styles";
+import { IMypageUIProps } from "./myProfile.types";
 
-export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
+export default function MyProfileUI(props: IMypageUIProps): JSX.Element {
   return (
     <S.Wrapper>
       <S.LeftWrapper>
@@ -22,15 +22,15 @@ export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
         <S.LeftPageFooter>
           <S.LeftPageFooterMenu>
             <img src="/images/mypage/mypage_myItem.png" />
-            <span>내 장터</span>
+            <span onClick={props.onClickMoveMyItem}>내 장터</span>
           </S.LeftPageFooterMenu>
           <S.LeftPageFooterMenu>
             <img src="/images/mypage/mypage_point_pig_black.png" />
-            <span>내 포인트</span>
+            <span onClick={props.onClickMoveMyPoint}>내 포인트</span>
           </S.LeftPageFooterMenu>
           <S.LeftPageFooterMenu>
             <img src="/images/avatar.png" />
-            <span>내 프로필</span>
+            <span onClick={props.onClickMoveMyProfile}>내 프로필</span>
           </S.LeftPageFooterMenu>
         </S.LeftPageFooter>
       </S.LeftWrapper>

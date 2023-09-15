@@ -314,7 +314,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
         return;
       }
       alert("상품이 수정되었습니다.");
-      void router.push(`/markets/${result.data?.updateUseditem._id}`);
+      void router.push(`/mypages/${result.data?.updateUseditem._id}`);
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

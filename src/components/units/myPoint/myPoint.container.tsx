@@ -1,12 +1,14 @@
 import { useQuery } from "@apollo/client";
-import MyPagePageUI from "./mypage.presenter";
-import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./mypage.queries";
+import MyPagePageUI from "./myPoint.presenter";
+import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./myPoint.queries";
 import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
 } from "../../../commons/types/generated/types";
+import { useRouter } from "next/router";
 
-export default function MyPagePage(): JSX.Element {
+export default function MyPoint(): JSX.Element {
+  const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
     IQueryFetchUseditemsISoldArgs
@@ -21,11 +23,26 @@ export default function MyPagePage(): JSX.Element {
 
   console.log(dataCount);
 
+  const onClickMoveMyItem = (): void => {
+    void router.push("/mypages");
+  };
+
+  const onClickMoveMyPoint = (): void => {
+    void router.push("/mypages/myPoint");
+  };
+
+  const onClickMoveMyProfile = (): void => {
+    void router.push("/mypages/myProfile");
+  };
+
   return (
     <MyPagePageUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}
+      onClickMoveMyItem={onClickMoveMyItem}
+      onClickMoveMyPoint={onClickMoveMyPoint}
+      onClickMoveMyProfile={onClickMoveMyProfile}
       count={dataCount?.fetchUseditemsCountISold}
     />
   );
