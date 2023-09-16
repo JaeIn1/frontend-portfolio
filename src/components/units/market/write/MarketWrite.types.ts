@@ -14,7 +14,7 @@ export interface IMarketWriteUIProps {
   tagsError: string;
   onChangeItemNamer: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeRemarks: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeContents: (value: string) => void;
   onChangePrice: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTag: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -32,6 +32,7 @@ export interface IMarketWriteUIProps {
   zipcode: string;
   address: string;
   fileUrls: string[];
+  contents: string;
 }
 
 export interface ISubmitButtonProps {

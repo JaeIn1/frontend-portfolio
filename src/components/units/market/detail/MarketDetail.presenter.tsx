@@ -2,6 +2,7 @@ import * as S from "./MarketDetail.styles";
 import { getDate } from "../../../../commons/libraries/utils";
 import type { IMarketDetailUIProps } from "./MarketDetail.types";
 import { Tooltip } from "antd";
+import DOMPurify from "dompurify";
 
 export default function MarketDetailUI(
   props: IMarketDetailUIProps
@@ -77,7 +78,17 @@ export default function MarketDetailUI(
               </S.StyledSlider>
             </S.ImageWrapper>
           </S.ImageWrapperDiv>
-          <S.Contents>{props.data?.fetchUseditem?.contents}</S.Contents>
+          {typeof window !== "undefined" ? (
+            <S.Contents
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(
+                  props.data?.fetchUseditem?.contents ?? ""
+                ),
+              }}
+            ></S.Contents>
+          ) : (
+            <div></div>
+          )}
           <S.Tags>
             {props.data?.fetchUseditem?.tags?.map((el, index) => (
               <span key={index}>{`${el} `}</span>

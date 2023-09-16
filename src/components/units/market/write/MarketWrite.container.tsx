@@ -87,18 +87,14 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     }
   };
 
-  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>): void => {
-    setContents(event.target.value);
-    if (event.target.value !== "") {
+  const onChangeContents = (value: string): void => {
+    console.log(value);
+    setContents(value === "<p><br></p>" ? "" : value);
+    if (value !== "") {
       setContentsError("");
     }
 
-    if (
-      name !== "" &&
-      remarks !== "" &&
-      event.target.value !== "" &&
-      price !== ""
-    ) {
+    if (name !== "" && remarks !== "" && value !== "" && price !== "") {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -346,6 +342,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       zipcode={zipcode}
       address={address}
       fileUrls={fileUrls}
+      contents={contents}
     />
   );
 }

@@ -2,6 +2,12 @@ import styled from "@emotion/styled";
 import { Modal } from "antd";
 import type { ISubmitButtonProps } from "./MarketWrite.types";
 import DaumPostcode from "react-daum-postcode";
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+
+const ReactQuill = dynamic(async () => await import("react-quill"), {
+  ssr: false,
+});
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -69,12 +75,10 @@ export const ItemTag = styled.input`
   border: 1px solid #bdbdbd;
 `;
 
-export const Contents = styled.textarea`
+export const CustomQuill = styled(ReactQuill)`
   width: 996px;
-  height: 480px;
-  padding-left: 16px;
-  padding: 14px;
-  border: 1px solid #bdbdbd;
+  height: 350px;
+  margin-bottom: 30px;
 `;
 
 export const KakaoWrapper = styled.div`

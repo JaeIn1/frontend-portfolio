@@ -9,6 +9,9 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
 `;
 
 export const HeaderWrapper = styled.div`
