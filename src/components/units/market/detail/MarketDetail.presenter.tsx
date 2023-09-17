@@ -3,6 +3,7 @@ import { getDate } from "../../../../commons/libraries/utils";
 import type { IMarketDetailUIProps } from "./MarketDetail.types";
 import { Tooltip } from "antd";
 import DOMPurify from "dompurify";
+import BuyItemInfoPage from "./BuyItemInfo.container";
 
 export default function MarketDetailUI(
   props: IMarketDetailUIProps
@@ -27,6 +28,23 @@ export default function MarketDetailUI(
 
   return (
     <S.Wrapper>
+      {props.isOpenBuy && (
+        <S.BuyModal
+          open={true}
+          onOk={props.onClickBuyItem}
+          onCancel={props.onClickToggle}
+        >
+          <BuyItemInfoPage
+            onClickAddressSearch={props.onClickAddressSearch}
+            onCompleteAddressSearch={props.onCompleteAddressSearch}
+            onchangeBuyerName={props.onchangeBuyerName}
+            onchangeBuyerEmail={props.onchangeBuyerEmail}
+            isOpen={props.isOpen}
+            zipcode={props.zipcode}
+            address={props.address}
+          />
+        </S.BuyModal>
+      )}
       <S.CardWrapper>
         <S.Header>
           <S.AvatarWrapper>
@@ -57,7 +75,9 @@ export default function MarketDetailUI(
             <div>
               <S.ItemTags>{props.data?.fetchUseditem?.remarks}</S.ItemTags>
               <S.ItemName>{props.data?.fetchUseditem?.name}</S.ItemName>
-              <S.ItemPrice>{props.data?.fetchUseditem?.price}원</S.ItemPrice>
+              <S.ItemPrice>
+                {props.data?.fetchUseditem?.price?.toLocaleString()}원
+              </S.ItemPrice>
             </div>
             <S.BoayItemLoveImgDiv>
               <img src="/images/market/marketItem_love.png" />
@@ -100,7 +120,11 @@ export default function MarketDetailUI(
       </S.CardWrapper>
       <S.BottomWrapper>
         <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
-        <S.Button>구매하기</S.Button>
+        <S.Button
+          /* onClick={props.onClickBuyItem} */ onClick={props.onClickToggle}
+        >
+          구매하기
+        </S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

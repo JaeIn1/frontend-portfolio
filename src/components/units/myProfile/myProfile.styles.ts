@@ -120,7 +120,7 @@ export const ColumnHeaderTitle = styled.div`
 
 export const ColumnBasic = styled.div`
   width: 15%;
-  text-align: center;
+  text-align: start;
 `;
 
 export const ColumnTitle = styled.div`

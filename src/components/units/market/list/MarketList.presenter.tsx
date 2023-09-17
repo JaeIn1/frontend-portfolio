@@ -19,7 +19,9 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
                 <S.Info>
                   <S.BoardBestSpan>{el.name}</S.BoardBestSpan>
                   <S.BestItemName>{el.remarks}</S.BestItemName>
-                  <S.BestItemPrice>{el.price}원</S.BestItemPrice>
+                  <S.BestItemPrice>
+                    {el.price?.toLocaleString()}원
+                  </S.BestItemPrice>
                 </S.Info>
               </S.AvatarWrapper>
               <S.BestBoardLikeCountDiv>
@@ -70,7 +72,7 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
                 </S.MarketListFirstDiv>
                 <S.MarketListPriceDiv>
                   <img src="/images/market/Vector.png" />
-                  <span>{el.price}원</span>
+                  <span>{el.price?.toLocaleString()}원</span>
                 </S.MarketListPriceDiv>
               </S.MarketList>
             ))}

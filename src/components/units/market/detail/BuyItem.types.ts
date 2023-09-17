@@ -1,13 +1,7 @@
-import { Address } from "react-daum-postcode";
-import type { IQuery } from "../../../../commons/types/generated/types";
 import { ChangeEvent } from "react";
+import { Address } from "react-daum-postcode";
 
-export interface IMarketDetailUIProps {
-  data?: Pick<IQuery, "fetchUseditem">;
-  onClickReturnList: () => void;
-  onClickBuyItem: () => void;
-  onClickToggle: () => void;
-  isOpenBuy: boolean;
+export interface IBuyItemProps {
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: Address) => void;
   isOpen: boolean;

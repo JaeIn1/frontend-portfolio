@@ -57,7 +57,9 @@ export default function MyItemDetailUI(
             <div>
               <S.ItemTags>{props.data?.fetchUseditem?.remarks}</S.ItemTags>
               <S.ItemName>{props.data?.fetchUseditem?.name}</S.ItemName>
-              <S.ItemPrice>{props.data?.fetchUseditem?.price}원</S.ItemPrice>
+              <S.ItemPrice>
+                {props.data?.fetchUseditem?.price?.toLocaleString()}원
+              </S.ItemPrice>
             </div>
             <S.BoayItemLoveImgDiv>
               <img src="/images/market/marketItem_love.png" />

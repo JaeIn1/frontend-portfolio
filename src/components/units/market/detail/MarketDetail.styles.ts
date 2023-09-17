@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Modal } from "antd";
 import Slider from "react-slick";
 
 export const Wrapper = styled.div`
@@ -203,4 +204,9 @@ export const BoardLikeDiv = styled.div`
 export const KaKaoMapDetail = styled.div`
   height: 400px;
   border: 1px solid lightgray;
+`;
+
+export const BuyModal = styled(Modal)`
+  max-width: 600px;
+  max-height: 1000px;
 `;

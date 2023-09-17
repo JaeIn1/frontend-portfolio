@@ -11,6 +11,11 @@ export default function App({ Component }: AppProps): JSX.Element {
     <RecoilRoot>
       <ApolloSetting>
         <>
+          <script
+            type="text/javascript"
+            src="https://code.jquery.com/jquery-1.12.4.min.js"
+          ></script>
+          <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
           <Script src="//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=d04ecaaaaf8321b9e6f5e5d593940588&libraries=services" />
           <Global styles={globalStyles} />
           <Layout>
