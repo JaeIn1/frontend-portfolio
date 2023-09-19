@@ -33,12 +33,18 @@ export default function LayoutHeader(): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
+  const onClickLogout = (): void => {
+    alert("로그아웃 되었습니다.");
+    localStorage.removeItem("accessToken");
+    location.reload();
+  };
   return (
     <>
       <LayoutHeaderUI
         onClickLogin={onClickLogin}
         onClickSignUp={onClickSignUp}
         ToggleModal={ToggleModal}
+        onClickLogout={onClickLogout}
         data={data}
         isOpen={isOpen}
       />

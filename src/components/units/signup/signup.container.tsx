@@ -1,21 +1,25 @@
-/* eslint-disable no-useless-return */
-import { ChangeEvent, useState } from "react";
-import LoginPageUI from "./signup.presenter";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { SIGNUP_USER } from "./signup.queries";
 import { useMutation } from "@apollo/client";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as S from "./signup.styles";
+import { schema } from "./signup.validation";
+
+interface IFormData {
+  email: string;
+  name: string;
+  password: string;
+  passwordCheck: string;
+}
 
 export default function SignUpPage(): JSX.Element {
+  const { register, handleSubmit, formState } = useForm<IFormData>({
+    resolver: yupResolver(schema),
+    mode: "onChange",
+  });
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [checkPassword, setCheckPassword] = useState("");
-  const [idError, setIdError] = useState("");
-  const [nameError, setNameError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [checkPasswordError, setCheckPasswordError] = useState("");
-  const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const [signupUser] = useMutation(SIGNUP_USER);
@@ -28,138 +32,83 @@ export default function SignUpPage(): JSX.Element {
     void router.push("/");
   };
 
-  const onChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
-    setEmail(event.currentTarget.value);
+  const onClickSignUpBtn = (data: any): void => {
+    console.log(data);
 
-    if (email !== "") {
-      setIdError("");
-    }
-    if (
-      event.currentTarget.value !== "" &&
-      password !== "" &&
-      name !== "" &&
-      checkPassword !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangeName = (event: ChangeEvent<HTMLInputElement>): void => {
-    setName(event.currentTarget.value);
-
-    if (email !== "") {
-      setNameError("");
-    }
-    if (
-      event.currentTarget.value !== "" &&
-      password !== "" &&
-      name !== "" &&
-      checkPassword !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
-    setPassword(event.currentTarget.value);
-
-    if (email !== "") {
-      setPasswordError("");
-    }
-    if (
-      event.currentTarget.value !== "" &&
-      password !== "" &&
-      name !== "" &&
-      checkPassword !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  };
-  const onChangeCheckPassword = (
-    event: ChangeEvent<HTMLInputElement>
-  ): void => {
-    setCheckPassword(event.currentTarget.value);
-
-    if (email !== "") {
-      setCheckPasswordError("");
-    }
-    if (
-      event.currentTarget.value !== "" &&
-      password !== "" &&
-      name !== "" &&
-      checkPassword !== ""
-    ) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const result = signupUser({
+      variables: {
+        createUserInput: {
+          email: data.email,
+          name: data.name,
+          password: data.password,
+        },
+      },
+    });
+    setIsOpen((prev) => !prev);
   };
 
-  const onClickSignUpBtn = (): void => {
-    if (email === "") {
-      setIdError("이메일을 입력해주세요.");
-    }
-    if (name === "") {
-      setNameError("이름을 입력해주세요.");
-    }
-    if (password === "") {
-      setPasswordError("비밀번호를 입력해주세요.");
-    }
-    if (checkPassword === "") {
-      setCheckPasswordError("비밀번호를 확인하세요.");
-    }
-    if (password !== checkPassword) {
-      alert("비밀번호가 일치하지 않습니다");
-      return;
-    }
-    try {
-      if (
-        email !== "" &&
-        name !== "" &&
-        password !== "" &&
-        checkPassword !== ""
-      ) {
-        const result = signupUser({
-          variables: {
-            createUserInput: {
-              email,
-              name,
-              password,
-            },
-          },
-        });
-        console.log(result);
-        ToggleModal();
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-        return;
-      }
-    }
-    // void router.push(visitePage);
-  };
   return (
     <>
-      <LoginPageUI
-        onChangeEmail={onChangeEmail}
-        onChangeName={onChangeName}
-        onChangePassword={onChangePassword}
-        onChangeCheckPassword={onChangeCheckPassword}
-        onClickSignUpBtn={onClickSignUpBtn}
-        ToggleModal={ToggleModal}
-        ToggleModalMove={ToggleModalMove}
-        idError={idError}
-        nameError={nameError}
-        passwordError={passwordError}
-        checkPasswordError={checkPasswordError}
-        isActive={isActive}
-        isOpen={isOpen}
-      />
+      <S.Wrapper>
+        {isOpen && (
+          <S.SignUpModal open={true} onCancel={ToggleModal} footer={null}>
+            <S.SignUpModalText>회원가입을 축하합니다!!</S.SignUpModalText>
+            <S.SignUpModalBtn onClick={ToggleModalMove}>확인</S.SignUpModalBtn>
+          </S.SignUpModal>
+        )}
+        <S.HeaderWrapper>
+          <S.HeaderDiv>
+            <img src="/images/layout/header/eggplant.png" />
+            <span>회원가입</span>
+          </S.HeaderDiv>
+        </S.HeaderWrapper>
+        <S.BodyWrapper>
+          <form onSubmit={handleSubmit(onClickSignUpBtn)}>
+            <S.BodyInputDid>
+              <span>이메일</span>
+              <S.SignupInput
+                type="text"
+                {...register("email")}
+                placeholder="이메일을 입력해주새요"
+              />
+              <S.SignupError>{formState.errors.email?.message}</S.SignupError>
+            </S.BodyInputDid>
+            <S.BodyInputDid>
+              <span>이름</span>
+              <S.SignupInput
+                type="text"
+                {...register("name")}
+                placeholder="이름을 입력해주새요"
+              />
+              <S.SignupError>{formState.errors.name?.message}</S.SignupError>
+            </S.BodyInputDid>
+            <S.BodyInputDid>
+              <span>비밀번호</span>
+              <S.SignupInput
+                type="password"
+                {...register("password")}
+                placeholder="비밀번호를 입력해주새요"
+              />
+              <S.SignupError>
+                {formState.errors.password?.message}
+              </S.SignupError>
+            </S.BodyInputDid>
+            <S.BodyInputDid>
+              <span>비밀번호확인</span>
+              <S.SignupInput
+                type="password"
+                {...register("passwordCheck")}
+                placeholder="비밀번호를 확인해주세요"
+              />
+              <S.SignupError>
+                {formState.errors.passwordCheck?.message}
+              </S.SignupError>
+            </S.BodyInputDid>
+            <S.LoginBtn isActive={formState.isValid}>회원가입하기</S.LoginBtn>
+          </form>
+        </S.BodyWrapper>
+      </S.Wrapper>
     </>
   );
 }

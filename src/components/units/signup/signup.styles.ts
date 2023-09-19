@@ -110,3 +110,17 @@ export const SignUpModalBtn = styled.button`
   padding: 10px;
   cursor: pointer;
 `;
+
+export const SignupInput = styled.input`
+  width: 400px;
+  padding: 17px 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 10px;
+`;
+
+export const SignupError = styled.div`
+  padding-left: 10px;
+  font-size: 14px;
+  color: red;
+`;

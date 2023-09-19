@@ -21,8 +21,8 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
               </S.UserModalSpan>
             </S.UserModalDiv>
             <S.UserModalLine></S.UserModalLine>
-            <div>충전하기</div>
-            <div>로그아웃</div>
+            <S.PointBtn>충전하기</S.PointBtn>
+            <S.LogoutBtn onClick={props.onClickLogout}>로그아웃</S.LogoutBtn>
           </S.UserModal>
         )}
         <S.HeaderIconDiv>

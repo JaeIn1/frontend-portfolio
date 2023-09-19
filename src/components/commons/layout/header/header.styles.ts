@@ -1,4 +1,4 @@
-import { CaretDownOutlined, UserOutlined } from "@ant-design/icons";
+import { CaretDownOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 
@@ -93,4 +93,27 @@ export const UserModalLine = styled.div`
 `;
 export const UserModalSpan = styled.span`
   font-size: 15px;
+`;
+
+export const PointBtn = styled.div`
+  cursor: pointer;
+  margin: 10px;
+  color: #bdbdbd;
+
+  &:hover {
+    color: black;
+    font-weight: bold;
+  }
+`;
+
+export const LogoutBtn = styled.div`
+  cursor: pointer;
+  margin: 10px;
+  margin-bottom: 0px;
+  color: #bdbdbd;
+
+  &:hover {
+    color: black;
+    font-weight: bold;
+  }
 `;
