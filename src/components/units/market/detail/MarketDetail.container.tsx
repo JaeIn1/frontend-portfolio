@@ -7,22 +7,34 @@ import type {
 } from "../../../../commons/types/generated/types";
 import { FETCH_MARKET_ITEM } from "./MarketDetail.queries";
 import MarketDetailUI from "./MarketDetail.presenter";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Address } from "react-daum-postcode";
+import { useForm } from "react-hook-form";
+import { MarketDetailschema } from "./MarketDetail.validation";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 declare const window: typeof globalThis & {
   kakao: any;
   IMP: any;
 };
 
+export interface IFormData {
+  email: string;
+  name: string;
+  phone: string;
+}
+
 export default function MarketDetail(): JSX.Element {
+  const { register, handleSubmit, formState } = useForm<IFormData>({
+    resolver: yupResolver(MarketDetailschema),
+    mode: "onChange",
+  });
   const router = useRouter();
   const [isOpenBuy, setIsOpenBuy] = useState(false);
-  const [buyerName, setBuyerName] = useState("");
-  const [buyerEmail, setBuyerEmail] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
+  const [postError, setPostError] = useState("");
 
   if (typeof router.query.marketId !== "string") return <></>;
 
@@ -64,35 +76,14 @@ export default function MarketDetail(): JSX.Element {
     });
   });
 
-  const onchangeBuyerName = (event: ChangeEvent<HTMLInputElement>): void => {
-    setBuyerName(event.target.value);
-  };
-  const onchangeBuyerEmail = (event: ChangeEvent<HTMLInputElement>): void => {
-    setBuyerEmail(event.target.value);
-  };
-
   const onClickToggle = (): void => {
     setIsOpenBuy((prev) => !prev);
   };
-  const onClickBuyItem = (): void => {
-    if (buyerName === "") {
-      alert("이름은 필수입력 사항입니다.");
+  const onClickBuyItem = (buyerInfo: any): void => {
+    if (zipcode === "") {
+      setPostError("주소입력은 필수입니다.");
       return;
     }
-    if (buyerEmail === "") {
-      alert("이메일은 필수입력 사항입니다.");
-      return;
-    }
-
-    if (
-      buyerName !== "" &&
-      buyerEmail !== "" &&
-      zipcode !== "" &&
-      address !== ""
-    ) {
-      onClickToggle();
-    }
-
     const IMP = window.IMP;
     IMP.init("imp57014826");
 
@@ -104,9 +95,9 @@ export default function MarketDetail(): JSX.Element {
         // merchant_uid: "ORD20180131-0000011",
         name: data?.fetchUseditem.name,
         amount: Number(data?.fetchUseditem.price),
-        buyer_email: buyerEmail,
-        buyer_name: buyerName,
-        buyer_tel: "010-4242-4242",
+        buyer_email: buyerInfo.email,
+        buyer_name: buyerInfo.name,
+        buyer_tel: buyerInfo.phone,
         buyer_addr: address,
         buyer_postcode: zipcode,
       },
@@ -131,6 +122,7 @@ export default function MarketDetail(): JSX.Element {
     setAddress(data.address);
     setZipcode(data.zonecode);
     setIsOpen((prev) => !prev);
+    setPostError("");
   };
 
   return (
@@ -146,8 +138,10 @@ export default function MarketDetail(): JSX.Element {
         isOpen={isOpen}
         zipcode={zipcode}
         address={address}
-        onchangeBuyerName={onchangeBuyerName}
-        onchangeBuyerEmail={onchangeBuyerEmail}
+        postError={postError}
+        register={register}
+        handleSubmit={handleSubmit}
+        formState={formState}
       />
     </>
   );

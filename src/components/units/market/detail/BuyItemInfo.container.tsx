@@ -11,41 +11,56 @@ export default function BuyItemInfoPage(props: IBuyItemProps): JSX.Element {
       )}
       <S.Header>베송지 정보</S.Header>
       <body>
-        <S.BodyDiv>
-          <span>이름</span>
-          <br />
-          <input
-            type="text"
-            placeholder="이름을 입력해주세요."
-            onChange={props.onchangeBuyerName}
-            required
-          />
-        </S.BodyDiv>
-        <S.KakaoMapInfo>
-          <span>우편번호</span>
-          <S.ZipcodeWrapper>
-            <S.Zipcode placeholder="07250" readOnly value={props.zipcode} />
-            <S.SearchButton onClick={props.onClickAddressSearch}>
-              우편번호 검색
-            </S.SearchButton>
-          </S.ZipcodeWrapper>
-          <S.Address readOnly value={props.address} />
-        </S.KakaoMapInfo>
-        <S.BodyPhoneDiv>
-          <span>연락처</span>
-          <br />
-          <input type="text" />-<input type="text" />-<input type="text" />
-        </S.BodyPhoneDiv>
-        <S.BodyDiv>
-          <span>이메일</span>
-          <br />
-          <input
-            type="email"
-            placeholder="이메일을 입력해주세요."
-            onChange={props.onchangeBuyerEmail}
-            required
-          />
-        </S.BodyDiv>
+        <form onSubmit={props.handleSubmit(props.onClickBuyItem)}>
+          <S.BodyDiv>
+            <span>이름</span>
+            <br />
+            <input
+              type="text"
+              placeholder="이름을 입력해주세요."
+              {...props.register("name")}
+            />
+          </S.BodyDiv>
+          <S.ErrorText style={{ color: "red" }}>
+            {props.formState.errors.name?.message}
+          </S.ErrorText>
+          <S.KakaoMapInfo>
+            <span>우편번호</span>
+            <S.ZipcodeWrapper>
+              <S.Zipcode placeholder="07250" readOnly value={props.zipcode} />
+              <S.SearchButton onClick={props.onClickAddressSearch}>
+                우편번호 검색
+              </S.SearchButton>
+            </S.ZipcodeWrapper>
+            <S.Address readOnly value={props.address} />
+          </S.KakaoMapInfo>
+          <S.ErrorText style={{ color: "red" }}>{props.postError}</S.ErrorText>
+          <S.BodyPhoneDiv>
+            <span>연락처</span>
+            <br />
+            <input
+              type="text"
+              placeholder="예) 000-0000-0000"
+              {...props.register("phone")}
+            />
+          </S.BodyPhoneDiv>
+          <S.ErrorText style={{ color: "red" }}>
+            {props.formState.errors.phone?.message}
+          </S.ErrorText>
+          <S.BodyDiv>
+            <span>이메일</span>
+            <br />
+            <input
+              type="email"
+              placeholder="이메일을 입력해주세요."
+              {...props.register("email")}
+            />
+            <S.ErrorText style={{ color: "red" }}>
+              {props.formState.errors.email?.message}
+            </S.ErrorText>
+          </S.BodyDiv>
+          <S.BuyBtn isActive={props.formState.isValid}>결제하기</S.BuyBtn>
+        </form>
       </body>
     </>
   );

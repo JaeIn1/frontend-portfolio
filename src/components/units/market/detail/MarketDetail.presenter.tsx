@@ -31,17 +31,23 @@ export default function MarketDetailUI(
       {props.isOpenBuy && (
         <S.BuyModal
           open={true}
-          onOk={props.onClickBuyItem}
           onCancel={props.onClickToggle}
+          okButtonProps={{ style: { display: "none" } }}
+          cancelButtonProps={{ style: { display: "none" } }}
         >
           <BuyItemInfoPage
             onClickAddressSearch={props.onClickAddressSearch}
             onCompleteAddressSearch={props.onCompleteAddressSearch}
             onchangeBuyerName={props.onchangeBuyerName}
             onchangeBuyerEmail={props.onchangeBuyerEmail}
+            onClickBuyItem={props.onClickBuyItem}
             isOpen={props.isOpen}
             zipcode={props.zipcode}
             address={props.address}
+            postError={props.postError}
+            register={props.register}
+            handleSubmit={props.handleSubmit}
+            formState={props.formState}
           />
         </S.BuyModal>
       )}

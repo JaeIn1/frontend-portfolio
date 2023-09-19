@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import { IBuyBtnProps } from "./BuyItem.types";
 
 export const Header = styled.header`
   font-size: 20px;
@@ -9,7 +10,6 @@ export const Header = styled.header`
 `;
 
 export const BodyDiv = styled.div`
-  margin-bottom: 10px;
   & span {
     font-size: 15px;
   }
@@ -47,7 +47,7 @@ export const KakaoMapInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-content: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 
   & input {
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -92,15 +92,31 @@ export const BodyPhoneDiv = styled.div`
   }
 
   & input {
-    line-height: 1.5rem;
-    width: 30%;
+    line-height: 2rem;
+    font-size: 1rem;
+    width: 100%;
     padding: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-    margin: 5px;
   }
 `;
 
 export const AddressModal = styled(Modal)``;
 
 export const AddressSearchInput = styled(DaumPostcode)``;
+
+export const BuyBtn = styled.button`
+  width: 100%;
+  background-color: ${(props: IBuyBtnProps) =>
+    props.isActive ? "#B173D8" : ""};
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+`;
+export const ErrorText = styled.div`
+  color: red;
+  margin-bottom: 15px;
+  padding-left: 6px;
+`;
