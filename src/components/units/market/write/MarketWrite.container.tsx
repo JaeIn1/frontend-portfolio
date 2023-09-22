@@ -24,6 +24,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [lng, setLng] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitting, setIsSubMitting] = useState(false);
 
   const [name, setName] = useState("");
   const [remarks, setRemarks] = useState("");
@@ -115,8 +116,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
 
   const onChangeTag = (event: ChangeEvent<HTMLInputElement>): void => {
     const newTag = event.target.value.split(" ");
-    console.log(newTag);
-    setTags(newTag);
+    setTags([...newTag]);
     if (event.target.value !== "") {
       setTagsError("");
     }
@@ -219,6 +219,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       lng
     ) {
       try {
+        setIsSubMitting(true);
         const result = await createItem({
           variables: {
             createUseditemInput: {
@@ -242,12 +243,9 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
           alert("요청에 문제가 있습니다.");
           return;
         }
-        console.log(
-          result.data?.createUseditem.useditemAddress?.lat,
-          result.data?.createUseditem.useditemAddress?.lng
-        );
         alert("상품이 등록되었습니다.");
         void router.push(`/markets`);
+        setIsSubMitting(false);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }
@@ -335,6 +333,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       onClickDeleteImg={onClickDeleteImg}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
+      isSubmitting={isSubmitting}
       isActive={isActive}
       isEdit={props.isEdit}
       data={props.data}

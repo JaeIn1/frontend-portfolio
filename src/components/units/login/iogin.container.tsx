@@ -76,9 +76,7 @@ export default function LoginPage(): JSX.Element {
         setAccessToken(accessToken);
         alert("로그인에 성공했습니다!");
 
-        console.log(visitePage);
         void router.push(visitePage);
-        localStorage.setItem("accessToken", accessToken);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
       }

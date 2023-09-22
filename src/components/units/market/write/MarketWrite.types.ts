@@ -25,6 +25,7 @@ export interface IMarketWriteUIProps {
   onClickDeleteImg?: (() => void) | undefined;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
+  isSubmitting: boolean;
   isActive: boolean;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchUseditem">;

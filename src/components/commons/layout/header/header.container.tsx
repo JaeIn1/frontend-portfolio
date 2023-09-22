@@ -3,6 +3,8 @@ import LayoutHeaderUI from "./header.presenter";
 import { gql, useQuery } from "@apollo/client";
 import { IQuery } from "../../../../commons/types/generated/types";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../../commons/stores";
 
 const FETCH_USER_LOGGED_IN = gql`
   query {
@@ -15,6 +17,7 @@ const FETCH_USER_LOGGED_IN = gql`
   }
 `;
 export default function LayoutHeader(): JSX.Element {
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { data } =
@@ -35,8 +38,9 @@ export default function LayoutHeader(): JSX.Element {
 
   const onClickLogout = (): void => {
     alert("로그아웃 되었습니다.");
-    localStorage.removeItem("accessToken");
-    location.reload();
+    setAccessToken("");
+    void router.push("/boards");
+    // location.reload();
   };
   return (
     <>

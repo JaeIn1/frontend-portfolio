@@ -4,6 +4,7 @@ import type { IMarketWriteUIProps } from "./MarketWrite.types";
 import { v4 as uuidv4 } from "uuid";
 
 export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
+  console.log(props.data?.fetchUseditem.tags);
   const modules = {
     toolbar: {
       container: [
@@ -119,7 +120,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
           <S.ItemTag
             placeholder="#태그 #태그 #태그"
             onChange={props.onChangeTag}
-            defaultValue={String(`${props.data?.fetchUseditem.tags ?? ""}`)}
+            defaultValue={props.data?.fetchUseditem.tags ?? ""}
           />
           <S.Error>{props.tagsError}</S.Error>
         </S.InputWrapper>
@@ -186,6 +187,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
           <S.SubmitButton
             onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
             isActive={props.isEdit ? true : props.isActive}
+            disabled={props.isSubmitting}
           >
             {props.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitButton>
