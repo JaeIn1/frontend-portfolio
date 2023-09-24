@@ -6,8 +6,11 @@ import {
   fromPromise,
 } from "@apollo/client"; // module 요즘
 import { createUploadLink } from "apollo-upload-client";
-import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/stores";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
+import {
+  accessTokenState,
+  restoreAccessTokenLoadble,
+} from "../../../commons/stores";
 import { useEffect } from "react";
 import { onError } from "@apollo/client/link/error";
 import { getAccessToken } from "../libraries/getAccessToken";
@@ -17,10 +20,12 @@ interface IApolloSettingProps {
 }
 export default function ApolloSetting(props: IApolloSettingProps): JSX.Element {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const aaa = useRecoilValueLoadable(restoreAccessTokenLoadble);
 
   useEffect(() => {
-    const result = accessToken;
-    setAccessToken(result ?? "");
+    void aaa.toPromise().then((newAccessToken) => {
+      setAccessToken(newAccessToken ?? "");
+    });
   }, []);
 
   const errorLink = onError(({ graphQLErrors, operation, forward }) => {
