@@ -6,12 +6,13 @@ import type {
   IQueryFetchUseditemsArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MarketListUI from "./MarketList.presenter";
 
 export default function MarketList(): JSX.Element {
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
+  const [todayView, setTodayView] = useState({});
 
   const { data, fetchMore, refetch } = useQuery<
     Pick<IQuery, "fetchUseditems">,
@@ -50,9 +51,26 @@ export default function MarketList(): JSX.Element {
     });
   };
 
+  /* useEffect(() => {
+    // 5.localStorage에 데이터를 JSON 자료형으로 저장한다.
+    let item = localStorage.getItem("watched");
+    localStorage.setItem("watched", item ?? "[]");
+  }, []);
+
   const onClickMarketItem = (el: IUseditem) => () => {
+    let item = localStorage.getItem("watched");
+    let itemObj = JSON.parse(item ?? "");
+
+    itemObj.filter((aa: IUseditem) => {
+      if(aa._id !== el._id){
+
+      }
+    });
+    console.log(itemObj);
+    // localStorage.setItem("watched", JSON.stringify(itemObj));
+
     void router.push(`/markets/${el._id}`);
-  };
+  }; */
 
   const onClickMoveToMarketNew = (): void => {
     void router.push("/markets/new");

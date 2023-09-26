@@ -49,7 +49,7 @@ export default function SignUpPage(): JSX.Element {
   };
 
   return (
-    <>
+    <S.BackgroundWrapper>
       <S.Wrapper>
         {isOpen && (
           <S.SignUpModal open={true} onCancel={ToggleModal} footer={null}>
@@ -109,6 +109,6 @@ export default function SignUpPage(): JSX.Element {
           </form>
         </S.BodyWrapper>
       </S.Wrapper>
-    </>
+    </S.BackgroundWrapper>
   );
 }

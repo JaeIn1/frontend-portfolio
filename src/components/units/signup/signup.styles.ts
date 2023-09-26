@@ -2,8 +2,18 @@ import styled from "@emotion/styled";
 import { ISignUpBtnProps } from "./signup.types";
 import { Modal } from "antd";
 
+export const BackgroundWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 100, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Wrapper = styled.div`
-  width: 500px;
+  background-color: white;
+  width: 600px;
   padding: 20px;
   //border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -37,7 +47,6 @@ export const HeaderDiv = styled.div`
 
 export const BodyWrapper = styled.div`
   margin-top: 30px;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,7 +67,7 @@ export const BodyInputDid = styled.div`
 
 export const BodyInput = styled.input`
   width: 100%;
-  line-height: 3rem;
+  line-height: 3.5rem;
   border-radius: 15px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
@@ -112,15 +121,17 @@ export const SignUpModalBtn = styled.button`
 `;
 
 export const SignupInput = styled.input`
-  width: 400px;
+  width: 500px;
   padding: 17px 10px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export const SignupError = styled.div`
   padding-left: 10px;
   font-size: 14px;
   color: red;
+  margin-bottom: 30px;
 `;

@@ -6,11 +6,11 @@ import { getAccessToken } from "../libraries/getAccessToken";
 
 // eslint-disable-next-line react/display-name
 export const useAuth = (): void => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [accessToken] = useRecoilState(accessTokenState);
   const [visitedPage] = useRecoilState(visitedPageState);
   // const aaa = useRecoilValueLoadable(restoreAccessTokenLoadble);
 
-  console.log(accessToken);
   const router = useRouter();
   useEffect(() => {
     // 안좋음 => app.tsx와 함께 2번의 요청이 들어감

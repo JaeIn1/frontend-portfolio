@@ -17,7 +17,6 @@ export default function MarketCommentList(): JSX.Element {
   >(FETCH_MARKET_COMMENTS, {
     variables: { useditemId: router.query.marketId },
   });
-  console.log(data);
 
   const onLoadMore = (): void => {
     if (data === undefined) return;
