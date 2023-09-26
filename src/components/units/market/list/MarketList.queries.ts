@@ -54,3 +54,30 @@ export const FETCH_MARKET_ITEM_BEST = gql`
     }
   }
 `;
+export const FETCH_MARKET_ITEM_TODAY = gql`
+  query fetchUseditem($useditemId: ID!) {
+    fetchUseditem(useditemId: $useditemId) {
+      _id
+      name
+      remarks
+      contents
+      price
+      tags
+      images
+      pickedCount
+      seller {
+        name
+        email
+        _id
+      }
+      createdAt
+      useditemAddress {
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
+    }
+  }
+`;

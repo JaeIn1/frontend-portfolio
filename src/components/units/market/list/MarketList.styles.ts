@@ -109,7 +109,9 @@ export const BestBoardLikeCountDiv = styled.div`
   }
 `;
 
-export const MarketListWrapper = styled.div``;
+export const MarketListWrapper = styled.div`
+  position: relative;
+`;
 
 export const MarketList = styled.div`
   border-top: 1px solid rgba(0, 0, 0, 0.2);
@@ -181,5 +183,38 @@ export const MarketListPriceDiv = styled.div`
   & span {
     font-weight: bolder;
     font-size: 20px;
+  }
+`;
+
+export const TodayItemWrapper = styled.div`
+  position: absolute;
+  right: -300px;
+  border: 1px solid #bdbdbd;
+  width: 250px;
+  height: 500px;
+  padding: 20px;
+`;
+
+export const TodayItemHeader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  & span {
+    font-weight: bold;
+    font-size: 23px;
+  }
+`;
+
+export const TodayItemList = styled.div`
+  height: 90%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #ffd600; /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
   }
 `;

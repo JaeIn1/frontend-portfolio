@@ -17,8 +17,14 @@ export interface IBoardListUIProps {
   refetch: (
     variables?: Partial<IQueryFetchUseditemsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
+
+  newItemobj: string[];
 }
 
 export interface ITextTokenProps {
   isMatched: boolean;
+}
+
+export interface ITodayWatchProps {
+  el: string;
 }

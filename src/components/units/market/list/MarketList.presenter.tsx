@@ -3,6 +3,7 @@ import * as S from "./MarketList.styles";
 import type { IBoardListUIProps } from "./MarketList.types";
 import { v4 as uuidv4 } from "uuid";
 import Searchbars02 from "../../../commons/searchbars/02/Searchbars02.container";
+import TodayWatchPage from "./TodayWatched";
 
 export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
   return (
@@ -37,6 +38,21 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
         onChangeKeyword={props.onChangeKeyword}
       />
       <S.MarketListWrapper>
+        {typeof window !== "undefined" &&
+          localStorage.getItem("watched") !== "[]" && (
+            <S.TodayItemWrapper>
+              <S.TodayItemHeader>
+                <span>오늘 본 상품</span>
+              </S.TodayItemHeader>
+              <S.TodayItemList>
+                {JSON.parse(localStorage.getItem("watched" ?? "[]"))
+                  .reverse()
+                  .map((el: string) => (
+                    <TodayWatchPage key={el} el={el} />
+                  ))}
+              </S.TodayItemList>
+            </S.TodayItemWrapper>
+          )}
         <S.MarketScrollerDiv style={{ height: "800px", overflow: "auto" }}>
           <InfiniteScroll
             pageStart={0}
@@ -82,7 +98,7 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
       <S.Footer>
         <S.Button onClick={props.onClickMoveToMarketNew}>
           <S.PencilIcon src="/images/board/list/write.png" />
-          상품 등록하기
+          상품 등록하기{" "}
         </S.Button>
       </S.Footer>
     </S.Wrapper>

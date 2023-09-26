@@ -12,7 +12,7 @@ import type {
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { MouseEvent } from "react";
 
 export default function BoardList(): JSX.Element {
@@ -49,6 +49,11 @@ export default function BoardList(): JSX.Element {
   const onClickBestBoard = (el: IBoard) => (): void => {
     void router.push(`boards/${el._id}`);
   };
+  useEffect(() => {
+    // 5.localStorage에 데이터를 JSON 자료형으로 저장한다.
+    const item = localStorage.getItem("watched");
+    localStorage.setItem("watched", item ?? "[]");
+  }, []);
 
   return (
     <>

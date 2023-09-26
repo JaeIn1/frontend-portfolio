@@ -12,7 +12,7 @@ import MarketListUI from "./MarketList.presenter";
 export default function MarketList(): JSX.Element {
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
-  const [todayView, setTodayView] = useState({});
+  let newItemobj: string[] = [];
 
   const { data, fetchMore, refetch } = useQuery<
     Pick<IQuery, "fetchUseditems">,
@@ -22,7 +22,6 @@ export default function MarketList(): JSX.Element {
   const { data: dataBest } = useQuery<Pick<IQuery, "fetchUseditemsOfTheBest">>(
     FETCH_MARKET_ITEM_BEST
   );
-  console.log(dataBest);
 
   const onChangeKeyword = (value: string): void => {
     setKeyword(value);
@@ -51,26 +50,21 @@ export default function MarketList(): JSX.Element {
     });
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     // 5.localStorage에 데이터를 JSON 자료형으로 저장한다.
-    let item = localStorage.getItem("watched");
+    const item = localStorage.getItem("watched");
     localStorage.setItem("watched", item ?? "[]");
   }, []);
 
   const onClickMarketItem = (el: IUseditem) => () => {
-    let item = localStorage.getItem("watched");
-    let itemObj = JSON.parse(item ?? "");
-
-    itemObj.filter((aa: IUseditem) => {
-      if(aa._id !== el._id){
-
-      }
-    });
-    console.log(itemObj);
-    // localStorage.setItem("watched", JSON.stringify(itemObj));
-
+    const item = localStorage.getItem("watched");
+    const itemObj = JSON.parse(item ?? "");
+    itemObj.push(el._id);
+    newItemobj = [...new Set(itemObj)];
+    console.log(newItemobj);
+    localStorage.setItem("watched", JSON.stringify(newItemobj));
     void router.push(`/markets/${el._id}`);
-  }; */
+  };
 
   const onClickMoveToMarketNew = (): void => {
     void router.push("/markets/new");
@@ -88,6 +82,7 @@ export default function MarketList(): JSX.Element {
         onClickMarketItem={onClickMarketItem}
         onClickMoveToMarketNew={onClickMoveToMarketNew}
         refetch={refetch}
+        newItemobj={newItemobj}
       />
     </>
   );
