@@ -10,7 +10,6 @@ export interface IBoardListUIProps {
   dataBest?: Pick<IQuery, "fetchUseditemsOfTheBest">;
   keyword: string;
   onChangeKeyword: (value: string) => void;
-  onClickBestBoard: (el: IUseditem) => () => void;
   onLoadMore: () => void;
   onClickMarketItem: (el: IUseditem) => () => void;
   onClickMoveToMarketNew: () => void;

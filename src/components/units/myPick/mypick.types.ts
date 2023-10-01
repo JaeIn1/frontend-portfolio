@@ -3,14 +3,16 @@ import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
   IUseditem,
-} from "../../../../commons/types/generated/types";
+} from "../../../commons/types/generated/types";
 
-export interface IMypageProps {
+export interface IMyPickProps {
+  isMyPick?: boolean;
   isMyPage?: boolean;
 }
 
-export interface IMypageUIProps {
+export interface IMyPickUIProps {
   data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
+  onClickMoveMyItem: () => void;
   onclickMyPageMyPicked: () => void;
   refetch: (
     variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
@@ -22,6 +24,7 @@ export interface IMypageUIProps {
 
   count?: number;
   isMyPage?: boolean;
+  isMyPick?: boolean;
 }
 
 export interface IMypageItemProps {
@@ -31,4 +34,5 @@ export interface IMypageItemProps {
 
 export interface IMyPageStyleProps {
   isMyPage?: boolean;
+  isMyPick?: boolean;
 }

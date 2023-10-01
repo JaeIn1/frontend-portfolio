@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IMyPageStyleProps } from "./mypage.types";
+import { IMyPageStyleProps } from "./mypick.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -150,9 +150,20 @@ export const RightHeaderSpan = styled.span`
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
   }
+`;
 
-  font-weight: ${(props: IMyPageStyleProps) => (props.isMyPage ? "bold" : "")};
-  color: ${(props: IMyPageStyleProps) => (props.isMyPage ? "black" : "")};
+export const RightHeaderMyItem = styled.span`
+  margin: 10px;
+
+  :hover {
+    color: black;
+    font-weight: bolder;
+    text-decoration: #ffd600 3px underline;
+    cursor: pointer;
+  }
+
+  font-weight: ${(props: IMyPageStyleProps) => (props.isMyPick ? "bold" : "")};
+  color: ${(props: IMyPageStyleProps) => (props.isMyPick ? "black" : "")};
   text-decoration: ${(props: IMyPageStyleProps) =>
-    props.isMyPage ? "3px underline #ffd600" : ""};
+    props.isMyPick ? "3px underline #ffd600" : ""};
 `;

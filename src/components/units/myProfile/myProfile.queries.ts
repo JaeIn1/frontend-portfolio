@@ -1,20 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_MY_ITEM = gql`
-  query fetchUseditemsISold($page: Int) {
-    fetchUseditemsISold(page: $page) {
-      _id
-      name
-      remarks
-      contents
-      price
-      createdAt
-    }
-  }
-`;
-
-export const FETCH_MY_ITEM_COUNT = gql`
-  query {
-    fetchUseditemsCountISold
+export const RESET_PASSWORD = gql`
+  mutation resetUserPassword($password: String!) {
+    resetUserPassword(password: $password)
   }
 `;

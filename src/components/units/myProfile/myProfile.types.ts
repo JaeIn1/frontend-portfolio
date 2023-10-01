@@ -11,9 +11,7 @@ export interface IMyProfileProps {
 
 export interface IMypageUIProps {
   data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
-  onClickMoveMyItem: () => void;
-  onClickMoveMyPoint: () => void;
-  onClickMoveMyProfile: () => void;
+
   refetch: (
     variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
@@ -33,4 +31,8 @@ export interface IMypageItemProps {
 
 export interface IMyProfileItemProps {
   isMyProfile?: boolean;
+}
+
+export interface IResetPasswordBtnProps {
+  isActive: boolean;
 }

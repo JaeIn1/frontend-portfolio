@@ -1,27 +1,29 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
+import MyPageLeftDivPage from "../../commons/mypage/mypage.left";
+import PagenationPage from "../../commons/pagination/B/paginationB.container";
+import MyPagePageItem from "./mypick.preseterItem";
+import * as S from "./mypick.styles";
+import { IMyPickUIProps } from "./mypick.types";
 
-import MyPageLeftDivPage from "../../../commons/mypage/mypage.left";
-import PagenationPage from "../../../commons/pagination/B/paginationB.container";
-import MyPagePageItem from "./mypage.preseterItem";
-import * as S from "./mypage.styles";
-import { IMypageUIProps } from "./mypage.types";
-
-export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
+export default function MyPickUI(props: IMyPickUIProps): JSX.Element {
   return (
     <S.Wrapper>
-      <MyPageLeftDivPage isMyPage={props.isMyPage} />
+      <MyPageLeftDivPage isMyPick={props.isMyPick} />
       <S.RightWrapper>
         <S.RightHeader>
           <S.RightHeaderLeft>
-            <S.RightHeaderSpan isMyPage={props.isMyPage}>
+            <S.RightHeaderSpan onClick={props.onClickMoveMyItem}>
               나의상품
             </S.RightHeaderSpan>
             |
-            <S.RightHeaderSpan onClick={props.onclickMyPageMyPicked}>
+            <S.RightHeaderMyItem
+              onClick={props.onclickMyPageMyPicked}
+              isMyPick={props.isMyPick}
+            >
               마이찜
-            </S.RightHeaderSpan>
+            </S.RightHeaderMyItem>
           </S.RightHeaderLeft>
-          <div>myItem</div>
+          <div>myPick</div>
         </S.RightHeader>
         <S.TableTop />
         <S.Row>

@@ -1,4 +1,5 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
+import MyPageLeftDivPage from "../../commons/mypage/mypage.left";
 import PagenationPage from "../../commons/pagination/B/paginationB.container";
 import MyPagePageItem from "./myPoint.preseterItem";
 import * as S from "./myPoint.styles";
@@ -7,48 +8,17 @@ import { IMypageUIProps } from "./myPoint.types";
 export default function MyPointUI(props: IMypageUIProps): JSX.Element {
   return (
     <S.Wrapper>
-      <S.LeftWrapper>
-        <S.LeftPageHeader>
-          <span>MYPAGE</span>
-        </S.LeftPageHeader>
-        <S.LeftPageBody>
-          <S.LeftPageBodyUserIcon src="/images/avatar.png" />
-          <S.LeftPageBordText>홍길동</S.LeftPageBordText>
-          <S.LeftPageBodyPoint>
-            <img src="/images/mypage/mypage_point_pig.png" />
-            <span>100,000</span>
-          </S.LeftPageBodyPoint>
-        </S.LeftPageBody>
-        <S.LeftPageFooter>
-          <S.LeftPageFooterMenu>
-            <img src="/images/mypage/mypage_myItem.png" />
-            <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyItem}>
-              내 장터
-            </S.LeftPageFooterMenuSpan>
-          </S.LeftPageFooterMenu>
-          <S.LeftPageFooterMenu>
-            <img src="/images/mypage/mypage_point_pig_black.png" />
-            <S.LeftPageFooterMenuSpan
-              onClick={props.onClickMoveMyPoint}
-              isMyPoint={props.isMyPoint}
-            >
-              내 포인트
-            </S.LeftPageFooterMenuSpan>
-          </S.LeftPageFooterMenu>
-          <S.LeftPageFooterMenu>
-            <img src="/images/avatar.png" />
-            <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyProfile}>
-              내 프로필
-            </S.LeftPageFooterMenuSpan>
-          </S.LeftPageFooterMenu>
-        </S.LeftPageFooter>
-      </S.LeftWrapper>
+      <MyPageLeftDivPage isMyPoint={props.isMyPoint} />
       <S.RightWrapper>
         <S.RightHeader>
           <S.RightHeaderLeft>
-            <span>나의상품</span>
+            <span>전체내역</span>
             <span>|</span>
-            <span>마이찜</span>
+            <span>충전내역</span>
+            <span>|</span>
+            <span>구매내역</span>
+            <span>|</span>
+            <span>판매내역</span>
           </S.RightHeaderLeft>
           <div>
             <span>point</span>

@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/restrict-plus-operands */
 import { useRouter } from "next/router";
+import * as S from "./mypick.styles";
+import { IMypageItemProps } from "./mypick.types";
 import { getDate } from "../../../commons/libraries/utils";
-import * as S from "./myProfile.styles";
-import { IMypageItemProps } from "./myProfile.types";
 
-export default function MyProfileItem(props: IMypageItemProps): JSX.Element {
+export default function MyPagePageItem(props: IMypageItemProps): JSX.Element {
   const router = useRouter();
   const onclickMyItem = (id: string) => (): void => {
-    void router.push(`markets/${id}`);
+    void router.push(`mypages/${id}`);
   };
   return (
     <S.Row onClick={onclickMyItem(props.el._id)}>

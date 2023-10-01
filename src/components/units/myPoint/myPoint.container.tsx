@@ -5,11 +5,9 @@ import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
 } from "../../../commons/types/generated/types";
-import { useRouter } from "next/router";
 import { IMyPointProps } from "./myPoint.types";
 
 export default function MyPoint(props: IMyPointProps): JSX.Element {
-  const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
     IQueryFetchUseditemsISoldArgs
@@ -24,26 +22,11 @@ export default function MyPoint(props: IMyPointProps): JSX.Element {
 
   console.log(dataCount);
 
-  const onClickMoveMyItem = (): void => {
-    void router.push("/mypages");
-  };
-
-  const onClickMoveMyPoint = (): void => {
-    void router.push("/mypages/myPoint");
-  };
-
-  const onClickMoveMyProfile = (): void => {
-    void router.push("/mypages/myProfile");
-  };
-
   return (
     <MyPagePageUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}
-      onClickMoveMyItem={onClickMoveMyItem}
-      onClickMoveMyPoint={onClickMoveMyPoint}
-      onClickMoveMyProfile={onClickMoveMyProfile}
       count={dataCount?.fetchUseditemsCountISold}
       isMyPoint={props.isMyPoint}
     />

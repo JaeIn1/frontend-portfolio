@@ -140,7 +140,7 @@ export const RightHeader = styled.div`
   align-items: center;
 `;
 export const RightHeaderLeft = styled.div`
-  & span:nth-child(2) {
+  & span {
     margin: 10px;
   }
   & span:hover {

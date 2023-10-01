@@ -1,14 +1,14 @@
 import { useQuery } from "@apollo/client";
-import MyPagePageUI from "./mypage.presenter";
-import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./mypage.queries";
+import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./mypick.queries";
+import { useRouter } from "next/router";
+import { IMyPickProps } from "./mypick.types";
 import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
-} from "../../../../commons/types/generated/types";
-import { useRouter } from "next/router";
-import { IMypageProps } from "./mypage.types";
+} from "../../../commons/types/generated/types";
+import MyPickUI from "./mypick.presenter";
 
-export default function MyPagePage(props: IMypageProps): JSX.Element {
+export default function MyPick(props: IMyPickProps): JSX.Element {
   const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
@@ -20,18 +20,23 @@ export default function MyPagePage(props: IMypageProps): JSX.Element {
 
   console.log(dataCount);
 
+  const onClickMoveMyItem = (): void => {
+    void router.push("/mypages");
+  };
   const onclickMyPageMyPicked = (): void => {
-    void router.push("mypages/myPick");
+    void router.push("/mypages/myPick");
   };
 
   return (
-    <MyPagePageUI
+    <MyPickUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}
+      onClickMoveMyItem={onClickMoveMyItem}
       onclickMyPageMyPicked={onclickMyPageMyPicked}
       count={dataCount?.fetchUseditemsCountISold}
       isMyPage={props.isMyPage}
+      isMyPick={props.isMyPick}
     />
   );
 }

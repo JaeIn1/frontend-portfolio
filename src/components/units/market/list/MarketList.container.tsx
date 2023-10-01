@@ -27,10 +27,6 @@ export default function MarketList(): JSX.Element {
     setKeyword(value);
   };
 
-  const onClickBestBoard = (el: IUseditem) => (): void => {
-    void router.push(`markets/${el._id}`);
-  };
-
   const onLoadMore = (): void => {
     if (data === undefined) return;
 
@@ -77,7 +73,6 @@ export default function MarketList(): JSX.Element {
         dataBest={dataBest}
         keyword={keyword}
         onChangeKeyword={onChangeKeyword}
-        onClickBestBoard={onClickBestBoard}
         onLoadMore={onLoadMore}
         onClickMarketItem={onClickMarketItem}
         onClickMoveToMarketNew={onClickMoveToMarketNew}

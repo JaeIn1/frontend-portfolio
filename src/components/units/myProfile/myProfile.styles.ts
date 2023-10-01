@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IMyProfileItemProps } from "./myProfile.types";
+import { IResetPasswordBtnProps } from "./myProfile.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -7,18 +7,6 @@ export const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   margin-top: 100px;
-`;
-
-export const LeftWrapper = styled.div`
-  width: 300px;
-  height: 1000px;
-  border-right: 1px solid lightgray;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 30px;
-  padding-top: 100px;
 `;
 
 export const RightWrapper = styled.div`
@@ -29,127 +17,58 @@ export const RightWrapper = styled.div`
   margin-bottom: 50px;
 `;
 
-export const LeftPageHeader = styled.div`
-  font-size: 25px;
-  font-weight: bolder;
+export const RightDivHeader = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 50px;
+`;
+
+export const RightFormDiv = styled.div`
+  width: 100%;
   margin-bottom: 30px;
-`;
-export const LeftPageBody = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 60px;
-`;
-export const LeftPageBodyUserIcon = styled.img`
-  width: 80px;
-  height: 80px;
-  margin-bottom: 15px;
-`;
+  & div {
+    width: 20%;
 
-export const LeftPageBordText = styled.div`
-  font-size: 25px;
-  font-weight: bolder;
-  margin-bottom: 10px;
-`;
-export const LeftPageBodyPoint = styled.div`
-  font-size: 17px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  & span {
-    margin-left: 8px;
+    font-size: 20px;
+    font-weight: 550;
+  }
+
+  & input {
+    width: 80%;
+    line-height: 2.5rem;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 10px 20px;
+
+    ::placeholder {
+      font-size: 1.1rem;
+      padding-left: 20px;
+      color: rgba(0, 0, 0, 0.5);
+    }
   }
 `;
 
-export const LeftPageFooter = styled.div`
+export const RightDivFooter = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: flex-end;
 `;
-export const LeftPageFooterMenu = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 10px;
+
+export const RightDivBtn = styled.button`
+  border: none;
+  padding: 20px 30px;
+  border-radius: 10px;
   cursor: pointer;
 
-  & img {
-    width: 25px;
-    height: 25px;
-  }
-`;
-export const LeftPageFooterMenuSpan = styled.span`
-  margin-left: 8px;
-  font-weight: ${(props: IMyProfileItemProps) =>
-    props.isMyProfile ? "bold" : ""};
+  background-color: ${(props: IResetPasswordBtnProps) =>
+    props.isActive ? "#B173D8" : ""};
 
-  &:hover {
-    font-weight: bold;
-  }
+  color: ${(props: IResetPasswordBtnProps) => (props.isActive ? "white" : "")};
 `;
-export const TableTop = styled.div`
-  border-top: 2px solid gray;
-  margin-top: 20px;
-`;
-
-export const TableBottom = styled.div`
-  border-bottom: 2px solid gray;
-`;
-
-export const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  height: 52px;
-  line-height: 52px;
-  border-bottom: 1px solid gray;
-
-  :hover {
-    color: #b173d8;
-  }
-`;
-export const ColumnHeaderNumber = styled.div`
-  width: 10%;
-  text-align: center;
-`;
-
-export const ColumnHeaderTitle = styled.div`
-  width: 70%;
-  text-align: center;
-`;
-
-export const ColumnBasic = styled.div`
-  width: 15%;
-  text-align: start;
-`;
-
-export const ColumnTitle = styled.div`
-  width: 70%;
-  text-align: center;
-  cursor: pointer;
-
-  :hover {
-    color: #b173d8;
-  }
-`;
-
-export const RightHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-export const RightHeaderLeft = styled.div`
-  & span:nth-child(2) {
-    margin: 10px;
-  }
-  & span:hover {
-    color: black;
-    font-weight: bolder;
-    text-decoration: #ffd600 3px underline;
-    cursor: pointer;
-  }
-
-  & span {
-    color: rgba(0, 0, 0, 0.7);
-  }
+export const ResetPasswordError = styled.div`
+  padding-left: 10px;
+  font-size: 14px;
+  color: red;
+  margin-bottom: 30px;
 `;

@@ -11,9 +11,7 @@ export interface IMyPointProps {
 
 export interface IMypageUIProps {
   data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
-  onClickMoveMyItem: () => void;
-  onClickMoveMyPoint: () => void;
-  onClickMoveMyProfile: () => void;
+
   refetch: (
     variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
