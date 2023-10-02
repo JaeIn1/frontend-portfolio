@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/prefer-optional-chain */
 import InfiniteScroll from "react-infinite-scroller";
 import * as S from "./MarketList.styles";
 import type { IBoardListUIProps } from "./MarketList.types";
 import { v4 as uuidv4 } from "uuid";
 import Searchbars02 from "../../../commons/searchbars/02/Searchbars02.container";
 import TodayWatchPage from "./TodayWatched";
+import { useRecoilState } from "recoil";
+import { todayWatchItem } from "../../../../commons/stores";
 
 export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
+  const [todayWatch] = useRecoilState(todayWatchItem);
+  const newAry = [...todayWatch];
   return (
     <S.Wrapper>
       <S.MarketBestTitle>베스트 상품</S.MarketBestTitle>
@@ -39,8 +44,8 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
         onChangeKeyword={props.onChangeKeyword}
       />
       <S.MarketListWrapper>
-        {typeof window !== "undefined" &&
-          localStorage.getItem("watched") !== "[]" && (
+        {/* {typeof window !== "undefined" &&
+          (localStorage.getItem("watched") !== "[]" ? (
             <S.TodayItemWrapper>
               <S.TodayItemHeader>
                 <span>오늘 본 상품</span>
@@ -53,7 +58,24 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
                   ))}
               </S.TodayItemList>
             </S.TodayItemWrapper>
-          )}
+          ) : (
+            <></>
+          ))} */}
+        {JSON.stringify(newAry) !== "[]" ? (
+          <S.TodayItemWrapper>
+            <S.TodayItemHeader>
+              <span>오늘 본 상품</span>
+            </S.TodayItemHeader>
+            <S.TodayItemList>
+              {newAry.reverse().map((el: any) => (
+                <TodayWatchPage key={el} el={el} />
+              ))}
+            </S.TodayItemList>
+          </S.TodayItemWrapper>
+        ) : (
+          <></>
+        )}
+
         <S.MarketScrollerDiv style={{ height: "800px", overflow: "auto" }}>
           <InfiniteScroll
             pageStart={0}

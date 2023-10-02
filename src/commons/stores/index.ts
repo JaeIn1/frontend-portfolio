@@ -22,3 +22,8 @@ export const restoreAccessTokenLoadble = selector({
     return newAccessToken;
   },
 });
+
+export const todayWatchItem = atom<string[]>({
+  key: "todayWatchItem",
+  default: [],
+});
