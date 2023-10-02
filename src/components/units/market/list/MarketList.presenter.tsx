@@ -13,7 +13,8 @@ export default function MarketListUI(props: IBoardListUIProps): JSX.Element {
         {props.dataBest?.fetchUseditemsOfTheBest.map((el) => (
           <S.BoardBestDiv key={el._id} onClick={props.onClickMarketItem(el)}>
             <S.BoardBestImg
-              src={`https://storage.googleapis.com/${el.images?.[0]}`}
+              src={`https://storage.googleapis.com/${el.images?.[1]}`}
+              onError={props.onEmptyImg}
             />
             <S.Header>
               <S.AvatarWrapper>

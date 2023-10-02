@@ -4,6 +4,7 @@ import type {
   IQueryFetchUseditemsArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
+import { ChangeEvent } from "react";
 
 export interface IBoardListUIProps {
   data?: Pick<IQuery, "fetchUseditems"> | undefined;
@@ -18,6 +19,7 @@ export interface IBoardListUIProps {
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 
   newItemobj: string[];
+  onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
 }
 
 export interface ITextTokenProps {

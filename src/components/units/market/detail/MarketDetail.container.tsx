@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import type {
+  IMutation,
+  IMutationToggleUseditemPickArgs,
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_MARKET_ITEM } from "./MarketDetail.queries";
+import { FETCH_MARKET_ITEM, PICK_ITEM } from "./MarketDetail.queries";
 import MarketDetailUI from "./MarketDetail.presenter";
 import { useEffect, useState } from "react";
 import { Address } from "react-daum-postcode";
 import { useForm } from "react-hook-form";
 import { MarketDetailschema } from "./MarketDetail.validation";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Modal } from "antd";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -35,6 +38,7 @@ export default function MarketDetail(): JSX.Element {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [postError, setPostError] = useState("");
+  const [myPick, setMyPick] = useState(false);
 
   if (typeof router.query.marketId !== "string") return <></>;
 
@@ -42,6 +46,11 @@ export default function MarketDetail(): JSX.Element {
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
   >(FETCH_MARKET_ITEM, { variables: { useditemId: router.query.marketId } });
+
+  const [pickItem] = useMutation<
+    Pick<IMutation, "toggleUseditemPick">,
+    IMutationToggleUseditemPickArgs
+  >(PICK_ITEM);
 
   const onClickReturnList = (): void => {
     void router.push("/markets");
@@ -123,6 +132,45 @@ export default function MarketDetail(): JSX.Element {
     setPostError("");
   };
 
+  const onClickPickItem = (): void => {
+    // 캐쉬 직접 수정
+    void pickItem({
+      variables: {
+        useditemId: String(router.query.marketId),
+      },
+      optimisticResponse: {
+        toggleUseditemPick: myPick
+          ? (data?.fetchUseditem.pickedCount ?? 0) - 1
+          : (data?.fetchUseditem.pickedCount ?? 0) + 1,
+      },
+      update: (cache, { data }) => {
+        cache.writeQuery({
+          query: FETCH_MARKET_ITEM,
+          variables: {
+            marketId: router.query.marketId,
+          },
+          data: {
+            fetchUseditem: {
+              _id: router.query.marketId,
+              __typename: "Useditem",
+              pickedCount: data?.toggleUseditemPick,
+            },
+          },
+        });
+      },
+    });
+    if (!myPick) {
+      Modal.success({
+        content: "찜 목록에 추가되었습니다",
+      });
+    } else {
+      Modal.error({
+        content: "찜 목록에서 취소되었습니다",
+      });
+    }
+    setMyPick((prev) => !prev);
+  };
+
   return (
     <>
       <MarketDetailUI
@@ -140,6 +188,7 @@ export default function MarketDetail(): JSX.Element {
         register={register}
         handleSubmit={handleSubmit}
         formState={formState}
+        onClickPickItem={onClickPickItem}
       />
     </>
   );

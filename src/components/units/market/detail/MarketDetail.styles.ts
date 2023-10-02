@@ -63,7 +63,7 @@ export const BoayItemLoveImgDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  cursor: pointer;
   & span {
     font-weight: bolder;
   }

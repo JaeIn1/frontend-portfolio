@@ -6,7 +6,7 @@ import type {
   IQueryFetchUseditemsArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import MarketListUI from "./MarketList.presenter";
 
 export default function MarketList(): JSX.Element {
@@ -66,6 +66,11 @@ export default function MarketList(): JSX.Element {
     void router.push("/markets/new");
   };
 
+  const onEmptyImg = (e: ChangeEvent<HTMLImageElement>): void => {
+    e.target.src =
+      "https://previews.123rf.com/images/julynx/julynx1408/julynx140800023/30746516-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%97%86%EA%B1%B0%EB%82%98-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%A7%84-%EC%97%86%EC%9D%8C.jpg";
+  };
+
   return (
     <>
       <MarketListUI
@@ -78,6 +83,7 @@ export default function MarketList(): JSX.Element {
         onClickMoveToMarketNew={onClickMoveToMarketNew}
         refetch={refetch}
         newItemobj={newItemobj}
+        onEmptyImg={onEmptyImg}
       />
     </>
   );

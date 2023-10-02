@@ -25,4 +25,5 @@ export interface IMarketDetailUIProps {
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData, undefined>;
   formState: FormState<IFormData>;
+  onClickPickItem: () => void;
 }

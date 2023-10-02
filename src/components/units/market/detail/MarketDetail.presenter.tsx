@@ -85,7 +85,7 @@ export default function MarketDetailUI(
                 {props.data?.fetchUseditem?.price?.toLocaleString()}원
               </S.ItemPrice>
             </div>
-            <S.BoayItemLoveImgDiv>
+            <S.BoayItemLoveImgDiv onClick={props.onClickPickItem}>
               <img src="/images/market/marketItem_love.png" />
               <span>{props.data?.fetchUseditem.pickedCount}</span>
             </S.BoayItemLoveImgDiv>
