@@ -51,6 +51,9 @@ export default function MarketList(): JSX.Element {
 
   useEffect(() => {
     // 5.localStorage에 데이터를 JSON 자료형으로 저장한다.
+    if (localStorage.getItem("watched") === null) {
+      localStorage.setItem("watched", "[]");
+    }
     const item = localStorage.getItem("watched" ?? "[]");
     localStorage.setItem("watched", item ?? "[]");
     const itemObj = JSON.parse(item ?? "");

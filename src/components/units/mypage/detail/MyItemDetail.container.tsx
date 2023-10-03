@@ -55,6 +55,11 @@ export default function MyItemDetail(): JSX.Element {
         },
       });
       alert("상품이 삭제되었습니다.");
+      const newAry = JSON.parse(localStorage.getItem("watched") ?? "").filter(
+        (el) => el !== router.query.marketId
+      );
+      console.log(newAry);
+      localStorage.setItem("watched", JSON.stringify(newAry));
       void router.push("/mypages");
     } catch (error) {
       console.log(error);
