@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/prefer-optional-chain */
 import InfiniteScroll from "react-infinite-scroller";
-import * as S from "./MarketList.styles";
-import type { IMarketListUIProps } from "./MarketList.types";
+import * as S from "./BoughtList.styles";
+import type { IMarketListUIProps } from "./BoughtList.types";
 import { v4 as uuidv4 } from "uuid";
 import Searchbars02 from "../../../commons/searchbars/02/Searchbars02.container";
 import TodayWatchPage from "./TodayWatched";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 
-export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
+export default function BoughtListUI(props: IMarketListUIProps): JSX.Element {
   const [todayWatch] = useRecoilState(todayWatchItem);
   const newAry = [...todayWatch];
   return (
@@ -47,7 +47,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
           판매중상품
         </S.MarketItems>
         <S.MarketItemsBoughts onClick={props.onClickMoveBought}>
-          판매된상품
+          판매된상품2222222
         </S.MarketItemsBoughts>
         <Searchbars02
           refetch={props.refetch}

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IMarketListStyleProps } from "./MarketList.types";
+import { IMarketListStyleProps } from "./BoughtList.types";
 
 export const Wrapper = styled.div`
   width: 1200px;

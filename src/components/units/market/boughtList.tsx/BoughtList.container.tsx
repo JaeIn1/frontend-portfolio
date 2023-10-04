@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_MARKET_ITEM_BEST, FETCH_MARKETS } from "./MarketList.queries";
+import { FETCH_MARKET_ITEM_BEST, FETCH_MARKETS } from "./BoughtList.queries";
 import { useRouter } from "next/router";
 import type {
   IQuery,
@@ -7,12 +7,12 @@ import type {
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import { ChangeEvent, useEffect, useState } from "react";
-import MarketListUI from "./MarketList.presenter";
+import MarketListUI from "./BoughtList.presenter";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
-import { IMarketListProps } from "./MarketList.types";
+import { IMarketListProps } from "./BoughtList.types";
 
-export default function MarketList(props: IMarketListProps): JSX.Element {
+export default function BoughtList(props: IMarketListProps): JSX.Element {
   let newItemobj: string[] = [];
   const [, setTodayWatch] = useRecoilState(todayWatchItem);
 

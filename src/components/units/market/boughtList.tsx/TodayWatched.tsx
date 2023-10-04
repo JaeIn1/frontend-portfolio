@@ -1,10 +1,10 @@
-import { ITodayWatchProps } from "./MarketList.types";
+import { ITodayWatchProps } from "./BoughtList.types";
 import { useQuery } from "@apollo/client";
 import {
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_MARKET_ITEM_TODAY } from "./MarketList.queries";
+import { FETCH_MARKET_ITEM_TODAY } from "./BoughtList.queries";
 import * as S from "./TodayWatched.styles";
 
 export default function TodayWatchPage(props: ITodayWatchProps): JSX.Element {

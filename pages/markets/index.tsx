@@ -8,5 +8,5 @@ export default function MarketsPage(): JSX.Element {
   setVisitePage("markets");
   useAuth();
 
-  return <MarketList />;
+  return <MarketList isMarketList={true} />;
 }
