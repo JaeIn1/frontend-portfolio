@@ -6,7 +6,7 @@ import {
 import { useRouter } from "next/router";
 import type {
   IQuery,
-  IQueryFetchUseditemsIBoughtArgs,
+  IQueryFetchUseditemsArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -21,13 +21,10 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
 
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
-  const {
-    data,
-    fetchMore,
-    refetch: refetchBought,
-  } = useQuery<Pick<IQuery, "fetchUseditems">, IQueryFetchUseditemsIBoughtArgs>(
-    FETCH_MARKETS_BOUGHT
-  );
+  const { data, fetchMore, refetch } = useQuery<
+    Pick<IQuery, "fetchUseditems">,
+    IQueryFetchUseditemsArgs
+  >(FETCH_MARKETS_BOUGHT);
 
   console.log(data);
 
@@ -105,7 +102,7 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
         onLoadMore={onLoadMore}
         onClickMarketItem={onClickMarketItem}
         onClickMoveToMarketNew={onClickMoveToMarketNew}
-        refetchBought={refetchBought}
+        refetch={refetch}
         newItemobj={newItemobj}
         onEmptyImg={onEmptyImg}
         onClickTodayWatch={onClickTodayWatch}

@@ -1,7 +1,7 @@
 import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import {
   IQuery,
-  IQueryFetchUseditemsISoldArgs,
+  IQueryFetchUseditemsIPickedArgs,
   IUseditem,
 } from "../../../commons/types/generated/types";
 
@@ -11,16 +11,16 @@ export interface IMyPickProps {
 }
 
 export interface IMyPickUIProps {
-  data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
+  data: Pick<IQuery, "fetchUseditemsIPicked"> | undefined;
   onClickMoveMyItem: () => void;
   onclickMyPageMyPicked: () => void;
   refetch: (
-    variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
+    variables?: Partial<IQueryFetchUseditemsIPickedArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsIPicked">>>;
 
   refetchItemCount: (
     variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountISold">>>;
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountIPicked">>>;
 
   count?: number;
   isMyPage?: boolean;

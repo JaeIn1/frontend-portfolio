@@ -86,6 +86,9 @@ export const UserModal = styled(Modal)`
 `;
 export const UserModalDiv = styled.div`
   margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
 export const UserModalLine = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);

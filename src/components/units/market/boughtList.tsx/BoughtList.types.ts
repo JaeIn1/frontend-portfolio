@@ -19,7 +19,7 @@ export interface IMarketListUIProps {
   onLoadMore: () => void;
   onClickMarketItem: (el: IUseditem) => () => void;
   onClickMoveToMarketNew: () => void;
-  refetchBought?: (
+  refetch?: (
     variables?: Partial<IQueryFetchUseditemsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 

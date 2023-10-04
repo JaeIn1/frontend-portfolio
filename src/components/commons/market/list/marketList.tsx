@@ -1,4 +1,4 @@
-import Searchbars02Bought from "../../searchbars/02_bought/Searchbars02.bought..container";
+import Searchbars02 from "../../searchbars/02/Searchbars02.container";
 import { IMarketListCommenUIProps } from "./marketList.types";
 import * as S from "./merkatList.styles";
 
@@ -19,8 +19,8 @@ export default function MarketListCommenUIPage(
       >
         판매된상품
       </S.MarketItemsBoughts>
-      <Searchbars02Bought
-        refetch={props.refetchBought}
+      <Searchbars02
+        refetch={props.refetch}
         onChangeKeyword={props.onChangeKeyword}
       />
     </S.MarketItemsWrapper>

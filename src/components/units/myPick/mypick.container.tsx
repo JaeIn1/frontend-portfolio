@@ -1,22 +1,27 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./mypick.queries";
 import { useRouter } from "next/router";
 import { IMyPickProps } from "./mypick.types";
 import {
   IQuery,
-  IQueryFetchUseditemsISoldArgs,
+  IQueryFetchUseditemsIPickedArgs,
 } from "../../../commons/types/generated/types";
 import MyPickUI from "./mypick.presenter";
+import { FETCH_MY_PICK, FETCH_MY_PICK_COUNT } from "./mypick.queries";
 
 export default function MyPick(props: IMyPickProps): JSX.Element {
   const router = useRouter();
   const { data, refetch } = useQuery<
-    Pick<IQuery, "fetchUseditemsISold">,
-    IQueryFetchUseditemsISoldArgs
-  >(FETCH_MY_ITEM);
+    Pick<IQuery, "fetchUseditemsIPicked">,
+    IQueryFetchUseditemsIPickedArgs
+  >(FETCH_MY_PICK, {
+    variables: {
+      search: "",
+    },
+  });
+  console.log(data);
 
   const { data: dataCount, refetch: refetchItemCount } =
-    useQuery<Pick<IQuery, "fetchUseditemsCountISold">>(FETCH_MY_ITEM_COUNT);
+    useQuery<Pick<IQuery, "fetchUseditemsCountIPicked">>(FETCH_MY_PICK_COUNT);
 
   console.log(dataCount);
 
@@ -34,7 +39,7 @@ export default function MyPick(props: IMyPickProps): JSX.Element {
       refetchItemCount={refetchItemCount}
       onClickMoveMyItem={onClickMoveMyItem}
       onclickMyPageMyPicked={onclickMyPageMyPicked}
-      count={dataCount?.fetchUseditemsCountISold}
+      count={dataCount?.fetchUseditemsCountIPicked}
       isMyPage={props.isMyPage}
       isMyPick={props.isMyPick}
     />

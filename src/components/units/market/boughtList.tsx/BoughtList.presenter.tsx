@@ -41,7 +41,7 @@ export default function BoughtListUI(props: IMarketListUIProps): JSX.Element {
       </S.BoardBestWrapper>
       <MarketListCommenPage
         isBought={props.isBought}
-        refetchBought={props.refetchBought}
+        refetch={props.refetch}
         onChangeKeyword={props.onChangeKeyword}
       />
       <S.MarketListWrapper>
