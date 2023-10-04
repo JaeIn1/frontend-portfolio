@@ -1,16 +1,19 @@
 import { useQuery } from "@apollo/client";
-import { FETCH_MARKET_ITEM_BEST, FETCH_MARKETS } from "./BoughtList.queries";
+import {
+  FETCH_MARKET_ITEM_BEST,
+  FETCH_MARKETS_BOUGHT,
+} from "./BoughtList.queries";
 import { useRouter } from "next/router";
 import type {
   IQuery,
-  IQueryFetchUseditemsArgs,
+  IQueryFetchUseditemsIBoughtArgs,
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import { ChangeEvent, useEffect, useState } from "react";
-import MarketListUI from "./BoughtList.presenter";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import { IMarketListProps } from "./BoughtList.types";
+import BoughtListUI from "./BoughtList.presenter";
 
 export default function BoughtList(props: IMarketListProps): JSX.Element {
   let newItemobj: string[] = [];
@@ -18,10 +21,15 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
 
   const router = useRouter();
   const [keyword, setKeyword] = useState("");
-  const { data, fetchMore, refetch } = useQuery<
-    Pick<IQuery, "fetchUseditems">,
-    IQueryFetchUseditemsArgs
-  >(FETCH_MARKETS);
+  const {
+    data,
+    fetchMore,
+    refetch: refetchBought,
+  } = useQuery<Pick<IQuery, "fetchUseditems">, IQueryFetchUseditemsIBoughtArgs>(
+    FETCH_MARKETS_BOUGHT
+  );
+
+  console.log(data);
 
   const { data: dataBest } = useQuery<Pick<IQuery, "fetchUseditemsOfTheBest">>(
     FETCH_MARKET_ITEM_BEST
@@ -35,7 +43,9 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
     if (data === undefined) return;
 
     void fetchMore({
-      variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },
+      variables: {
+        page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
+      },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (fetchMoreResult?.fetchUseditems === undefined)
           return { fetchUseditems: [...prev.fetchUseditems] };
@@ -85,17 +95,9 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
     void router.push(`/markets/${el}`);
   };
 
-  const onClickMarketList = (): void => {
-    void router.push("/markets");
-  };
-
-  const onClickMoveBought = (): void => {
-    void router.push("/markets/boughtList");
-  };
-
   return (
     <>
-      <MarketListUI
+      <BoughtListUI
         data={data}
         dataBest={dataBest}
         keyword={keyword}
@@ -103,13 +105,11 @@ export default function BoughtList(props: IMarketListProps): JSX.Element {
         onLoadMore={onLoadMore}
         onClickMarketItem={onClickMarketItem}
         onClickMoveToMarketNew={onClickMoveToMarketNew}
-        refetch={refetch}
+        refetchBought={refetchBought}
         newItemobj={newItemobj}
         onEmptyImg={onEmptyImg}
         onClickTodayWatch={onClickTodayWatch}
-        isMarketList={props.isMarketList}
-        onClickMoveBought={onClickMoveBought}
-        onClickMarketList={onClickMarketList}
+        isBought={props.isBought}
       />
     </>
   );

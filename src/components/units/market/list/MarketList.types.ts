@@ -26,8 +26,6 @@ export interface IMarketListUIProps {
   newItemobj: string[];
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
   onClickTodayWatch: (el: string) => () => void;
-  onClickMoveBought: () => void;
-  onClickMarketList: () => void;
 }
 
 export interface ITextTokenProps {
@@ -38,8 +36,4 @@ export interface ITodayWatchProps {
   el: string;
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
   onClickTodayWatch: (el: string) => () => void;
-}
-
-export interface IMarketListStyleProps {
-  isMarketList?: boolean;
 }

@@ -3,10 +3,10 @@ import InfiniteScroll from "react-infinite-scroller";
 import * as S from "./MarketList.styles";
 import type { IMarketListUIProps } from "./MarketList.types";
 import { v4 as uuidv4 } from "uuid";
-import Searchbars02 from "../../../commons/searchbars/02/Searchbars02.container";
 import TodayWatchPage from "./TodayWatched";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
+import MarketListCommenPage from "../../../commons/market/list/marketList.container";
 
 export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
   const [todayWatch] = useRecoilState(todayWatchItem);
@@ -39,21 +39,11 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
           </S.BoardBestDiv>
         ))}
       </S.BoardBestWrapper>
-      <S.MarketItemsWrapper>
-        <S.MarketItems
-          isMarketList={props.isMarketList}
-          onClick={props.onClickMarketList}
-        >
-          판매중상품
-        </S.MarketItems>
-        <S.MarketItemsBoughts onClick={props.onClickMoveBought}>
-          판매된상품
-        </S.MarketItemsBoughts>
-        <Searchbars02
-          refetch={props.refetch}
-          onChangeKeyword={props.onChangeKeyword}
-        />
-      </S.MarketItemsWrapper>
+      <MarketListCommenPage
+        isMarketList={props.isMarketList}
+        refetch={props.refetch}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <S.MarketListWrapper>
         {JSON.stringify(newAry) !== "[]" ? (
           <S.TodayItemWrapper>

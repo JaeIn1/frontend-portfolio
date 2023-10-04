@@ -7,7 +7,7 @@ import type {
 import { ChangeEvent } from "react";
 
 export interface IMarketListProps {
-  isMarketList?: boolean;
+  isBought?: boolean;
 }
 
 export interface IMarketListUIProps {
@@ -19,15 +19,14 @@ export interface IMarketListUIProps {
   onLoadMore: () => void;
   onClickMarketItem: (el: IUseditem) => () => void;
   onClickMoveToMarketNew: () => void;
-  refetch: (
+  refetchBought?: (
     variables?: Partial<IQueryFetchUseditemsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 
   newItemobj: string[];
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
   onClickTodayWatch: (el: string) => () => void;
-  onClickMoveBought: () => void;
-  onClickMarketList: () => void;
+  isBought?: boolean;
 }
 
 export interface ITextTokenProps {

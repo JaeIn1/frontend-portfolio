@@ -85,14 +85,6 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
     void router.push(`/markets/${el}`);
   };
 
-  const onClickMarketList = (): void => {
-    void router.push("/markets");
-  };
-
-  const onClickMoveBought = (): void => {
-    void router.push("/markets/boughtList");
-  };
-
   return (
     <>
       <MarketListUI
@@ -108,8 +100,6 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
         onEmptyImg={onEmptyImg}
         onClickTodayWatch={onClickTodayWatch}
         isMarketList={props.isMarketList}
-        onClickMoveBought={onClickMoveBought}
-        onClickMarketList={onClickMarketList}
       />
     </>
   );
