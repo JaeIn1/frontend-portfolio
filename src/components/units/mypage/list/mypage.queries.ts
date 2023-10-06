@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const FETCH_MY_ITEM = gql`
-  query fetchUseditemsISold($page: Int) {
-    fetchUseditemsISold(page: $page) {
+  query fetchUseditemsISold($page: Int, $search: String) {
+    fetchUseditemsISold(page: $page, search: $search) {
       _id
       name
       remarks

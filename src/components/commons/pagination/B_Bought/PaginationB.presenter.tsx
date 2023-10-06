@@ -1,7 +1,7 @@
-import * as S from "./B.Pick.pagination.styles";
-import { IPaginations01UIProps } from "./paginationB.Pick.types";
+import * as S from "./B.pagination.styles";
+import { IPaginations01UIProps } from "./paginationB.types";
 
-export default function PagenationPageMyPickUI(
+export default function PagenationPageUI(
   props: IPaginations01UIProps
 ): JSX.Element {
   return (

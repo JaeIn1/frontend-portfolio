@@ -1,15 +1,15 @@
 import { ApolloQueryResult } from "@apollo/client";
 import {
   IQuery,
-  IQueryFetchUseditemsIPickedArgs,
+  IQueryFetchUseditemsISoldArgs,
 } from "../../../../commons/types/generated/types";
 import { MouseEvent } from "react";
 
 export interface IPaginations01Props {
   count?: number;
   refetch: (
-    variables?: Partial<IQueryFetchUseditemsIPickedArgs> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsIPicked">>>;
+    variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
 }
 export interface IPaginations01UIProps {
   startPage: number;

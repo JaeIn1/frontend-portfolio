@@ -20,6 +20,8 @@ export interface IMypageUIProps {
     variables?: Partial<OperationVariables> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountISold">>>;
 
+  onChangeKeyword: (value: string) => void;
+  keyword: string;
   count?: number;
   isMyPage?: boolean;
 }

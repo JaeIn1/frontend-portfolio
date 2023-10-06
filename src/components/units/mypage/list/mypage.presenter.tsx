@@ -2,6 +2,7 @@
 
 import MyPageLeftDivPage from "../../../commons/mypage/mypage.left";
 import PagenationPage from "../../../commons/pagination/B/paginationB.container";
+import Searchbars02MyItem from "../../../commons/searchbars/02_myItem/Searchbars02.container";
 import MyPagePageItem from "./mypage.preseterItem";
 import * as S from "./mypage.styles";
 import { IMypageUIProps } from "./mypage.types";
@@ -21,7 +22,10 @@ export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
               마이찜
             </S.RightHeaderSpan>
           </S.RightHeaderLeft>
-          <div>myItem</div>
+          <Searchbars02MyItem
+            refetch={props.refetch}
+            onChangeKeyword={props.onChangeKeyword}
+          />
         </S.RightHeader>
         <S.TableTop />
         <S.Row>

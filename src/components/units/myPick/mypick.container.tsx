@@ -7,8 +7,11 @@ import {
 } from "../../../commons/types/generated/types";
 import MyPickUI from "./mypick.presenter";
 import { FETCH_MY_PICK, FETCH_MY_PICK_COUNT } from "./mypick.queries";
+import { useState } from "react";
 
 export default function MyPick(props: IMyPickProps): JSX.Element {
+  const [, setKeyword] = useState("");
+
   const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsIPicked">,
@@ -18,12 +21,14 @@ export default function MyPick(props: IMyPickProps): JSX.Element {
       search: "",
     },
   });
-  console.log(data);
+  console.log(data?.fetchUseditemsIPicked.length);
 
   const { data: dataCount, refetch: refetchItemCount } =
     useQuery<Pick<IQuery, "fetchUseditemsCountIPicked">>(FETCH_MY_PICK_COUNT);
 
-  console.log(dataCount);
+  const onChangeKeyword = (value: string): void => {
+    setKeyword(value);
+  };
 
   const onClickMoveMyItem = (): void => {
     void router.push("/mypages");
@@ -39,6 +44,7 @@ export default function MyPick(props: IMyPickProps): JSX.Element {
       refetchItemCount={refetchItemCount}
       onClickMoveMyItem={onClickMoveMyItem}
       onclickMyPageMyPicked={onclickMyPageMyPicked}
+      onChangeKeyword={onChangeKeyword}
       count={dataCount?.fetchUseditemsCountIPicked}
       isMyPage={props.isMyPage}
       isMyPick={props.isMyPick}

@@ -22,6 +22,8 @@ export interface IMyPickUIProps {
     variables?: Partial<OperationVariables> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountIPicked">>>;
 
+  onChangeKeyword: (value: string) => void;
+
   count?: number;
   isMyPage?: boolean;
   isMyPick?: boolean;
@@ -35,4 +37,6 @@ export interface IMypageItemProps {
 export interface IMyPageStyleProps {
   isMyPage?: boolean;
   isMyPick?: boolean;
+  isMyPoint?: boolean;
+  isMyProfile?: boolean;
 }

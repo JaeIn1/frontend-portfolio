@@ -72,3 +72,20 @@ export const LeftPageFooterMenuSpan = styled.span`
     font-weight: bold;
   }
 `;
+export const LeftPageFooterMyPoint = styled.span`
+  margin-left: 8px;
+  font-weight: ${(props: IMyPageStyleProps) => (props.isMyPoint ? "bold" : "")};
+
+  &:hover {
+    font-weight: bold;
+  }
+`;
+export const LeftPageFooterMyProfile = styled.span`
+  margin-left: 8px;
+  font-weight: ${(props: IMyPageStyleProps) =>
+    props.isMyProfile ? "bold" : ""};
+
+  &:hover {
+    font-weight: bold;
+  }
+`;

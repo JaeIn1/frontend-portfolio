@@ -1,7 +1,7 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
-import { Fragment } from "react";
 import MyPageLeftDivPage from "../../commons/mypage/mypage.left";
-import PagenationPage from "../../commons/pagination/B_Pick/paginationB.Pick.container";
+import PagenationPageMyPick from "../../commons/pagination/B_Pick/paginationB.Pick.container";
+import Searchbars02MyPick from "../../commons/searchbars/02_myPick/Searchbars02.container";
 import MyPagePageItem from "./mypick.preseterItem";
 import * as S from "./mypick.styles";
 import { IMyPickUIProps } from "./mypick.types";
@@ -24,7 +24,11 @@ export default function MyPickUI(props: IMyPickUIProps): JSX.Element {
               마이찜
             </S.RightHeaderMyItem>
           </S.RightHeaderLeft>
-          <div>myPick</div>
+          <Searchbars02MyPick
+            refetch={props.refetch}
+            refetchItemCount={props.refetchItemCount}
+            onChangeKeyword={props.onChangeKeyword}
+          />
         </S.RightHeader>
         <S.TableTop />
         <S.Row>
@@ -36,7 +40,7 @@ export default function MyPickUI(props: IMyPickUIProps): JSX.Element {
         {props.data?.fetchUseditemsIPicked.map((el, index) => (
           <MyPagePageItem el={el} key={el._id} index={index} />
         ))}
-        <PagenationPage refetch={props.refetch} count={props.count} />
+        <PagenationPageMyPick refetch={props.refetch} count={props.count} />
       </S.RightWrapper>
     </S.Wrapper>
   );

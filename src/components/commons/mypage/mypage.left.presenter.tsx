@@ -33,15 +33,21 @@ export default function MyPageLeftDivUIPage(
         </S.LeftPageFooterMenu>
         <S.LeftPageFooterMenu>
           <img src="/images/mypage/mypage_point_pig_black.png" />
-          <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyPoint}>
+          <S.LeftPageFooterMyPoint
+            onClick={props.onClickMoveMyPoint}
+            isMyPoint={props.isMyPoint}
+          >
             내 포인트
-          </S.LeftPageFooterMenuSpan>
+          </S.LeftPageFooterMyPoint>
         </S.LeftPageFooterMenu>
         <S.LeftPageFooterMenu>
           <img src="/images/avatar.png" />
-          <S.LeftPageFooterMenuSpan onClick={props.onClickMoveMyProfile}>
+          <S.LeftPageFooterMyProfile
+            onClick={props.onClickMoveMyProfile}
+            isMyProfile={props.isMyProfile}
+          >
             내 프로필
-          </S.LeftPageFooterMenuSpan>
+          </S.LeftPageFooterMyProfile>
         </S.LeftPageFooterMenu>
       </S.LeftPageFooter>
     </S.LeftWrapper>

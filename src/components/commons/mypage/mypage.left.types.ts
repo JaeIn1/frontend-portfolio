@@ -9,6 +9,8 @@ export interface IMyPageLeftDivProps {
 
 export interface IMyPageLeftDivUIProps {
   isMyPage?: boolean;
+  isMyPoint?: boolean;
+  isMyProfile?: boolean;
   data?: Pick<IQuery, "fetchUserLoggedIn"> | undefined;
   onClickMoveMyItem: () => void;
   onClickMoveMyPoint: () => void;

@@ -29,6 +29,8 @@ export default function MyPageLeftDivPage(
       onClickMoveMyPoint={onClickMoveMyPoint}
       onClickMoveMyProfile={onClickMoveMyProfile}
       isMyPage={props.isMyPage}
+      isMyPoint={props.isMyPoint}
+      isMyProfile={props.isMyProfile}
       data={data}
     />
   );

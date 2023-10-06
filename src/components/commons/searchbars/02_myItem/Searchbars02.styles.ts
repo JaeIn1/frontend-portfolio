@@ -9,8 +9,7 @@ export const Searchbar = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-bottom: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #f2f3f6;
 `;
 
 export const SearchIcon = styled(SearchOutlined)`

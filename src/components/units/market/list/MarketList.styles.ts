@@ -138,6 +138,7 @@ export const MarketListFirstDiv = styled.div`
 
   & img {
     width: 15%;
+    margin-right: 10px;
   }
 `;
 

@@ -7,7 +7,7 @@ import { getDate } from "../../../commons/libraries/utils";
 export default function MyPagePageItem(props: IMypageItemProps): JSX.Element {
   const router = useRouter();
   const onclickMyItem = (id: string) => (): void => {
-    void router.push(`/mypages/${id}`);
+    void router.push(`/mypages/myPick/${id}`);
   };
   return (
     <S.Row onClick={onclickMyItem(props.el._id)}>

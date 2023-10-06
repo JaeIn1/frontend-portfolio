@@ -7,8 +7,10 @@ import {
 } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
 import { IMypageProps } from "./mypage.types";
+import { useState } from "react";
 
 export default function MyPagePage(props: IMypageProps): JSX.Element {
+  const [keyword, setKeyword] = useState("");
   const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
@@ -18,7 +20,9 @@ export default function MyPagePage(props: IMypageProps): JSX.Element {
   const { data: dataCount, refetch: refetchItemCount } =
     useQuery<Pick<IQuery, "fetchUseditemsCountISold">>(FETCH_MY_ITEM_COUNT);
 
-  console.log(dataCount);
+  const onChangeKeyword = (value: string): void => {
+    setKeyword(value);
+  };
 
   const onclickMyPageMyPicked = (): void => {
     void router.push("mypages/myPick");
@@ -30,6 +34,8 @@ export default function MyPagePage(props: IMypageProps): JSX.Element {
       refetch={refetch}
       refetchItemCount={refetchItemCount}
       onclickMyPageMyPicked={onclickMyPageMyPicked}
+      keyword={keyword}
+      onChangeKeyword={onChangeKeyword}
       count={dataCount?.fetchUseditemsCountISold}
       isMyPage={props.isMyPage}
     />

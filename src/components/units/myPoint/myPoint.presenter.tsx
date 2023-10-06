@@ -12,10 +12,6 @@ export default function MyPointUI(props: IMypageUIProps): JSX.Element {
       <S.RightWrapper>
         <S.RightHeader>
           <S.RightHeaderLeft>
-            <span>전체내역</span>
-            <span>|</span>
-            <span>충전내역</span>
-            <span>|</span>
             <span>구매내역</span>
             <span>|</span>
             <span>판매내역</span>
