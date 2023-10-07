@@ -1,13 +1,13 @@
 import { useQuery } from "@apollo/client";
-import MyPagePageUI from "./myPoint.presenter";
-import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./myPoint.queries";
+import { FETCH_MY_ITEM, FETCH_MY_ITEM_COUNT } from "./mySold.queries";
 import {
   IQuery,
   IQueryFetchUseditemsISoldArgs,
 } from "../../../commons/types/generated/types";
-import { IMyPointProps } from "./myPoint.types";
+import { IMySoldProps } from "./mySold.types";
+import MySoldUI from "./mySold.presenter";
 
-export default function MyPoint(props: IMyPointProps): JSX.Element {
+export default function MySold(props: IMySoldProps): JSX.Element {
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsISold">,
     IQueryFetchUseditemsISoldArgs
@@ -20,15 +20,13 @@ export default function MyPoint(props: IMyPointProps): JSX.Element {
   const { data: dataCount, refetch: refetchItemCount } =
     useQuery<Pick<IQuery, "fetchUseditemsCountISold">>(FETCH_MY_ITEM_COUNT);
 
-  console.log(dataCount);
-
   return (
-    <MyPagePageUI
+    <MySoldUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}
       count={dataCount?.fetchUseditemsCountISold}
-      isMyPoint={props.isMyPoint}
+      isMySold={props.isMySold}
     />
   );
 }

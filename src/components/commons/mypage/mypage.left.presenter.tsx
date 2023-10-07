@@ -27,6 +27,7 @@ export default function MyPageLeftDivUIPage(
           <S.LeftPageFooterMenuSpan
             onClick={props.onClickMoveMyItem}
             isMyPage={props.isMyPage}
+            isMyPick={props.isMyPick}
           >
             내 장터
           </S.LeftPageFooterMenuSpan>
@@ -37,7 +38,7 @@ export default function MyPageLeftDivUIPage(
             onClick={props.onClickMoveMyPoint}
             isMyPoint={props.isMyPoint}
           >
-            내 포인트
+            나의 구매내역
           </S.LeftPageFooterMyPoint>
         </S.LeftPageFooterMenu>
         <S.LeftPageFooterMenu>

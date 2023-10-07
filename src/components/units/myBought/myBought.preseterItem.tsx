@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { getDate } from "../../../commons/libraries/utils";
-import * as S from "./myPoint.styles";
-import { IMypageItemProps } from "./myPoint.types";
+import * as S from "./myBought.styles";
+import { IMypageItemProps } from "./myBought.types";
 
 export default function MyPointItem(props: IMypageItemProps): JSX.Element {
   const router = useRouter();

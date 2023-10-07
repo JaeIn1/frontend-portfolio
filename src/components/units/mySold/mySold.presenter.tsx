@@ -1,24 +1,20 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
+import MyPurChasePage from "../../commons/mypage/myPurchase/myPurchase.container";
 import MyPageLeftDivPage from "../../commons/mypage/mypage.left";
 import PagenationPage from "../../commons/pagination/B/paginationB.container";
-import MyPagePageItem from "./myPoint.preseterItem";
-import * as S from "./myPoint.styles";
-import { IMypageUIProps } from "./myPoint.types";
+import Searchbars02MySold from "../../commons/searchbars/02_mySold/Searchbars02.container";
+import MySoldItem from "./mySold.preseterItem";
+import * as S from "./mySold.styles";
+import { IMySoldUIProps } from "./mySold.types";
 
-export default function MyPointUI(props: IMypageUIProps): JSX.Element {
+export default function MySoldUI(props: IMySoldUIProps): JSX.Element {
   return (
     <S.Wrapper>
-      <MyPageLeftDivPage isMyPoint={props.isMyPoint} />
+      <MyPageLeftDivPage isMyPoint={props.isMySold} />
       <S.RightWrapper>
         <S.RightHeader>
-          <S.RightHeaderLeft>
-            <span>구매내역</span>
-            <span>|</span>
-            <span>판매내역</span>
-          </S.RightHeaderLeft>
-          <div>
-            <span>point</span>
-          </div>
+          <MyPurChasePage isMySold={props.isMySold} />
+          <Searchbars02MySold />
         </S.RightHeader>
         <S.TableTop />
         <S.Row>
@@ -28,7 +24,7 @@ export default function MyPointUI(props: IMypageUIProps): JSX.Element {
           <S.ColumnBasic>날짜</S.ColumnBasic>
         </S.Row>
         {props.data?.fetchUseditemsISold.map((el, index) => (
-          <MyPagePageItem el={el} key={el._id} index={index} />
+          <MySoldItem el={el} key={el._id} index={index} />
         ))}
         <PagenationPage refetch={props.refetch} count={props.count} />
       </S.RightWrapper>

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { IMyPointStyleProps } from "./myPoint.types";
+import { IMyPointStyleProps } from "./myBought.types";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -149,8 +149,14 @@ export const RightHeaderLeft = styled.div`
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
   }
-
-  & span {
-    color: rgba(0, 0, 0, 0.7);
-  }
 `;
+
+export const RightHeaderBoughtSpan = styled.span`
+  font-weight: ${(props: IMyPointStyleProps) =>
+    props.isMyPoint ? "bold" : ""};
+  color: ${(props: IMyPointStyleProps) => (props.isMyPoint ? "black" : "")};
+  text-decoration: ${(props: IMyPointStyleProps) =>
+    props.isMyPoint ? "3px underline #ffd600" : ""};
+`;
+
+export const RightHeaderSoldSpan = styled.span``;

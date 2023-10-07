@@ -6,6 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 const Wrapper = styled.div`
   height: 270px;
   background-color: white;
+
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
 `;
 const StyledSlider = styled(Slider)`
   height: 100%;

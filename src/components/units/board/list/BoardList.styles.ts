@@ -4,6 +4,15 @@ import type { ITextTokenProps } from "./BoardList.types";
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
+
+  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+    width: 100%;
+    margin: 20px;
+  }
+  @media screen and ((max-width: 780px)) {
+    width: 100%;
+    margin: 20px;
+  }
 `;
 
 export const TableTop = styled.div`
@@ -24,6 +33,18 @@ export const Row = styled.div`
 
   :hover {
     color: blue;
+  }
+
+  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+  }
+  @media screen and ((max-width: 780px)) {
+    margin: 0px;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
   }
 `;
 
@@ -87,12 +108,29 @@ export const BoardBestTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
+
+  @media screen and ((max-width: 380px)) {
+    width: 100%;
+  }
+
+  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+    width: 100%;
+  }
 `;
 export const BoardBestWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   margin-bottom: 40px;
+
+  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+    width: 100%;
+  }
+
+  @media screen and ((max-width: 780px)) {
+    width: 100%;
+  }
 `;
 export const BoardBestDiv = styled.div`
   width: 24%;
@@ -102,6 +140,10 @@ export const BoardBestDiv = styled.div`
   flex-direction: column;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+
+  @media screen and ((max-width: 380px)) {
+    width: calc(50% - 10px);
+  }
 `;
 export const BoardBestImg = styled.img`
   border-radius: 20px 20px 0px 0px;

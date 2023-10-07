@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
 import styled from "@emotion/styled";
 import { IMyPageStyleProps } from "../../units/myPick/mypick.types";
 
@@ -74,7 +75,8 @@ export const LeftPageFooterMenuSpan = styled.span`
 `;
 export const LeftPageFooterMyPoint = styled.span`
   margin-left: 8px;
-  font-weight: ${(props: IMyPageStyleProps) => (props.isMyPoint ? "bold" : "")};
+  font-weight: ${(props: IMyPageStyleProps) =>
+    props.isMyPoint || props.isMyPick ? "bold" : ""};
 
   &:hover {
     font-weight: bold;
