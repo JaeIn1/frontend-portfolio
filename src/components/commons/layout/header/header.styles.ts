@@ -84,6 +84,13 @@ export const UserModal = styled(Modal)`
   top: 6%;
   right: 10%;
 `;
+export const PointModal = styled(Modal)`
+  max-width: 600px;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+  padding: 20px;
+`;
 export const UserModalDiv = styled.div`
   margin-bottom: 10px;
   display: flex;
@@ -118,5 +125,64 @@ export const LogoutBtn = styled.div`
   &:hover {
     color: black;
     font-weight: bold;
+  }
+`;
+
+export const PointModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const PointModalHeader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+  }
+`;
+export const PointModalHeaderText = styled.div`
+  & span {
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;
+
+export const PointModalBodyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+
+  & select {
+    margin-top: 20px;
+    width: 200%;
+    height: 60px;
+    border: 1px solid #d2d2d2;
+    border-radius: 7px;
+    font-size: 16px;
+    padding: 18px;
+    color: #797979;
+  }
+`;
+
+export const PointModalFooterWrapper = styled.div`
+  width: 100%;
+  padding: 10px;
+
+  & button {
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
   }
 `;

@@ -3,11 +3,16 @@ import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import type {
   IMutation,
+  IMutationCreatePointTransactionOfBuyingAndSellingArgs,
   IMutationToggleUseditemPickArgs,
   IQuery,
   IQueryFetchUseditemArgs,
 } from "../../../../commons/types/generated/types";
-import { FETCH_MARKET_ITEM, PICK_ITEM } from "./MarketDetail.queries";
+import {
+  FETCH_MARKET_ITEM,
+  PICK_ITEM,
+  BOUGHT_ITEM,
+} from "./MarketDetail.queries";
 import MarketDetailUI from "./MarketDetail.presenter";
 import { useEffect, useState } from "react";
 import { Address } from "react-daum-postcode";
@@ -51,6 +56,11 @@ export default function MarketDetail(): JSX.Element {
     Pick<IMutation, "toggleUseditemPick">,
     IMutationToggleUseditemPickArgs
   >(PICK_ITEM);
+
+  const [boughtItme] = useMutation<
+    Pick<IMutation, "createPointTransactionOfBuyingAndSelling">,
+    IMutationCreatePointTransactionOfBuyingAndSellingArgs
+  >(BOUGHT_ITEM);
 
   const onClickReturnList = (): void => {
     void router.push("/markets");
@@ -114,6 +124,12 @@ export default function MarketDetail(): JSX.Element {
           // 결제 성공 시 로직,
           console.log(rsp);
           // 백엔드에 결제관련 데이터 넘겨주기 => 즉 mutationt실행하기
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          const result = boughtItme({
+            variables: {
+              useritemId: String(router.query.marketId),
+            },
+          });
         } else {
           // 결제 실패 시 로직,
         }

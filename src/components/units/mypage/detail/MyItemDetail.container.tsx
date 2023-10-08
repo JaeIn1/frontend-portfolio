@@ -9,12 +9,15 @@ import type {
 import { FETCH_MARKET_ITEM, DELETE_ITEM } from "./MyItemDetail.queries";
 import MarketDetailUI from "./MyItemDetail.presenter";
 import { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { visitedPageState } from "../../../../commons/stores";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
 export default function MyItemDetail(): JSX.Element {
+  const [visitedPage] = useRecoilState(visitedPageState);
   const router = useRouter();
   if (typeof router.query.marketId !== "string") return <></>;
 
@@ -40,7 +43,7 @@ export default function MyItemDetail(): JSX.Element {
   };
 
   const onClickReturnList = (): void => {
-    void router.push("/mypages");
+    void router.push(`/${visitedPage}`);
   };
 
   const onClickDeleteItem = (): void => {
@@ -56,7 +59,7 @@ export default function MyItemDetail(): JSX.Element {
       });
       alert("상품이 삭제되었습니다.");
       const newAry = JSON.parse(localStorage.getItem("watched") ?? "").filter(
-        (el) => el !== router.query.marketId
+        (el: any) => el !== router.query.marketId
       );
       console.log(newAry);
       localStorage.setItem("watched", JSON.stringify(newAry));

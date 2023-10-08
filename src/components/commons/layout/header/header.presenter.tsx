@@ -21,9 +21,36 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
               </S.UserModalSpan>
             </S.UserModalDiv>
             <S.UserModalLine></S.UserModalLine>
-            <S.PointBtn>충전하기</S.PointBtn>
+            <S.PointBtn onClick={props.PointToggleModal}>충전하기</S.PointBtn>
             <S.LogoutBtn onClick={props.onClickLogout}>로그아웃</S.LogoutBtn>
           </S.UserModal>
+        )}
+        {props.pointIsOpen && (
+          <S.PointModal
+            open={true}
+            onOk={props.PointToggleModal}
+            onCancel={props.PointToggleModal}
+            footer={null}
+          >
+            <S.PointModalWrapper>
+              <S.PointModalHeader>
+                <img src="/images/layout/header/eggplant.png" />
+                <S.PointModalHeaderText>
+                  <span>충전하실 금액을 선택헤주세요</span>
+                </S.PointModalHeaderText>
+              </S.PointModalHeader>
+              <S.PointModalBodyWrapper>
+                <select onChange={props.onChangePointPrice}>
+                  <option value={10000}>10000원</option>
+                  <option value={30000}>30000원</option>
+                  <option value={50000}>50000원</option>
+                </select>
+              </S.PointModalBodyWrapper>
+              <S.PointModalFooterWrapper>
+                <button onClick={props.onClickPoint}>충전하기</button>
+              </S.PointModalFooterWrapper>
+            </S.PointModalWrapper>
+          </S.PointModal>
         )}
         <S.HeaderIconDiv>
           <img src="/images/layout/header/eggplant.png" />

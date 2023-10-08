@@ -1,7 +1,7 @@
 import { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import {
   IQuery,
-  IQueryFetchUseditemsISoldArgs,
+  IQueryFetchUseditemsIBoughtArgs,
   IUseditem,
 } from "../../../commons/types/generated/types";
 
@@ -10,16 +10,18 @@ export interface IMyPointProps {
 }
 
 export interface IMypageUIProps {
-  data: Pick<IQuery, "fetchUseditemsISold"> | undefined;
+  data: Pick<IQuery, "fetchUseditemsIBought"> | undefined;
 
   refetch: (
-    variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
+    variables?: Partial<IQueryFetchUseditemsIBoughtArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsIBought">>>;
 
   refetchItemCount: (
     variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountISold">>>;
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountIBought">>>;
 
+  onChangeKeyword: (value: string) => void;
+  keyword: string;
   count?: number;
   isMyPoint?: boolean;
 }

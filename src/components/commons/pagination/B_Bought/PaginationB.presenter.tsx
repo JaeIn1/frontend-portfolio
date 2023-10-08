@@ -1,7 +1,7 @@
 import * as S from "./B.pagination.styles";
 import { IPaginations01UIProps } from "./paginationB.types";
 
-export default function PagenationPageUI(
+export default function PagenationPageBoughtUI(
   props: IPaginations01UIProps
 ): JSX.Element {
   return (

@@ -1,8 +1,8 @@
 import { useState, MouseEvent } from "react";
-import PagenationPageUI from "./PaginationB.presenter";
 import { IPaginations01Props } from "./paginationB.types";
+import PagenationPageBoughtUI from "./PaginationB.presenter";
 
-export default function PagenationPage(
+export default function PagenationPageBought(
   props: IPaginations01Props
 ): JSX.Element {
   const [startPage, setStartPage] = useState(1);
@@ -28,7 +28,7 @@ export default function PagenationPage(
     }
   };
   return (
-    <PagenationPageUI
+    <PagenationPageBoughtUI
       startPage={startPage}
       lastPage={lastPage}
       activedPage={activedPage}

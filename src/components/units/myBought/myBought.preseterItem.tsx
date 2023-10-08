@@ -6,7 +6,7 @@ import { IMypageItemProps } from "./myBought.types";
 export default function MyPointItem(props: IMypageItemProps): JSX.Element {
   const router = useRouter();
   const onclickMyItem = (id: string) => (): void => {
-    void router.push(`markets/${id}`);
+    void router.push(`/mypages/${id}`);
   };
   return (
     <S.Row onClick={onclickMyItem(props.el._id)}>

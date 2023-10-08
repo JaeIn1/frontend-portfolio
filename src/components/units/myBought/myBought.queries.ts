@@ -1,20 +1,18 @@
 import { gql } from "@apollo/client";
 
-export const FETCH_MY_ITEM = gql`
-  query fetchUseditemsISold($page: Int) {
-    fetchUseditemsISold(page: $page) {
+export const FETCH_MY_BOUGHT = gql`
+  query fetchUseditemsIBought($search: String, $page: Int) {
+    fetchUseditemsIBought(search: $search, page: $page) {
       _id
       name
-      remarks
-      contents
       price
       createdAt
     }
   }
 `;
 
-export const FETCH_MY_ITEM_COUNT = gql`
+export const FETCH_MY_BOUGHT_COUNT = gql`
   query {
-    fetchUseditemsCountISold
+    fetchUseditemsCountIBought
   }
 `;
