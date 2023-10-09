@@ -4,6 +4,7 @@ import MyPageLeftDivPage from "../../../commons/mypage/mypage.left";
 import PagenationPage from "../../../commons/pagination/B/paginationB.container";
 import Searchbars02MyItem from "../../../commons/searchbars/02_myItem/Searchbars02.container";
 import MyPagePageItem from "./mypage.preseterItem";
+import MyPagePageSoldItem from "./mypage.preseterItem.sold";
 import * as S from "./mypage.styles";
 import { IMypageUIProps } from "./mypage.types";
 
@@ -34,9 +35,13 @@ export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
           <S.ColumnBasic>판메가격</S.ColumnBasic>
           <S.ColumnBasic>날짜</S.ColumnBasic>
         </S.Row>
-        {props.data?.fetchUseditemsISold.map((el, index) => (
-          <MyPagePageItem el={el} key={el._id} index={index} />
-        ))}
+        {props.data?.fetchUseditemsISold.map((el, index) =>
+          el.buyer ? (
+            <MyPagePageSoldItem el={el} key={el._id} index={index} />
+          ) : (
+            <MyPagePageItem el={el} key={el._id} index={index} />
+          )
+        )}
         <PagenationPage refetch={props.refetch} count={props.count} />
       </S.RightWrapper>
     </S.Wrapper>

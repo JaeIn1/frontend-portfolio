@@ -47,7 +47,12 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
                 </select>
               </S.PointModalBodyWrapper>
               <S.PointModalFooterWrapper>
-                <button onClick={props.onClickPoint}>충전하기</button>
+                <S.PointModalFooterBtn
+                  onClick={props.onClickPoint}
+                  isActive={props.selectPrice}
+                >
+                  충전하기
+                </S.PointModalFooterBtn>
               </S.PointModalFooterWrapper>
             </S.PointModalWrapper>
           </S.PointModal>

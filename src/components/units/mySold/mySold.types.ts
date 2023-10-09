@@ -22,6 +22,7 @@ export interface IMySoldUIProps {
 
   count?: number;
   isMySold?: boolean;
+  onChangeKeyword: (valeu: string) => void;
 }
 
 export interface IMySoldItemProps {

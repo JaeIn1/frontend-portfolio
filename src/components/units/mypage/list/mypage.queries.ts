@@ -9,6 +9,10 @@ export const FETCH_MY_ITEM = gql`
       contents
       price
       createdAt
+      buyer {
+        _id
+        name
+      }
     }
   }
 `;

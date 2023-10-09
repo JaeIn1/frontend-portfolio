@@ -45,15 +45,16 @@ const POINT_RECHARGE = gql`
 export default function LayoutHeader(): JSX.Element {
   const [, setAccessToken] = useRecoilState(accessTokenState);
   const [pointPrice, setPointPrice] = useState(0);
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [pointIsOpen, setPointIsOpen] = useState(false);
+  const [selectPrice, setSelectPrice] = useState(false);
 
   const [logout] = useMutation<Pick<IMutation, "logoutUser">>(LOGOUT_USER);
   const [pointRecharge] = useMutation<
     Pick<IMutation, "createPointTransactionOfLoading">,
     IMutationCreatePointTransactionOfLoadingArgs
   >(POINT_RECHARGE);
-  const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [pointIsOpen, setPointIsOpen] = useState(false);
   const { data } =
     useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
 
@@ -112,7 +113,7 @@ export default function LayoutHeader(): JSX.Element {
               impUid: String(rsp.imp_uid),
             },
           });
-          console.log(result);
+          setSelectPrice(false);
           alert("결제에 성공했습니다.");
         } else {
           // 결제 실패 시 로직,
@@ -123,6 +124,7 @@ export default function LayoutHeader(): JSX.Element {
   };
 
   const onChangePointPrice = (event: ChangeEvent<HTMLSelectElement>): void => {
+    setSelectPrice(true);
     setPointPrice(Number(event.target.value));
   };
   return (
@@ -138,6 +140,7 @@ export default function LayoutHeader(): JSX.Element {
         isOpen={isOpen}
         pointIsOpen={pointIsOpen}
         onChangePointPrice={onChangePointPrice}
+        selectPrice={selectPrice}
       />
     </>
   );

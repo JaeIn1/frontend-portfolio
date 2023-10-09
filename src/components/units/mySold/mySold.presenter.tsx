@@ -14,7 +14,11 @@ export default function MySoldUI(props: IMySoldUIProps): JSX.Element {
       <S.RightWrapper>
         <S.RightHeader>
           <MyPurChasePage isMySold={props.isMySold} />
-          <Searchbars02MySold />
+          <Searchbars02MySold
+            refetch={props.refetch}
+            refetchItemCount={props.refetchItemCount}
+            onChangeKeyword={props.onChangeKeyword}
+          />
         </S.RightHeader>
         <S.TableTop />
         <S.Row>
@@ -23,9 +27,9 @@ export default function MySoldUI(props: IMySoldUIProps): JSX.Element {
           <S.ColumnBasic>판메가격</S.ColumnBasic>
           <S.ColumnBasic>날짜</S.ColumnBasic>
         </S.Row>
-        {props.data?.fetchUseditemsISold.map((el, index) => (
-          <MySoldItem el={el} key={el._id} index={index} />
-        ))}
+        {props.data?.fetchUseditemsISold.map((el, index) =>
+          el.buyer ? <MySoldItem el={el} key={el._id} index={index} /> : <></>
+        )}
         <PagenationPage refetch={props.refetch} count={props.count} />
       </S.RightWrapper>
     </S.Wrapper>

@@ -10,6 +10,9 @@ export const FETCH_MY_PICK = gql`
       price
       pickedCount
       createdAt
+      buyer {
+        name
+      }
     }
   }
 `;

@@ -11,4 +11,9 @@ export interface IHeaderProps {
   isOpen: boolean;
   pointIsOpen: boolean;
   onChangePointPrice: (event: ChangeEvent<HTMLSelectElement>) => void;
+  selectPrice: boolean;
+}
+
+export interface IHeaderStyleProps {
+  isActive: boolean;
 }

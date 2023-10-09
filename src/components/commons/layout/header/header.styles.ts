@@ -1,6 +1,7 @@
 import { CaretDownOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 import { Modal } from "antd";
+import { IHeaderStyleProps } from "./header.types";
 
 export const Wrapper = styled.div`
   height: 100px;
@@ -177,12 +178,16 @@ export const PointModalBodyWrapper = styled.div`
 export const PointModalFooterWrapper = styled.div`
   width: 100%;
   padding: 10px;
+`;
 
-  & button {
-    width: 100%;
-    padding: 20px 20px;
-    border-radius: 10px;
-    border: none;
-    cursor: pointer;
-  }
+export const PointModalFooterBtn = styled.button`
+  width: 100%;
+  padding: 20px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background-color: ${(props: IHeaderStyleProps) =>
+    props.isActive ? "#B173D8" : ""};
+  color: ${(props: IHeaderStyleProps) => (props.isActive ? "white" : "")};
 `;

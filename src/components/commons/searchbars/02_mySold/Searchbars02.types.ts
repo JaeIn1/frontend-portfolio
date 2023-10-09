@@ -2,16 +2,16 @@ import type { ApolloQueryResult, OperationVariables } from "@apollo/client";
 import type { ChangeEvent } from "react";
 import type {
   IQuery,
-  IQueryFetchUseditemsIPickedArgs,
+  IQueryFetchUseditemsISoldArgs,
 } from "../../../../commons/types/generated/types";
 
 export interface ISearchbars02Props {
   refetch: (
-    variables?: Partial<IQueryFetchUseditemsIPickedArgs> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsIPicked">>>;
+    variables?: Partial<IQueryFetchUseditemsISoldArgs> | undefined
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsISold">>>;
   refetchItemCount: (
     variables?: Partial<OperationVariables> | undefined
-  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountIPicked">>>;
+  ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsCountISold">>>;
   onChangeKeyword: (value: string) => void;
 }
 

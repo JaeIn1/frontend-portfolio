@@ -1,7 +1,7 @@
 import type { ChangeEvent } from "react";
 import type { ISearchbars02Props } from "./Searchbars02.types";
 import _ from "lodash";
-import Searchbars02MyItemUI from "./Searchbars02.presenter";
+import Searchbars02MySoldUI from "./Searchbars02.presenter";
 
 export default function Searchbars02MySold(
   props: ISearchbars02Props
@@ -16,5 +16,5 @@ export default function Searchbars02MySold(
     getDebounce(event.target.value);
   };
 
-  return <Searchbars02MyItemUI onChangeSearchbar={onChangeSearchbar} />;
+  return <Searchbars02MySoldUI onChangeSearchbar={onChangeSearchbar} />;
 }

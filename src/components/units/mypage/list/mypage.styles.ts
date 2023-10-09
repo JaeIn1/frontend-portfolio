@@ -127,11 +127,19 @@ export const ColumnBasic = styled.div`
 export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
+  position: relative;
   cursor: pointer;
 
   :hover {
     color: #b173d8;
   }
+`;
+export const ColumnTitleSold = styled.span`
+  margin-left: 70px;
+  position: absolute;
+  right: 110px;
+  color: #b173d8;
+  font-weight: bolder;
 `;
 
 export const RightHeader = styled.div`
