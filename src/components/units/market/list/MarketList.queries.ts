@@ -18,6 +18,10 @@ export const FETCH_MARKETS = gql`
         email
         name
       }
+      useditemAddress {
+        address
+        addressDetail
+      }
     }
   }
 `;

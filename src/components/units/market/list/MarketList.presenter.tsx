@@ -72,39 +72,37 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
             hasMore={true}
             useWindow={false}
           >
-            {props.data?.fetchUseditems.map((el) => (
-              <S.MarketList
-                key={uuidv4()}
-                onClick={props.onClickMarketItem(el)}
-              >
-                <S.MarketListFirstDiv>
-                  <img
-                    src={`https://storage.googleapis.com/${el.images?.[0]}`}
-                    onError={props.onEmptyImg}
-                  />
-                  <div>
-                    <S.MarketListFirstDivName>
-                      {el.name}
-                    </S.MarketListFirstDivName>
-                    <S.MarketListFirstDivContnets>
-                      {el.remarks}
-                    </S.MarketListFirstDivContnets>
-                    <S.MarketListFirstDivTags>
-                      {el.tags}
-                    </S.MarketListFirstDivTags>
-                    <S.MarketListSellerDiv>
-                      <img src="/images/avatar.png" />
-                      <span>{el.seller?.name}</span>
-                      <span>{el.pickedCount}</span>
-                    </S.MarketListSellerDiv>
-                  </div>
-                </S.MarketListFirstDiv>
-                <S.MarketListPriceDiv>
-                  <img src="/images/market/Vector.png" />
-                  <span>{el.price?.toLocaleString()}원</span>
-                </S.MarketListPriceDiv>
-              </S.MarketList>
-            ))}
+            <S.ListWrapper>
+              {props.data?.fetchUseditems.map((el) => (
+                <S.MarketList
+                  key={uuidv4()}
+                  onClick={props.onClickMarketItem(el)}
+                >
+                  <S.MarketListFirstDiv>
+                    <S.MarketListFirstDivImg
+                      src={`https://storage.googleapis.com/${el.images?.[0]}`}
+                      onError={props.onEmptyImg}
+                    />
+
+                    <S.MarketListFirstDivInfo>
+                      <S.MarketListFirstDivName>
+                        {el.name}
+                      </S.MarketListFirstDivName>
+                      <S.MarketListPriceDiv>
+                        <span>{el.price?.toLocaleString()}원</span>
+                      </S.MarketListPriceDiv>
+                      <S.MarketListAddressDiv>
+                        <span>{el.useditemAddress?.address}</span>
+                      </S.MarketListAddressDiv>
+                      <S.MarketListSellerDiv>
+                        <img src="/images/market/marketItem_love.png" />
+                        <span>{el.pickedCount}</span>
+                      </S.MarketListSellerDiv>
+                    </S.MarketListFirstDivInfo>
+                  </S.MarketListFirstDiv>
+                </S.MarketList>
+              ))}
+            </S.ListWrapper>
           </InfiniteScroll>
         </S.MarketScrollerDiv>
       </S.MarketListWrapper>
