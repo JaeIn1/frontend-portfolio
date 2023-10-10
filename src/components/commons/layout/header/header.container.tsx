@@ -10,6 +10,7 @@ import {
 import { ChangeEvent, useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/stores";
+import { Modal } from "antd";
 declare const window: typeof globalThis & {
   kakao: any;
   IMP: any;
@@ -114,7 +115,11 @@ export default function LayoutHeader(): JSX.Element {
             },
           });
           setSelectPrice(false);
-          alert("결제에 성공했습니다.");
+          Modal.success({
+            content: "포인트 충전에 성공하였습니다",
+          });
+          setIsOpen(false);
+          setPointIsOpen(false);
         } else {
           // 결제 실패 시 로직,
           alert("결제가 취소되었습니다.");

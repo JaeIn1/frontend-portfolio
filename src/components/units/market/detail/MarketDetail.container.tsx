@@ -130,6 +130,10 @@ export default function MarketDetail(): JSX.Element {
               useritemId: String(router.query.marketId),
             },
           });
+          onClickToggle();
+          Modal.success({
+            content: "결제에 성공하였습니다.",
+          });
         } else {
           // 결제 실패 시 로직,
         }
