@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { IMarketListStyleProps } from "../boughtList.tsx/BoughtList.types";
-import AddIcon from "@mui/icons-material/Add";
+import { IMarketListStyleProps } from "./MarketList.types";
 
 export const Wrapper = styled.div`
   width: 1500px;
@@ -286,25 +285,36 @@ export const MarketItemsBoughts = styled.div`
     cursor: pointer;
   }
 `;
-export const AddItemBtnDiv = styled.div`
+
+export const Button = styled.button`
   width: 90px;
   height: 90px;
-  background-color: #b173d8;
   color: white;
-  font-weight: 100;
   border: none;
   border-radius: 50%;
+  background-color: #b173d8;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-
-  :hover {
-    background-color: #b173d8;
-  }
-`;
-export const AddItemBtn = styled(AddIcon)`
-  width: 60%;
-  height: 60%;
   cursor: pointer;
+  position: relative;
+`;
+export const ButtonDiv1 = styled.div`
+  position: absolute;
+  width: 5px;
+  height: 33px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: white;
+  color: white;
+`;
+export const ButtonDiv2 = styled.div`
+  position: absolute;
+  width: 33px;
+  height: 5px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: white;
+  color: white;
 `;

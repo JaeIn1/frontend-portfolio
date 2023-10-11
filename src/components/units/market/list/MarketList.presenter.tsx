@@ -137,9 +137,10 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
         </S.MarketScrollerDiv>
       </S.MarketListWrapper>
       <S.Footer>
-        <S.AddItemBtnDiv>
-          <S.AddItemBtn onClick={props.onClickMoveToMarketNew} />
-        </S.AddItemBtnDiv>
+        <S.Button onClick={props.onClickMoveToMarketNew}>
+          <S.ButtonDiv1></S.ButtonDiv1>
+          <S.ButtonDiv2></S.ButtonDiv2>
+        </S.Button>
       </S.Footer>
     </S.Wrapper>
   );

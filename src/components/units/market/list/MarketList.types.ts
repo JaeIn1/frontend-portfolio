@@ -37,3 +37,7 @@ export interface ITodayWatchProps {
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
   onClickTodayWatch: (el: string) => () => void;
 }
+
+export interface IMarketListStyleProps {
+  isMarketList?: boolean;
+}

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { IMarketListStyleProps } from "../boughtList.tsx/BoughtList.types";
+// import AddIcon from "@mui/icons-material/Add";
 
 export const Wrapper = styled.div`
   width: 1500px;
@@ -14,22 +15,6 @@ export const Footer = styled.div`
 `;
 
 export const PencilIcon = styled.img``;
-
-export const Button = styled.button`
-  width: 171px;
-  height: 52px;
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  cursor: pointer;
-
-  :hover {
-    background-color: #f5f2fc;
-  }
-`;
 
 export const MarketBestTitle = styled.div`
   width: 100%;
@@ -300,4 +285,37 @@ export const MarketItemsBoughts = styled.div`
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
   }
+`;
+
+export const Button = styled.button`
+  width: 90px;
+  height: 90px;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  background-color: #b173d8;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+`;
+export const ButtonDiv1 = styled.div`
+  position: absolute;
+  width: 5px;
+  height: 33px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: white;
+  color: white;
+`;
+export const ButtonDiv2 = styled.div`
+  position: absolute;
+  width: 33px;
+  height: 5px;
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: white;
+  color: white;
 `;

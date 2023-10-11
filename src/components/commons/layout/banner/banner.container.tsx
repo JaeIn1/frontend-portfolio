@@ -29,7 +29,7 @@ const SlickItem = styled.img`
 `;
 const Pre = styled.div`
   position: absolute;
-  left: 10%;
+  left: 11%;
   z-index: 3;
 
   & img {
@@ -41,7 +41,7 @@ const Pre = styled.div`
 
 const NextTo = styled.div`
   position: absolute;
-  right: 10%;
+  right: 11%;
   z-index: 3;
 
   & img {
@@ -62,12 +62,12 @@ export default function LayoutBanner(): JSX.Element {
     autoplaySpeed: 5000,
     nextArrow: (
       <NextTo>
-        <img src="images/banner/next_arrow.png" />
+        <img src="/images/banner/next_arrow.png" />
       </NextTo>
     ),
     prevArrow: (
       <Pre>
-        <img src="images/banner/prev_arrow.png" />
+        <img src="/images/banner/prev_arrow.png" />
       </Pre>
     ),
   };

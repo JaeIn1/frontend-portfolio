@@ -139,8 +139,8 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
       </S.MarketListWrapper>
       <S.Footer>
         <S.Button onClick={props.onClickMoveToMarketNew}>
-          <S.PencilIcon src="/images/board/list/write.png" />
-          상품 등록하기{" "}
+          <S.ButtonDiv1></S.ButtonDiv1>
+          <S.ButtonDiv2></S.ButtonDiv2>
         </S.Button>
       </S.Footer>
     </S.Wrapper>
