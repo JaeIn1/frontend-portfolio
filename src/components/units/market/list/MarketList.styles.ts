@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
 import { IMarketListStyleProps } from "../boughtList.tsx/BoughtList.types";
+import AddIcon from "@mui/icons-material/Add";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1500px;
   margin: 100px;
 `;
 
@@ -15,22 +16,6 @@ export const Footer = styled.div`
 
 export const PencilIcon = styled.img``;
 
-export const Button = styled.button`
-  width: 171px;
-  height: 52px;
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  cursor: pointer;
-
-  :hover {
-    background-color: #f5f2fc;
-  }
-`;
-
 export const MarketBestTitle = styled.div`
   width: 100%;
   text-align: center;
@@ -41,14 +26,24 @@ export const MarketBestTitle = styled.div`
 export const BoardBestWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 100px;
+`;
+export const BoardBest = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const BoardBestDiv = styled.div`
   width: 22%;
   height: 350px;
+  margin-right: 40px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
@@ -122,7 +117,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const MarketList = styled.div`
-  width: calc(30% - 7px);
+  width: calc(22% - 7px);
   height: 500px;
   margin-right: 45px;
   margin-bottom: 60px;
@@ -131,7 +126,7 @@ export const MarketList = styled.div`
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
 `;
@@ -290,4 +285,26 @@ export const MarketItemsBoughts = styled.div`
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
   }
+`;
+export const AddItemBtnDiv = styled.div`
+  width: 90px;
+  height: 90px;
+  background-color: #b173d8;
+  color: white;
+  font-weight: 100;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+
+  :hover {
+    background-color: #b173d8;
+  }
+`;
+export const AddItemBtn = styled(AddIcon)`
+  width: 60%;
+  height: 60%;
+  cursor: pointer;
 `;

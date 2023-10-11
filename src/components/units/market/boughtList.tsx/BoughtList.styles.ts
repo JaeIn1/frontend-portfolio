@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { IMarketListStyleProps } from "../boughtList.tsx/BoughtList.types";
 
 export const Wrapper = styled.div`
-  width: 1200px;
+  width: 1500px;
   margin: 100px;
 `;
 
@@ -41,14 +41,24 @@ export const MarketBestTitle = styled.div`
 export const BoardBestWrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 100px;
+`;
+export const BoardBest = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const BoardBestDiv = styled.div`
   width: 22%;
   height: 350px;
+  margin-right: 40px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
@@ -122,7 +132,7 @@ export const ListWrapper = styled.div`
 `;
 
 export const MarketList = styled.div`
-  width: calc(30% - 7px);
+  width: calc(22% - 7px);
   height: 500px;
   margin-right: 45px;
   margin-bottom: 60px;
@@ -131,7 +141,7 @@ export const MarketList = styled.div`
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
 `;
