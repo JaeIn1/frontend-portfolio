@@ -1,18 +1,18 @@
 import { ChangeEvent, MouseEvent, RefObject } from "react";
 
 export interface IUploads01Props {
-  fileUrls: string;
   key: string;
   index: number;
-  onChangeFileUrls: (fileUrl: string, index: number) => void;
+  imgUrl: string;
+  onChangeFileUrls: (fileUrls: File, imgUrl: string, index: number) => void;
   onClickDeleteImg?: (() => void) | undefined;
 }
 
 export interface IUploads01UIProps {
-  fileUrls: string;
   fileRef: RefObject<HTMLInputElement>;
   defaultFileUrl?: string;
   index: number;
+  imgUrl: string;
   onClickUpload: () => void;
   onChangeFile: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickDeleteImg?: (() => void) | undefined;

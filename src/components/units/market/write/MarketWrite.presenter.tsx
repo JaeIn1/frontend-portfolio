@@ -165,11 +165,11 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>
           <S.UploadButtonDiv>
-            {props.fileUrls.map((el, index) => (
+            {props.imgUrls.map((el, index) => (
               <Upload01
                 key={uuidv4()}
                 index={index}
-                fileUrls={el}
+                imgUrl={el}
                 onChangeFileUrls={props.onChangeFileUrls}
                 onClickDeleteImg={props.onClickDeleteImg}
               />

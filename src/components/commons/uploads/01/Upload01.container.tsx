@@ -2,20 +2,11 @@ import { ChangeEvent, MouseEvent, useRef } from "react";
 import Upload01UI from "./Upload01.presenter";
 import { IUploads01Props } from "./Upload01.types";
 import { checkValidationImage } from "./Uploads01.validation";
-import { UPLOAD_FILE } from "./Upload01.queries";
-import { useMutation } from "@apollo/client";
 import { Modal } from "antd";
-import {
-  IMutation,
-  IMutationUploadFileArgs,
-} from "../../../../commons/types/generated/types";
+import {} from "../../../../commons/types/generated/types";
 
 export default function Upload01(props: IUploads01Props): JSX.Element {
   const fileRef = useRef<HTMLInputElement>(null);
-  const [uploadFile] = useMutation<
-    Pick<IMutation, "uploadFile">,
-    IMutationUploadFileArgs
-  >(UPLOAD_FILE);
 
   const onClickUpload = (): void => {
     fileRef.current?.click();
@@ -27,11 +18,18 @@ export default function Upload01(props: IUploads01Props): JSX.Element {
     const file = event.target.files?.[0];
     console.log(file);
     const isValid = checkValidationImage(file);
+    if (file === undefined) return;
     if (!isValid) return;
 
     try {
-      const result = await uploadFile({ variables: { file } });
-      props.onChangeFileUrls(result.data?.uploadFile.url ?? "", props.index);
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = (event) => {
+        if (typeof event.target?.result === "string") {
+          props.onChangeFileUrls(file, event.target?.result ?? "", props.index);
+        }
+      };
+      /* const result = await uploadFile({ variables: { file } }); */
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }
@@ -44,7 +42,7 @@ export default function Upload01(props: IUploads01Props): JSX.Element {
   return (
     <Upload01UI
       fileRef={fileRef}
-      fileUrls={props.fileUrls}
+      imgUrl={props.imgUrl}
       index={props.index}
       onClickUpload={onClickUpload}
       onChangeFile={onChangeFile}

@@ -21,7 +21,7 @@ export interface IMarketWriteUIProps {
   onClickAddressSearch: () => void;
 
   onCompleteAddressSearch: (data: any) => void;
-  onChangeFileUrls: (fileUrls: string, index: number) => void;
+  onChangeFileUrls: (fileUrls: File, imgUrl: string, index: number) => void;
   onClickDeleteImg?: (() => void) | undefined;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
@@ -32,8 +32,8 @@ export interface IMarketWriteUIProps {
   isOpen: boolean;
   zipcode: string;
   address: string;
-  fileUrls: string[];
   contents: string;
+  imgUrls: string[];
 }
 
 export interface ISubmitButtonProps {

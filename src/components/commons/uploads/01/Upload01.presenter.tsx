@@ -4,12 +4,9 @@ import * as S from "./Upload01.styles";
 export default function Upload01UI(props: IUploads01UIProps): JSX.Element {
   return (
     <>
-      {props.fileUrls !== "" ? (
+      {props.imgUrl !== "" ? (
         <S.UploadImageWrapper>
-          <S.UploadImage
-            src={`https://storage.googleapis.com/${props.fileUrls}`}
-            onClick={props.onClickUpload}
-          />
+          <S.UploadImage src={props.imgUrl} onClick={props.onClickUpload} />
           <S.UploadImageCloseBtn
             onClick={props.onClickDeleteFile}
             id={String(props.index)}

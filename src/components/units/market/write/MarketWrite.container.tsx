@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_ITEM, UPDATE_ITEM } from "./MarketWrite.queries";
+import { CREATE_ITEM, UPDATE_ITEM, UPLOAD_FILE } from "./MarketWrite.queries";
 import type {
   IMutation,
   IMutationCreateUseditemArgs,
   IMutationUpdateUseditemArgs,
+  IMutationUploadFileArgs,
   IUpdateUseditemInput,
 } from "../../../../commons/types/generated/types";
 import type { IMarketWriteProps } from "./MarketWrite.types";
@@ -17,6 +18,9 @@ import MarketWriteUI from "./MarketWrite.presenter";
 declare const window: typeof globalThis & {
   kakao: any;
 };
+
+let newFileUrls: File[] = [];
+let newImgUrls: string[] = ["", "", ""];
 
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
@@ -34,13 +38,19 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [imgUrls, setImgUrls] = useState<string[]>(["", "", ""]);
+  const [fileUrls, setFileUrls] = useState<File[]>([]);
 
   const [nameError, setNameError] = useState("");
   const [remarksError, setRemarksError] = useState("");
   const [contentsError, setContentsError] = useState("");
   const [pricesError, setPriceError] = useState("");
   const [tagsError, setTagsError] = useState("");
+
+  const [uploadFile] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_FILE);
 
   const [createItem] = useMutation<
     Pick<IMutation, "createUseditem">,
@@ -138,20 +148,35 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
-  const onChangeFileUrls = (fileUrl: string, index: number): void => {
-    const newFileUrls = [...fileUrls];
+  const onChangeFileUrls = (
+    fileUrl: File,
+    imgUrl: string,
+    index: number
+  ): void => {
+    newFileUrls = [...fileUrls];
     newFileUrls[index] = fileUrl;
     setFileUrls(newFileUrls);
+
+    newImgUrls = [...imgUrls];
+    newImgUrls[index] = imgUrl;
+    setImgUrls(newImgUrls);
   };
 
   const onClickDeleteImg = (index: any): void => {
-    const arr = [...fileUrls];
+    const arr = [...newImgUrls];
     arr[index] = "";
-    setFileUrls(arr);
+    newImgUrls = [...arr];
+    newFileUrls.splice(index, 1);
+    setFileUrls(newFileUrls);
+    setImgUrls(arr);
   };
+
   useEffect(() => {
     const images = props.data?.fetchUseditem.images;
-    if (images !== undefined && images !== null) setFileUrls([...images]);
+    if (images !== undefined && images !== null) {
+      setFileUrls([...newFileUrls]);
+      setImgUrls(newImgUrls);
+    }
   }, [props.data]);
 
   const OpenKakaoMap = (data: string): void => {
@@ -220,6 +245,16 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     ) {
       try {
         setIsSubMitting(true);
+        const results = await Promise.all(
+          fileUrls.map(
+            async (el) =>
+              await uploadFile({
+                variables: { file: el },
+              })
+          )
+        );
+        const resultUrls = results.map((el) => el.data?.uploadFile.url ?? "");
+
         const result = await createItem({
           variables: {
             createUseditemInput: {
@@ -235,7 +270,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
                 lat: Number(lat),
                 lng: Number(lng),
               },
-              images: [...fileUrls],
+              images: resultUrls,
             },
           },
         });
@@ -289,7 +324,16 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       if (props.data?.fetchUseditem.useditemAddress?.lat)
         updateUseditemInput.useditemAddress.lat = Number(lat);
     }
-    if (isChangedFiles) updateUseditemInput.images = fileUrls;
+    const results = await Promise.all(
+      fileUrls.map(
+        async (el) =>
+          await uploadFile({
+            variables: { file: el },
+          })
+      )
+    );
+    const resultUrls = results.map((el) => el.data?.uploadFile.url ?? "");
+    if (isChangedFiles) updateUseditemInput.images = resultUrls;
 
     try {
       if (typeof router.query.marketId !== "string") {
@@ -330,6 +374,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFileUrls={onChangeFileUrls}
+      imgUrls={imgUrls}
       onClickDeleteImg={onClickDeleteImg}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
@@ -340,7 +385,6 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       isOpen={isOpen}
       zipcode={zipcode}
       address={address}
-      fileUrls={fileUrls}
       contents={contents}
     />
   );
