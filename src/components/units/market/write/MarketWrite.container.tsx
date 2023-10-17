@@ -1,7 +1,7 @@
 /* eslint-disable no-unneeded-ternary */
 import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
-import { useMutation } from "@apollo/client";
+import { empty, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_ITEM, UPDATE_ITEM, UPLOAD_FILE } from "./MarketWrite.queries";
 import type {
@@ -18,9 +18,6 @@ import MarketWriteUI from "./MarketWrite.presenter";
 declare const window: typeof globalThis & {
   kakao: any;
 };
-
-let newFileUrls: File[] = [];
-let newImgUrls: string[] = ["", "", ""];
 
 export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const router = useRouter();
@@ -39,7 +36,8 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
   const [imgUrls, setImgUrls] = useState<string[]>(["", "", ""]);
-  const [fileUrls, setFileUrls] = useState<File[]>([]);
+  // eslint-disable-next-line @typescript-eslint/array-type
+  const [fileUrls, setFileUrls] = useState<(File | string)[]>([]);
 
   const [nameError, setNameError] = useState("");
   const [remarksError, setRemarksError] = useState("");
@@ -153,30 +151,37 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     imgUrl: string,
     index: number
   ): void => {
-    newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
+    const tempUrls = [...fileUrls];
+    tempUrls[index] = fileUrl;
+    setFileUrls(tempUrls);
 
-    newImgUrls = [...imgUrls];
-    newImgUrls[index] = imgUrl;
-    setImgUrls(newImgUrls);
+    const tempImgUrls = [...imgUrls];
+    tempImgUrls[index] = imgUrl;
+    setImgUrls(tempImgUrls);
+
+    console.log(tempUrls);
   };
 
   const onClickDeleteImg = (index: any): void => {
-    const arr = [...newImgUrls];
-    arr[index] = "";
-    newImgUrls = [...arr];
-    newFileUrls.splice(index, 1);
-    setFileUrls(newFileUrls);
-    setImgUrls(arr);
+    const tempImgUrl = [...imgUrls];
+    tempImgUrl[index] = "";
+    setImgUrls(tempImgUrl);
+
+    const tempUrl = [...fileUrls];
+    tempUrl[index] = "";
+    setFileUrls(tempUrl);
   };
 
   useEffect(() => {
+    const tempArr = ["", "", ""];
     const images = props.data?.fetchUseditem.images;
     if (images !== undefined && images !== null) {
-      setFileUrls([...newFileUrls]);
-      setImgUrls(newImgUrls);
+      for (let i = 0; i < tempArr.length; i++) {
+        tempArr[i] = images[i] ?? "";
+      }
     }
+    setImgUrls(tempArr);
+    setFileUrls(tempArr);
   }, [props.data]);
 
   const OpenKakaoMap = (data: string): void => {
@@ -246,14 +251,17 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       try {
         setIsSubMitting(true);
         const results = await Promise.all(
-          fileUrls.map(
-            async (el) =>
-              await uploadFile({
+          fileUrls.map(async (el) => {
+            if (el instanceof File) {
+              const result = await uploadFile({
                 variables: { file: el },
-              })
-          )
+              });
+              return result;
+              // eslint-disable-next-line no-useless-return
+            } else return;
+          })
         );
-        const resultUrls = results.map((el) => el.data?.uploadFile.url ?? "");
+        const resultUrls = results.map((el) => el?.data?.uploadFile.url ?? "");
 
         const result = await createItem({
           variables: {
@@ -324,16 +332,26 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       if (props.data?.fetchUseditem.useditemAddress?.lat)
         updateUseditemInput.useditemAddress.lat = Number(lat);
     }
+    for (let i = 0; i < 3; i++) {
+      if (fileUrls[i] === (undefined && empty)) {
+        fileUrls.splice(i, 1);
+      }
+    }
     const results = await Promise.all(
-      fileUrls.map(
-        async (el) =>
-          await uploadFile({
+      fileUrls.map(async (el) => {
+        if (el instanceof File) {
+          const result = await uploadFile({
             variables: { file: el },
-          })
-      )
+          });
+          return result.data?.uploadFile.url ?? "";
+        } else return el ?? "";
+      })
     );
-    const resultUrls = results.map((el) => el.data?.uploadFile.url ?? "");
-    if (isChangedFiles) updateUseditemInput.images = resultUrls;
+    console.log(results);
+
+    /* const resultUrls = results.map((el) => el?.data?.uploadFile.url ?? "");
+    console.log(resultUrls); */
+    if (isChangedFiles) updateUseditemInput.images = results;
 
     try {
       if (typeof router.query.marketId !== "string") {

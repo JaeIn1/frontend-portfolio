@@ -6,7 +6,14 @@ export default function Upload01UI(props: IUploads01UIProps): JSX.Element {
     <>
       {props.imgUrl !== "" ? (
         <S.UploadImageWrapper>
-          <S.UploadImage src={props.imgUrl} onClick={props.onClickUpload} />
+          <S.UploadImage
+            src={
+              props.imgUrl.length > 100
+                ? props.imgUrl
+                : `https://storage.googleapis.com/${props.imgUrl}`
+            }
+            onClick={props.onClickUpload}
+          />
           <S.UploadImageCloseBtn
             onClick={props.onClickDeleteFile}
             id={String(props.index)}
