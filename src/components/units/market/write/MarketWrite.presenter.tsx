@@ -1,4 +1,5 @@
 import Upload01 from "../../../commons/uploads/01/Upload01.container";
+import LoadingPage from "../list/Loading.container";
 import * as S from "./MarketWrite.styles";
 import type { IMarketWriteUIProps } from "./MarketWrite.types";
 import { v4 as uuidv4 } from "uuid";
@@ -68,6 +69,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
           <S.AddressSearchInput onComplete={props.onCompleteAddressSearch} />
         </S.AddressModal>
       )}
+      {props.itemLoading && <LoadingPage LoadingToggle={props.LoadingToggle} />}
       <S.Wrapper>
         <S.Title>{props.isEdit ? "상품 수정하기" : "상품 등록하기"}</S.Title>
         <S.WriterWrapper>

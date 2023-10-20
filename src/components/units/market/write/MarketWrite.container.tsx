@@ -14,6 +14,7 @@ import type {
 import type { IMarketWriteProps } from "./MarketWrite.types";
 import type { Address } from "react-daum-postcode";
 import MarketWriteUI from "./MarketWrite.presenter";
+import { Modal } from "antd";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -38,6 +39,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [imgUrls, setImgUrls] = useState<string[]>(["", "", ""]);
   // eslint-disable-next-line @typescript-eslint/array-type
   const [fileUrls, setFileUrls] = useState<(File | string)[]>([]);
+  const [itemLoading, setItemLoading] = useState(false);
 
   const [nameError, setNameError] = useState("");
   const [remarksError, setRemarksError] = useState("");
@@ -227,7 +229,13 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
     OpenKakaoMap(data.address);
   };
 
+  const LoadingToggle = (): void => {
+    setItemLoading((prev) => !prev);
+  };
+
   const onClickSubmit = async (): Promise<void> => {
+    LoadingToggle();
+
     if (name === "") {
       setNameError("상품명을 입력해주세요.");
     }
@@ -286,8 +294,11 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
           alert("요청에 문제가 있습니다.");
           return;
         }
-        alert("상품이 등록되었습니다.");
+        LoadingToggle();
         void router.push(`/markets`);
+        Modal.success({
+          content: "상품이 등록되었습니다.",
+        });
         setIsSubMitting(false);
       } catch (error) {
         if (error instanceof Error) alert(error.message);
@@ -296,6 +307,7 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   };
 
   const onClickUpdate = async (): Promise<void> => {
+    LoadingToggle();
     const currentFiles = JSON.stringify(fileUrls);
     const defaultFiles = JSON.stringify(props.data?.fetchUseditem.images);
     const isChangedFiles = currentFiles !== defaultFiles;
@@ -369,8 +381,11 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
         alert("요청에 문제가 있습니다.");
         return;
       }
-      alert("상품이 수정되었습니다.");
+      LoadingToggle();
       void router.push(`/mypages/${result.data?.updateUseditem._id}`);
+      Modal.success({
+        content: "상품이 수정되었습니다.",
+      });
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -404,6 +419,8 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
       zipcode={zipcode}
       address={address}
       contents={contents}
+      itemLoading={itemLoading}
+      LoadingToggle={LoadingToggle}
     />
   );
 }
