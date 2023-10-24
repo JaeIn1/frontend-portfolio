@@ -11,6 +11,7 @@ import MarketListUI from "./MarketList.presenter";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import { IMarketListProps } from "./MarketList.types";
+import Link from "next/link";
 
 export default function MarketList(props: IMarketListProps): JSX.Element {
   let newItemobj: string[] = [];
@@ -85,6 +86,11 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
     void router.push(`/markets/${el}`);
   };
 
+  const onMouseOverBtn = (): void => {
+    console.log("hello");
+    void router.prefetch("/markets/new");
+  };
+
   return (
     <>
       <MarketListUI
@@ -100,6 +106,7 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
         onEmptyImg={onEmptyImg}
         onClickTodayWatch={onClickTodayWatch}
         isMarketList={props.isMarketList}
+        onMouseOverBtn={onMouseOverBtn}
       />
     </>
   );

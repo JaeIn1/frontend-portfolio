@@ -23,6 +23,10 @@ export const Wrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+
+  @media screen and ((max-width: 1024px)) {
+    width: calc(100% - 50px);
+  }
 `;
 
 export const Title = styled.div`
@@ -44,6 +48,10 @@ export const ItemName = styled.input`
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
+
+  @media screen and ((max-width: 1024px)) {
+    width: 1000px;
+  }
 `;
 
 export const Label = styled.div`

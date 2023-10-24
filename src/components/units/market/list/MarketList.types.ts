@@ -26,6 +26,7 @@ export interface IMarketListUIProps {
   newItemobj: string[];
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
   onClickTodayWatch: (el: string) => () => void;
+  onMouseOverBtn: () => void;
 }
 
 export interface ITextTokenProps {

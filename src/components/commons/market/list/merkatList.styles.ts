@@ -7,6 +7,18 @@ export const MarketItemsWrapper = styled.div`
   align-items: center;
   margin-bottom: 25px;
 
+  @media screen and ((max-width: 768px)) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+export const SelectWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+
   & div {
     font-weight: 600;
     font-size: 17px;
@@ -18,6 +30,15 @@ export const MarketItemsWrapper = styled.div`
     font-weight: bolder;
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
+  }
+
+  @media screen and ((max-width: 390px)) {
+    margin-bottom: 5px;
+    & div {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 5px;
+    }
   }
 `;
 

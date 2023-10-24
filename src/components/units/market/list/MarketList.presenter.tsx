@@ -137,7 +137,10 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
         </S.MarketScrollerDiv>
       </S.MarketListWrapper>
       <S.Footer>
-        <S.Button onClick={props.onClickMoveToMarketNew}>
+        <S.Button
+          onClick={props.onClickMoveToMarketNew}
+          onMouseOver={props.onMouseOverBtn}
+        >
           <S.ButtonDiv1></S.ButtonDiv1>
           <S.ButtonDiv2></S.ButtonDiv2>
         </S.Button>

@@ -31,12 +31,17 @@ export const HeaderIconDiv = styled.div`
     font-size: 30px;
     font-weight: bolder;
   }
-  & input {
-    font-size: 20px;
-    padding: 10px 20px;
-    padding-right: 400px;
-    border: 3px solid #b173d8;
-    border-radius: 10px;
+
+  @media screen and (max-width: 390px) {
+    padding-left: 10px;
+    padding-top: 5px;
+    & span {
+      display: block;
+      width: 100px;
+      color: #b173d8;
+      font-size: 25px;
+      font-weight: bolder;
+    }
   }
 `;
 export const HeaderSettingDiv = styled.div`
@@ -52,7 +57,11 @@ export const LoginHeaderSettingDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
+  padding-top: 10px;
+
+  @media screen and (max-width: 390px) {
+    margin-right: 10px;
+  }
 `;
 export const HeaderSettingLoginSpan = styled.div`
   margin: 10px;

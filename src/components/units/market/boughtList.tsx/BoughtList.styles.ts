@@ -1,10 +1,20 @@
 import styled from "@emotion/styled";
-import { IMarketListStyleProps } from "../boughtList.tsx/BoughtList.types";
-// import AddIcon from "@mui/icons-material/Add";
+import { IMarketListStyleProps } from "./BoughtList.types";
 
 export const Wrapper = styled.div`
-  width: 1500px;
+  width: 1300px;
   margin: 100px;
+  padding: 30px;
+  padding-top: 10px;
+
+  @media screen and ((min-width: 768px) and (max-width: 1024px)) {
+    width: 100%;
+    margin: 20px;
+  }
+  @media screen and ((max-width: 768px)) {
+    width: 100%;
+    margin: 20px;
+  }
 `;
 
 export const Footer = styled.div`
@@ -22,16 +32,25 @@ export const MarketBestTitle = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 30px;
+
+  @media screen and ((max-width: 768px)) {
+    display: none;
+  }
 `;
 export const BoardBestWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 100px;
+
+  @media screen and ((max-width: 768px)) {
+    display: none;
+  }
 `;
 export const BoardBest = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 `;
@@ -39,7 +58,6 @@ export const BoardBestDiv = styled.div`
   width: 22%;
   height: 350px;
   margin-right: 40px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +65,20 @@ export const BoardBestDiv = styled.div`
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
+
+  @media screen and ((min-width: 1024px)) {
+    width: calc(25% - 40px);
+    height: 350px;
+  }
+
+  @media screen and ((min-width: 768px) and (max-width: 1024px)) {
+    width: calc(25% - 40px);
+    height: 250px;
+  }
+  @media screen and ((max-width: 768px)) {
+    width: calc(25% - 40px);
+    height: 250px;
+  }
 `;
 export const BoardBestImg = styled.img`
   border-radius: 20px 20px 0px 0px;
@@ -57,6 +89,7 @@ export const BoardBestImg = styled.img`
 `;
 export const BoardBestSpan = styled.div`
   font-weight: bolder;
+  font-size: 80%;
 `;
 export const Header = styled.div`
   width: 100%;
@@ -64,7 +97,6 @@ export const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #bdbdbd;
   padding-bottom: 20px;
   margin: 10px;
 `;
@@ -112,13 +144,13 @@ export const MarketListWrapper = styled.div`
 export const ListWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
 `;
 
 export const MarketList = styled.div`
-  width: calc(22% - 7px);
-  height: 500px;
+  width: 260px;
+  height: 410px;
   margin-right: 45px;
   margin-bottom: 60px;
   border-radius: 20px;
@@ -129,6 +161,19 @@ export const MarketList = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
+  @media screen and ((min-width: 768px) and (max-width: 1024px)) {
+    width: calc(33% - 50px);
+    height: 370px;
+  }
+  @media screen and ((max-width: 768px)) {
+    width: calc(45% - 40px);
+    height: 370px;
+  }
+  @media screen and ((max-width: 500px)) {
+    width: calc(80% - 40px);
+    height: 350px;
+  }
 `;
 export const MarketScrollerDiv = styled.div`
   ::-webkit-scrollbar {
@@ -150,12 +195,13 @@ export const MarketListFirstDiv = styled.div`
 
 export const MarketListFirstDivImg = styled.img`
   width: 100%;
-  height: 70%;
+  height: 65%;
   border-radius: 20px;
   margin-right: 10px;
   object-fit: cover;
 `;
 export const MarketListFirstDivInfo = styled.div`
+  height: 30%;
   padding-left: 30px;
   display: flex;
   flex-direction: column;
@@ -167,7 +213,7 @@ export const MarketListFirstDivName = styled.div`
   font-weight: 600;
   margin-top: 10px;
   margin-bottom: 10px;
-  font-size: 25px;
+  font-size: 1.1rem;
 `;
 
 export const MarketListSellerDiv = styled.div`
@@ -189,7 +235,7 @@ export const MarketListPriceDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 
   & img {
     margin-right: 10px;
@@ -197,13 +243,13 @@ export const MarketListPriceDiv = styled.div`
 
   & span {
     font-weight: bolder;
-    font-size: 21px;
+    font-size: 1rem;
   }
 `;
 
 export const MarketListAddressDiv = styled.div`
   font-weight: 600;
-  font-size: 15px;
+  font-size: 0.7rem;
 `;
 
 export const TodayItemWrapper = styled.div`
