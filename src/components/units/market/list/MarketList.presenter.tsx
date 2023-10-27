@@ -16,10 +16,8 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
     <S.Wrapper>
       <S.MarketBestTitle>베스트 상품</S.MarketBestTitle>
       <S.BoardBestWrapper>
-        <S.BoardBest>
-          {(
-            props.dataBest?.fetchUseditemsOfTheBest ?? new Array(4).fill(1)
-          ).map((el) =>
+        {(props.dataBest?.fetchUseditemsOfTheBest ?? new Array(4).fill(1)).map(
+          (el) =>
             props.dataBest?.fetchUseditemsOfTheBest ? (
               <S.BoardBestDiv
                 key={el._id}
@@ -55,8 +53,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 </div>
               </S.BoardBestDiv>
             )
-          )}
-        </S.BoardBest>
+        )}
       </S.BoardBestWrapper>
       <MarketListCommenPage
         isMarketList={props.isMarketList}

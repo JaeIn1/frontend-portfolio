@@ -58,6 +58,7 @@ export const LoginHeaderSettingDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 10px;
+  margin-right: 10px;
 
   @media screen and (max-width: 390px) {
     margin-right: 10px;

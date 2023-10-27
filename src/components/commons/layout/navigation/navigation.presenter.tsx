@@ -12,11 +12,13 @@ export default function LayoutNavigationUI(
 ): JSX.Element {
   return (
     <S.Wrapper>
-      {NAVIGATION_MENUS.map((el) => (
-        <S.MenuItem key={el.page} id={el.page} onClick={props.onClickMenu}>
-          {el.name}
-        </S.MenuItem>
-      ))}
+      <S.ItemWrapper>
+        {NAVIGATION_MENUS.map((el) => (
+          <S.MenuItem key={el.page} id={el.page} onClick={props.onClickMenu}>
+            {el.name}
+          </S.MenuItem>
+        ))}
+      </S.ItemWrapper>
     </S.Wrapper>
   );
 }

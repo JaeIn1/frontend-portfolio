@@ -3,12 +3,17 @@ import { IMarketListStyleProps } from "./MarketList.types";
 
 export const Wrapper = styled.div`
   width: 1300px;
-  margin: 100px;
+  margin: 20px;
   padding: 30px;
   padding-top: 10px;
 
+  @media screen and ((min-width: 1024px) and (max-width: 1500px)) {
+    width: 90%;
+    margin: 20px;
+  }
+
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: 100%;
+    width: 90%;
     margin: 20px;
   }
   @media screen and ((max-width: 768px)) {
@@ -34,50 +39,32 @@ export const MarketBestTitle = styled.div`
   margin-bottom: 30px;
 
   @media screen and ((max-width: 768px)) {
-    display: none;
   }
 `;
 export const BoardBestWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
   margin-bottom: 100px;
-
-  @media screen and ((max-width: 768px)) {
-    display: none;
-  }
-`;
-export const BoardBest = styled.div`
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
 `;
 export const BoardBestDiv = styled.div`
-  width: 22%;
+  display: inline-block;
+  width: 270px;
   height: 350px;
   margin-right: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
 
   @media screen and ((min-width: 1024px)) {
-    width: calc(25% - 40px);
-    height: 350px;
   }
 
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: calc(25% - 40px);
-    height: 250px;
+    width: 200px;
   }
   @media screen and ((max-width: 768px)) {
-    width: calc(25% - 40px);
-    height: 250px;
+    width: 200px;
   }
 `;
 export const BoardBestImg = styled.img`
@@ -103,6 +90,7 @@ export const Header = styled.div`
 export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  margin-left: 15px;
 `;
 
 export const Avatar = styled.img`
@@ -171,7 +159,7 @@ export const MarketList = styled.div`
     height: 370px;
   }
   @media screen and ((max-width: 390px)) {
-    width: calc(45% - 30px);
+    width: calc(100% - 30px);
     height: 250px;
   }
 `;
