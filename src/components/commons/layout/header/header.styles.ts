@@ -32,7 +32,7 @@ export const HeaderIconDiv = styled.div`
     font-weight: bolder;
   }
 
-  @media screen and (max-width: 390px) {
+  @media screen and (max-width: 768px) {
     padding-left: 10px;
     padding-top: 5px;
     & span {

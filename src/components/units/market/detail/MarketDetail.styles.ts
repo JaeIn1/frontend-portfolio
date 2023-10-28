@@ -5,6 +5,11 @@ import Slider from "react-slick";
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
+
+  @media screen and ((max-width: 1200px)) {
+    width: 95%;
+    margin: 20px;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -18,6 +23,10 @@ export const CardWrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+
+  @media screen and ((max-width: 1200px)) {
+    padding: 50px;
+  }
 `;
 
 export const Header = styled.div`
@@ -38,12 +47,21 @@ export const AvatarWrapper = styled.div`
 
 export const Avatar = styled.img`
   margin-right: 10px;
+
+  @media screen and ((max-width: 1200px)) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and ((max-width: 1200px)) {
+    font-size: 12px;
+  }
 `;
 
 export const Name = styled.div``;
@@ -58,6 +76,12 @@ export const Body = styled.div`
 export const BoayHeader = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media screen and ((max-width: 1200px)) {
+    & div {
+      font-size: 10px;
+    }
+  }
 `;
 export const BoayItemLoveImgDiv = styled.div`
   display: flex;
@@ -66,6 +90,9 @@ export const BoayItemLoveImgDiv = styled.div`
   cursor: pointer;
   & span {
     font-weight: bolder;
+  }
+
+  @media screen and ((max-width: 1024px)) {
   }
 `;
 export const ItemTags = styled.span``;
@@ -95,6 +122,13 @@ export const Contents = styled.div`
   }
   &::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  @media screen and ((max-width: 1200px)) {
+    height: 150px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
   }
 `;
 export const Tags = styled.div`
@@ -144,7 +178,6 @@ export const ImageWrapperDiv = styled.div`
 export const ImageWrapper = styled.div`
   width: 50%;
   padding-top: 50px;
-  height: 600px;
 `;
 
 export const StyledSlider = styled(Slider)`
@@ -159,8 +192,8 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const SliderItem = styled.img`
-  width: 300px;
-  height: 400px;
+  width: 50%;
+  height: 50%;
   margin: auto;
   border-radius: 15px;
 `;
@@ -174,6 +207,12 @@ export const Pre = styled.div`
     background-color: lightgray;
     padding: 20px;
   }
+
+  @media screen and ((max-width: 1200px)) {
+    & img {
+      padding: 10px;
+    }
+  }
 `;
 
 export const NextTo = styled.div`
@@ -185,6 +224,11 @@ export const NextTo = styled.div`
     border-radius: 50%;
     background-color: lightgray;
     padding: 20px;
+  }
+  @media screen and ((max-width: 1200px)) {
+    & img {
+      padding: 10px;
+    }
   }
 `;
 export const BoardLikeDiv = styled.div`
@@ -206,7 +250,4 @@ export const KaKaoMapDetail = styled.div`
   border: 1px solid lightgray;
 `;
 
-export const BuyModal = styled(Modal)`
-  max-width: 600px;
-  max-height: 1000px;
-`;
+export const BuyModal = styled(Modal)``;

@@ -3,12 +3,17 @@ import { IMarketListStyleProps } from "./BoughtList.types";
 
 export const Wrapper = styled.div`
   width: 1300px;
-  margin: 100px;
+  margin: 20px;
   padding: 30px;
   padding-top: 10px;
 
+  @media screen and ((min-width: 1024px) and (max-width: 1500px)) {
+    width: 90%;
+    margin: 20px;
+  }
+
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: 100%;
+    width: 90%;
     margin: 20px;
   }
   @media screen and ((max-width: 768px)) {
@@ -34,50 +39,41 @@ export const MarketBestTitle = styled.div`
   margin-bottom: 30px;
 
   @media screen and ((max-width: 768px)) {
-    display: none;
   }
 `;
 export const BoardBestWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
   margin-bottom: 100px;
 
-  @media screen and ((max-width: 768px)) {
-    display: none;
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
   }
 `;
-export const BoardBest = styled.div`
-  width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-`;
 export const BoardBestDiv = styled.div`
-  width: 22%;
+  display: inline-block;
+  width: 270px;
   height: 350px;
   margin-right: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   overflow: hidden;
 
   @media screen and ((min-width: 1024px)) {
-    width: calc(25% - 40px);
-    height: 350px;
   }
 
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: calc(25% - 40px);
-    height: 250px;
+    width: 200px;
   }
   @media screen and ((max-width: 768px)) {
-    width: calc(25% - 40px);
-    height: 250px;
+    width: 200px;
   }
 `;
 export const BoardBestImg = styled.img`
@@ -103,6 +99,7 @@ export const Header = styled.div`
 export const AvatarWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  margin-left: 15px;
 `;
 
 export const Avatar = styled.img`
@@ -146,6 +143,20 @@ export const ListWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+
+  @media screen and ((min-width: 1024px) and (max-width: 1500px)) {
+    width: 90%;
+    margin: 20px;
+  }
+
+  @media screen and ((min-width: 768px) and (max-width: 1024px)) {
+    width: 90%;
+    margin: 20px;
+  }
+  @media screen and ((max-width: 768px)) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const MarketList = styled.div`
@@ -167,12 +178,12 @@ export const MarketList = styled.div`
     height: 370px;
   }
   @media screen and ((max-width: 768px)) {
-    width: calc(45% - 40px);
-    height: 370px;
+    width: 100%;
+    height: 170px;
   }
-  @media screen and ((max-width: 500px)) {
-    width: calc(80% - 40px);
-    height: 350px;
+  @media screen and ((max-width: 390px)) {
+    width: 100%;
+    height: 170px;
   }
 `;
 export const MarketScrollerDiv = styled.div`
@@ -191,6 +202,17 @@ export const MarketListFirstDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media screen and ((max-width: 768px)) {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+  }
+  @media screen and ((max-width: 390px)) {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+  }
 `;
 
 export const MarketListFirstDivImg = styled.img`
@@ -199,6 +221,15 @@ export const MarketListFirstDivImg = styled.img`
   border-radius: 20px;
   margin-right: 10px;
   object-fit: cover;
+
+  @media screen and ((max-width: 768px)) {
+    width: 30%;
+    height: 150px;
+  }
+  @media screen and ((max-width: 390px)) {
+    width: 30%;
+    height: 150px;
+  }
 `;
 export const MarketListFirstDivInfo = styled.div`
   height: 30%;
@@ -207,6 +238,10 @@ export const MarketListFirstDivInfo = styled.div`
   flex-direction: column;
   align-items: flex-start;
   color: black;
+
+  @media screen and ((max-width: 390px)) {
+    padding-left: 15px;
+  }
 `;
 
 export const MarketListFirstDivName = styled.div`
@@ -214,6 +249,11 @@ export const MarketListFirstDivName = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
   font-size: 1.1rem;
+
+  @media screen and ((max-width: 390px)) {
+    margin-bottom: 3px;
+    font-size: 0.8rem;
+  }
 `;
 
 export const MarketListSellerDiv = styled.div`
@@ -227,6 +267,14 @@ export const MarketListSellerDiv = styled.div`
     width: 20px;
     height: 20px;
     margin-right: 10px;
+  }
+
+  @media screen and ((max-width: 390px)) {
+    & img {
+      width: 15px;
+      height: 15px;
+      margin-right: 3px;
+    }
   }
 `;
 
@@ -245,11 +293,37 @@ export const MarketListPriceDiv = styled.div`
     font-weight: bolder;
     font-size: 1rem;
   }
+
+  @media screen and ((max-width: 390px)) {
+    margin-bottom: 0px;
+
+    & img {
+      margin-right: 3px;
+    }
+    & span {
+      font-weight: bolder;
+      font-size: 0.6rem;
+    }
+  }
 `;
 
 export const MarketListAddressDiv = styled.div`
   font-weight: 600;
   font-size: 0.7rem;
+
+  & span {
+    display: block;
+    width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  @media screen and ((max-width: 768px)) {
+    & span {
+      width: 70%;
+    }
+  }
 `;
 
 export const TodayItemWrapper = styled.div`
@@ -259,6 +333,10 @@ export const TodayItemWrapper = styled.div`
   width: 250px;
   height: 500px;
   padding: 20px;
+
+  @media screen and ((max-width: 768px)) {
+    display: none;
+  }
 `;
 
 export const TodayItemHeader = styled.div`

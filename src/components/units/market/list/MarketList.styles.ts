@@ -47,6 +47,15 @@ export const BoardBestWrapper = styled.div`
   overflow-y: hidden;
   white-space: nowrap;
   margin-bottom: 100px;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+  }
 `;
 export const BoardBestDiv = styled.div`
   display: inline-block;
@@ -134,6 +143,20 @@ export const ListWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+
+  @media screen and ((min-width: 1024px) and (max-width: 1500px)) {
+    width: 90%;
+    margin: 20px;
+  }
+
+  @media screen and ((min-width: 768px) and (max-width: 1024px)) {
+    width: 90%;
+    margin: 20px;
+  }
+  @media screen and ((max-width: 768px)) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const MarketList = styled.div`
@@ -151,16 +174,15 @@ export const MarketList = styled.div`
   cursor: pointer;
 
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: calc(33% - 50px);
-    height: 370px;
+    width: calc(40% - 10px);
   }
   @media screen and ((max-width: 768px)) {
-    width: calc(45% - 40px);
-    height: 370px;
+    width: 100%;
+    height: 170px;
   }
   @media screen and ((max-width: 390px)) {
-    width: calc(100% - 30px);
-    height: 250px;
+    width: 100%;
+    height: 170px;
   }
 `;
 export const MarketScrollerDiv = styled.div`
@@ -179,6 +201,17 @@ export const MarketListFirstDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media screen and ((max-width: 768px)) {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+  }
+  @media screen and ((max-width: 390px)) {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+  }
 `;
 
 export const MarketListFirstDivImg = styled.img`
@@ -187,6 +220,15 @@ export const MarketListFirstDivImg = styled.img`
   border-radius: 20px;
   margin-right: 10px;
   object-fit: cover;
+
+  @media screen and ((max-width: 768px)) {
+    width: 30%;
+    height: 150px;
+  }
+  @media screen and ((max-width: 390px)) {
+    width: 30%;
+    height: 150px;
+  }
 `;
 export const MarketListFirstDivInfo = styled.div`
   height: 30%;

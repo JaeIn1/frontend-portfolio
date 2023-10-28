@@ -27,12 +27,21 @@ export const Wrapper = styled.div`
   @media screen and ((max-width: 1024px)) {
     width: calc(100% - 50px);
   }
+
+  @media screen and ((max-width: 768px)) {
+    margin-top: 50px;
+    padding: 20px;
+  }
 `;
 
 export const Title = styled.div`
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-weight: bold;
+
+  @media screen and ((max-width: 768px)) {
+    font-size: 20px;
+  }
 `;
 
 export const WriterWrapper = styled.div`
@@ -41,72 +50,103 @@ export const WriterWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 40px;
+
+  @media screen and ((max-width: 768px)) {
+    padding-top: 0px;
+  }
 `;
 
 export const ItemName = styled.input`
-  width: 996px;
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
-
-  @media screen and ((max-width: 1024px)) {
-    width: 1000px;
-  }
 `;
 
 export const Label = styled.div`
   padding-bottom: 16px;
   font-size: 16px;
   font-weight: bolder;
+
+  @media screen and ((max-width: 768px)) {
+    font-size: 13px;
+  }
 `;
 
 export const InputWrapper = styled.div`
+  width: 100%;
   padding-top: 40px;
+
+  @media screen and ((max-width: 768px)) {
+    padding-top: 20px;
+  }
 `;
 
 export const ItemSummary = styled.input`
-  width: 996px;
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `;
 export const ItemPrice = styled.input`
-  width: 996px;
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `;
 export const ItemTag = styled.input`
-  width: 996px;
+  width: 100%;
   height: 52px;
   padding-left: 16px;
   border: 1px solid #bdbdbd;
 `;
 
 export const CustomQuill = styled(ReactQuill)`
-  width: 996px;
+  width: 100%;
   height: 350px;
   margin-bottom: 30px;
+
+  @media screen and ((max-width: 1024px)) {
+    height: 150px;
+    margin-bottom: 80px;
+  }
 `;
 
 export const KakaoWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and ((max-width: 1024px)) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
 
 export const KakaoMapDiv = styled.div`
   width: 40%;
   margin-right: 20px;
+
+  @media screen and ((max-width: 1024px)) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 `;
 
 export const KakaoMap = styled.div`
   width: 400px;
   height: 300px;
   border: 1px solid rgba(0, 0, 0, 0.3);
+
+  @media screen and ((max-width: 1024px)) {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 `;
 export const KakaoMapInfo = styled.div`
-  width: 60%;
+  width: 100%;
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -134,7 +174,7 @@ export const SearchButton = styled.button`
 `;
 
 export const Address = styled.input`
-  width: 590px;
+  width: 100%;
   height: 52px;
   margin-top: 16px;
   padding-left: 16px;
@@ -142,8 +182,12 @@ export const Address = styled.input`
 `;
 
 export const ImageWrapper = styled.div`
-  width: 996px;
+  width: 100%;
   padding-top: 40px;
+
+  @media screen and ((max-width: 1024px)) {
+    padding-top: 0px;
+  }
 `;
 
 export const UploadButton = styled.button`

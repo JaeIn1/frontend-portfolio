@@ -84,6 +84,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
             <S.Error>{props.nameError}</S.Error>
           </S.InputWrapper>
         </S.WriterWrapper>
+
         <S.InputWrapper>
           <S.Label>한줄요약</S.Label>
           <S.ItemSummary
@@ -94,6 +95,7 @@ export default function MarketWriteUI(props: IMarketWriteUIProps): JSX.Element {
           />
           <S.Error>{props.remarksError}</S.Error>
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.Label>상품설명</S.Label>
           <S.CustomQuill

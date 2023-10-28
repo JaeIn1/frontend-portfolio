@@ -9,15 +9,12 @@ export const Wrapper = styled.div`
 `;
 
 export const ItemWrapper = styled.div`
+  width: 50%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
 
-  @media screen and ((max-width: 600px)) {
-    width: 100%;
-  }
-
-  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+  @media screen and ((max-width: 780px)) {
+    width: 80%;
   }
 `;
 export const MenuItem = styled.div`
@@ -26,8 +23,10 @@ export const MenuItem = styled.div`
   cursor: pointer;
 
   @media screen and ((max-width: 780px)) {
+    margin: 0px;
   }
 
   @media screen and ((min-width: 780px) and (max-width: 1200px)) {
+    margin: 0px;
   }
 `;

@@ -10,6 +10,12 @@ export const Wrapper = styled.div`
     props.isEdit ? "1140px" : props.isReply ? "1120px" : "1200px"};
   margin: ${(props: IMarketCommentWriteProps) =>
     props.isEdit ? "0px" : props.isReply ? "0 70px" : "0px 100px"};
+
+  @media screen and ((max-width: 1200px)) {
+    width: ${(props: IMarketCommentWriteProps) =>
+      props.isEdit ? "1140px" : props.isReply ? "1120px" : "96%"};
+    margin: 20px;
+  }
 `;
 
 export const PencilIcon = styled.img``;

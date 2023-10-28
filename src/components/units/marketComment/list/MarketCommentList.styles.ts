@@ -6,6 +6,10 @@ export const ItemWrapper = styled.div`
   margin: 0px 100px;
   padding-top: 20px;
   border-bottom: 1px solid lightgray;
+
+  @media screen and ((max-width: 1200px)) {
+    width: 700px;
+  }
 `;
 
 export const FlexWrapper = styled.div`
