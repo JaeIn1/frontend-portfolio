@@ -160,9 +160,7 @@ export default function MarketCommentReplyUI(
           <S.AllowImg src="/images/marketComment/reply.png" />
           <S.Avatar src="/images/avatar.png" />
           <S.MainWrapper>
-            <S.WriterWrapper>
-              <S.Writer>{props.el.user.name}</S.Writer>
-            </S.WriterWrapper>
+            <S.Writer>{props.el.user.name}</S.Writer>
             <S.Contents>{props.el.contents}</S.Contents>
             <S.Reply onClick={onClickReplyAnswer}>답글 달기</S.Reply>
           </S.MainWrapper>

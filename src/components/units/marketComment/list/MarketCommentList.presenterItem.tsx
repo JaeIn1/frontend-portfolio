@@ -72,8 +72,8 @@ export default function MarketCommentListUIItem(
           <span>댓글을 정말 삭제하시겠습니까?</span>
         </S.PasswordModal>
       )}
-      {isEdit ? (
-        <>
+      <S.Wrapper>
+        {isEdit ? (
           <S.ItemWrapper key={props.el._id}>
             <S.FlexWrapper>
               <S.Avatar src="/images/avatar.png" />
@@ -90,33 +90,33 @@ export default function MarketCommentListUIItem(
             </S.FlexWrapper>
             <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
           </S.ItemWrapper>
-        </>
-      ) : (
-        <S.ItemWrapper key={props.el._id}>
-          <S.FlexWrapper>
-            <S.Avatar src="/images/avatar.png" />
-            <S.MainWrapper>
-              <S.WriterWrapper>
-                <S.Writer>{props.el.user.name}</S.Writer>
-              </S.WriterWrapper>
-              <S.Contents>{props.el.contents}</S.Contents>
-              <S.Reply onClick={onClickReply}>답글 달기</S.Reply>
-            </S.MainWrapper>
-            <S.OptionWrapper>
-              <S.UpdateIcon
-                src="/images/boardComment/list/option_update_icon.png/"
-                onClick={onClickUpdate}
-              />
-              <S.DeleteIcon
-                src="/images/boardComment/list/option_delete_icon.png/"
-                onClick={onClickOpenToggle}
-              />
-            </S.OptionWrapper>
-          </S.FlexWrapper>
-          <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
-          {isReply && <MarketCommentReply el={props.el} />}
-        </S.ItemWrapper>
-      )}
+        ) : (
+          <S.ItemWrapper key={props.el._id}>
+            <S.FlexWrapper>
+              <S.Avatar src="/images/avatar.png" />
+              <S.MainWrapper>
+                <S.WriterWrapper>
+                  <S.Writer>{props.el.user.name}</S.Writer>
+                </S.WriterWrapper>
+                <S.Contents>{props.el.contents}</S.Contents>
+                <S.Reply onClick={onClickReply}>답글 달기</S.Reply>
+              </S.MainWrapper>
+              <S.OptionWrapper>
+                <S.UpdateIcon
+                  src="/images/boardComment/list/option_update_icon.png/"
+                  onClick={onClickUpdate}
+                />
+                <S.DeleteIcon
+                  src="/images/boardComment/list/option_delete_icon.png/"
+                  onClick={onClickOpenToggle}
+                />
+              </S.OptionWrapper>
+            </S.FlexWrapper>
+            <S.DateString>{getDate(props.el.createdAt)}</S.DateString>
+            {isReply && <MarketCommentReply el={props.el} />}
+          </S.ItemWrapper>
+        )}
+      </S.Wrapper>
     </>
   );
 }

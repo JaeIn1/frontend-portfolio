@@ -1,14 +1,17 @@
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 
+export const Wrapper = styled.div`
+  width: 100%;
+`;
+
 export const ItemWrapper = styled.div`
-  width: 1200px;
-  margin: 0px 100px;
+  width: 100%;
   padding-top: 20px;
   border-bottom: 1px solid lightgray;
 
   @media screen and ((max-width: 1200px)) {
-    width: 700px;
+    width: 100%;
   }
 `;
 
@@ -20,6 +23,15 @@ export const FlexWrapper = styled.div`
 export const Avatar = styled.img`
   width: 48px;
   height: 48px;
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    width: 41px;
+    height: 41px;
+  }
+  @media screen and (max-width: 390px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 
 export const MainWrapper = styled.div`
@@ -37,6 +49,13 @@ export const WriterWrapper = styled.div`
 export const Writer = styled.div`
   font-size: 20px;
   font-weight: bold;
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 12px;
+  }
 `;
 export const Contents = styled.div``;
 

@@ -7,6 +7,11 @@ interface IUpdateReplyProps {
 
 export const ReplyWrapper = styled.div`
   display: flex;
+  width: 100%;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 export const ReplyWrapperImg = styled.div`
   margin-right: 10px;
@@ -15,10 +20,17 @@ export const ReplyWrapperImg = styled.div`
 `;
 export const ContentsWrapperReply = styled.div`
   margin-top: 20px;
-  width: ${(props: IUpdateReplyProps) => (props.isEdit ? "90%" : "100%")};
+  width: ${(props: IUpdateReplyProps) => (props.isEdit ? "95%" : "100%")};
   border: 1px solid lightgray;
   margin-bottom: 30px;
   margin-left: ${(props: IUpdateReplyProps) => (props.isEdit ? "112px" : "")};
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    margin-left: ${(props: IUpdateReplyProps) => (props.isEdit ? "70px" : "")};
+  }
+  @media screen and (max-width: 390px) {
+    margin-left: ${(props: IUpdateReplyProps) => (props.isEdit ? "60px" : "")};
+  }
 `;
 export const ContentsReply = styled.textarea`
   width: 100%;
@@ -50,11 +62,16 @@ export const Button = styled.button`
 `;
 
 export const Wrapper = styled.div`
+  width: 100%;
   margin-left: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 768px) {
+    margin: 0px 25px;
+  }
 `;
 
 export const AllowImg = styled.img`
@@ -63,6 +80,15 @@ export const AllowImg = styled.img`
 export const Avatar = styled.img`
   width: 48px;
   height: 48px;
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    width: 41px;
+    height: 41px;
+  }
+  @media screen and (max-width: 390px) {
+    width: 35px;
+    height: 35px;
+  }
 `;
 export const MainWrapper = styled.div`
   width: 100%;
@@ -80,6 +106,13 @@ export const WriterWrapper = styled.div`
 export const Writer = styled.div`
   font-size: 20px;
   font-weight: bold;
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    font-size: 15px;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 12px;
+  }
 `;
 export const Contents = styled.div``;
 

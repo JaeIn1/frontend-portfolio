@@ -24,6 +24,7 @@ export const MenuItem = styled.div`
 
   @media screen and ((max-width: 780px)) {
     margin: 0px;
+    font-size: 12px;
   }
 
   @media screen and ((min-width: 780px) and (max-width: 1200px)) {

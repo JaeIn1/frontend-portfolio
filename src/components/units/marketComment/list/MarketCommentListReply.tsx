@@ -13,6 +13,11 @@ import {
 } from "../write/MarketCommentWrite.queries";
 import { useMutation, useQuery } from "@apollo/client";
 import MarketCommentReplyUI from "./MarketCommentListReplyItem";
+import styled from "@emotion/styled";
+
+const Wrapper = styled.div`
+  width: 94%;
+`;
 
 interface IReplyProps {
   el: IUseditemQuestion;
@@ -76,7 +81,7 @@ export default function MarketCommentReply(props: IReplyProps): JSX.Element {
   };
 
   return (
-    <>
+    <Wrapper>
       {data?.fetchUseditemQuestionAnswers.map((el) => (
         <MarketCommentReplyUI
           el={el}
@@ -107,6 +112,6 @@ export default function MarketCommentReply(props: IReplyProps): JSX.Element {
           </S.ContentsWrapperReply>
         </S.ReplyWrapper>
       )}
-    </>
+    </Wrapper>
   );
 }

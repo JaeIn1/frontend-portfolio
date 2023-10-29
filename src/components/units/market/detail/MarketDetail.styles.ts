@@ -4,11 +4,11 @@ import Slider from "react-slick";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 100px;
+  margin: 20px 100px;
 
   @media screen and ((max-width: 1200px)) {
     width: 95%;
-    margin: 20px;
+    margin: 20px 100px;
   }
 `;
 
@@ -24,8 +24,16 @@ export const CardWrapper = styled.div`
   border: none;
   box-shadow: 0px 0px 10px gray;
 
-  @media screen and ((max-width: 1200px)) {
-    padding: 50px;
+  @media screen and ((min-width: 768px) and (max-width: 1200px)) {
+    padding: 60px;
+  }
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
+    padding: 40px;
+  }
+
+  @media screen and ((max-width: 390px)) {
+    padding: 30px;
   }
 `;
 
@@ -48,9 +56,9 @@ export const AvatarWrapper = styled.div`
 export const Avatar = styled.img`
   margin-right: 10px;
 
-  @media screen and ((max-width: 1200px)) {
-    width: 40px;
-    height: 40px;
+  @media screen and ((max-width: 768px)) {
+    width: 30px;
+    height: 30px;
   }
 `;
 
@@ -60,7 +68,7 @@ export const Info = styled.div`
   justify-content: center;
 
   @media screen and ((max-width: 1200px)) {
-    font-size: 12px;
+    font-size: 10px;
   }
 `;
 
@@ -70,7 +78,6 @@ export const CreatedAt = styled.div``;
 
 export const Body = styled.div`
   width: 100%;
-  min-height: 800px;
 `;
 
 export const BoayHeader = styled.div`
@@ -80,6 +87,18 @@ export const BoayHeader = styled.div`
   @media screen and ((max-width: 1200px)) {
     & div {
       font-size: 10px;
+    }
+  }
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
+    & div {
+      font-size: 8px;
+    }
+  }
+
+  @media screen and (max-width: 390px) {
+    & div {
+      font-size: 6px;
     }
   }
 `;
@@ -92,7 +111,11 @@ export const BoayItemLoveImgDiv = styled.div`
     font-weight: bolder;
   }
 
-  @media screen and ((max-width: 1024px)) {
+  @media screen and ((max-width: 768px)) {
+    & img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 export const ItemTags = styled.span``;
@@ -124,9 +147,23 @@ export const Contents = styled.div`
     background-color: rgba(0, 0, 0, 0.03);
   }
 
-  @media screen and ((max-width: 1200px)) {
+  @media screen and ((min-width: 768px) and (max-width: 1200px)) {
     height: 150px;
     font-size: 12px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
+    height: 100px;
+    font-size: 10px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+  @media screen and (max-width: 390px) {
+    height: 100px;
+    font-size: 10px;
     margin-bottom: 0px;
     padding-bottom: 0px;
   }
@@ -134,6 +171,10 @@ export const Contents = styled.div`
 export const Tags = styled.div`
   color: #bdbdbd;
   margin-bottom: 100px;
+
+  @media screen and ((max-width: 768px)) {
+    display: none;
+  }
 `;
 
 export const BreakLine = styled.div`
@@ -163,6 +204,13 @@ export const Button = styled.button`
 
 export const IconWrapper = styled.div`
   text-align: center;
+
+  @media screen and ((max-width: 768px)) {
+    & img {
+      width: 24px;
+      height: 24px;
+    }
+  }
 `;
 
 export const LocationIcon = styled.img``;
@@ -178,6 +226,14 @@ export const ImageWrapperDiv = styled.div`
 export const ImageWrapper = styled.div`
   width: 50%;
   padding-top: 50px;
+
+  @media screen and ((min-width: 390px) and(max-width: 768px)) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 70%;
+  }
 `;
 
 export const StyledSlider = styled(Slider)`
@@ -248,6 +304,18 @@ export const BoardLikeDiv = styled.div`
 export const KaKaoMapDetail = styled.div`
   height: 400px;
   border: 1px solid lightgray;
+
+  @media screen and ((min-width: 768px) and (max-width: 1200px)) {
+    height: 330px;
+  }
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
+    height: 250px;
+  }
+
+  @media screen and (max-width: 390px) {
+    height: 200px;
+  }
 `;
 
 export const BuyModal = styled(Modal)``;
