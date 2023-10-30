@@ -18,12 +18,12 @@ export default function MyPickUI(props: IMyPickUIProps): JSX.Element {
               나의상품
             </S.RightHeaderSpan>
             |
-            <S.RightHeaderMyItem
+            <S.RightHeaderSpan
               onClick={props.onclickMyPageMyPicked}
               isMyPick={props.isMyPick}
             >
               마이찜
-            </S.RightHeaderMyItem>
+            </S.RightHeaderSpan>
           </S.RightHeaderLeft>
           <Searchbars02MyPick
             refetch={props.refetch}

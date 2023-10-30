@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import MyPagePageUI from "./myBought.presenter";
 import { FETCH_MY_BOUGHT, FETCH_MY_BOUGHT_COUNT } from "./myBought.queries";
 import {
   IQuery,
@@ -7,6 +6,7 @@ import {
 } from "../../../commons/types/generated/types";
 import { IMyPointProps } from "./myBought.types";
 import { useState } from "react";
+import MyPointUI from "./myBought.presenter";
 
 export default function MyPoint(props: IMyPointProps): JSX.Element {
   const [keyword, setKeyword] = useState("");
@@ -28,7 +28,7 @@ export default function MyPoint(props: IMyPointProps): JSX.Element {
   };
 
   return (
-    <MyPagePageUI
+    <MyPointUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}

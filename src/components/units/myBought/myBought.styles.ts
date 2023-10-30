@@ -7,6 +7,17 @@ export const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   margin-top: 100px;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 50px;
+  }
 `;
 
 export const LeftWrapper = styled.div`
@@ -27,6 +38,10 @@ export const RightWrapper = styled.div`
   margin-left: 50px;
   position: relative;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 10px);
+  }
 `;
 
 export const LeftPageHeader = styled.div`
@@ -89,6 +104,7 @@ export const LeftPageFooterMenuSpan = styled.span`
     font-weight: bold;
   }
 `;
+
 export const TableTop = styled.div`
   border-top: 2px solid gray;
   margin-top: 20px;
@@ -108,6 +124,12 @@ export const Row = styled.div`
   :hover {
     color: #b173d8;
   }
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    height: 45px;
+    line-height: 45px;
+    font-size: 13px;
+  }
 `;
 export const ColumnHeaderNumber = styled.div`
   width: 10%;
@@ -117,20 +139,45 @@ export const ColumnHeaderNumber = styled.div`
 export const ColumnHeaderTitle = styled.div`
   width: 70%;
   text-align: center;
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 export const ColumnBasic = styled.div`
   width: 15%;
   text-align: start;
+
+  @media screen and (max-width: 768px) {
+    width: 25%;
+  }
 `;
 
 export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
+  position: relative;
   cursor: pointer;
 
   :hover {
     color: #b173d8;
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    width: 50%;
+  }
+`;
+export const ColumnTitleSold = styled.span`
+  margin-left: 70px;
+  position: absolute;
+  right: 110px;
+  color: #b173d8;
+  font-weight: bolder;
+
+  @media screen and (max-width: 768px) {
+    position: absolute;
+    right: 20px;
   }
 `;
 
@@ -139,24 +186,21 @@ export const RightHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-export const RightHeaderLeft = styled.div`
-  & span {
-    margin: 10px;
-  }
-  & span:hover {
+export const RightHeaderLeft = styled.div``;
+
+export const RightHeaderSpan = styled.span`
+  margin: 10px;
+
+  :hover {
     color: black;
     font-weight: bolder;
     text-decoration: #ffd600 3px underline;
     cursor: pointer;
   }
-`;
 
-export const RightHeaderBoughtSpan = styled.span`
   font-weight: ${(props: IMyPointStyleProps) =>
     props.isMyPoint ? "bold" : ""};
   color: ${(props: IMyPointStyleProps) => (props.isMyPoint ? "black" : "")};
   text-decoration: ${(props: IMyPointStyleProps) =>
     props.isMyPoint ? "3px underline #ffd600" : ""};
 `;
-
-export const RightHeaderSoldSpan = styled.span``;

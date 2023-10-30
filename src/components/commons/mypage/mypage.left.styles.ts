@@ -12,29 +12,110 @@ export const LeftWrapper = styled.div`
   align-items: center;
   padding: 30px;
   padding-top: 100px;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 0px;
+  }
 `;
 
 export const LeftPageHeader = styled.div`
   font-size: 25px;
   font-weight: bolder;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 1200px) {
+    display: none;
+    margin-bottom: 0px;
+  }
 `;
+
+export const LeftBodyWrapper = styled.div`
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
 export const LeftPageBody = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-bottom: 60px;
+
+  @media screen and (max-width: 1200px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    & div {
+      margin-left: 10px;
+    }
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    & div {
+      margin-left: 10px;
+    }
+  }
 `;
 export const LeftPageBodyUserIcon = styled.img`
   width: 80px;
   height: 80px;
   margin-bottom: 15px;
+
+  @media screen and (max-width: 768px) and (max-width: 1200px) {
+    width: 60px;
+    height: 60px;
+  }
+
+  @media screen and (max-width: 390px) and (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 40px;
+    height: 40px;
+  }
 `;
 
 export const LeftPageBordText = styled.div`
   font-size: 25px;
   font-weight: bolder;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 20px;
+  }
 `;
 export const LeftPageBodyPoint = styled.div`
   font-size: 17px;
@@ -51,6 +132,20 @@ export const LeftPageFooter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 390px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
 `;
 
 export const LeftPageFooterMenu = styled.div`
@@ -63,6 +158,10 @@ export const LeftPageFooterMenu = styled.div`
   & img {
     width: 25px;
     height: 25px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    margin-right: 20px;
   }
 `;
 export const LeftPageFooterMenuSpan = styled.span`

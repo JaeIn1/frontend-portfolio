@@ -9,7 +9,24 @@ export const Wrapper = styled.div`
   text-align: center;
   position: absolute;
   bottom: 20px;
-  right: 450px;
+  right: calc(50%);
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    position: absolute;
+    bottom: -40px;
+    right: calc(50%);
+  }
+
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    position: absolute;
+    bottom: -40px;
+    right: calc(40%);
+  }
+  @media screen and (max-width: 390px) {
+    position: absolute;
+    bottom: -40px;
+    right: calc(30%);
+  }
 `;
 
 export const Page = styled.span`

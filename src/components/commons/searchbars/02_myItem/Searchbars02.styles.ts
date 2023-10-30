@@ -10,6 +10,10 @@ export const Searchbar = styled.div`
   flex-direction: row;
   align-items: center;
   background-color: #f2f3f6;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 30px;
+  }
 `;
 
 export const SearchIcon = styled(SearchOutlined)`

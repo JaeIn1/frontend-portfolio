@@ -97,9 +97,7 @@ export const UserModal = styled(Modal)`
 `;
 export const PointModal = styled(Modal)`
   max-width: 600px;
-  position: fixed;
-  top: 20%;
-  left: 40%;
+
   padding: 20px;
 `;
 export const UserModalDiv = styled.div`

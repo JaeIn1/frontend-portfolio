@@ -7,6 +7,17 @@ export const Wrapper = styled.div`
   align-items: center;
   height: 100%;
   margin-top: 100px;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    margin-top: 50px;
+  }
 `;
 
 export const RightWrapper = styled.div`
@@ -15,12 +26,27 @@ export const RightWrapper = styled.div`
   margin-left: 50px;
   position: relative;
   margin-bottom: 50px;
+
+  @media screen and (max-width: 1200px) {
+    width: calc(100% - 10px);
+    padding-right: 50px;
+  }
 `;
 
 export const RightDivHeader = styled.div`
   font-size: 28px;
   font-weight: bold;
   margin-bottom: 50px;
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    font-size: 26px;
+  }
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    font-size: 24px;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 22px;
+  }
 `;
 
 export const RightFormDiv = styled.div`
@@ -29,7 +55,6 @@ export const RightFormDiv = styled.div`
   display: flex;
   & div {
     width: 20%;
-
     font-size: 20px;
     font-weight: 550;
   }
@@ -45,6 +70,22 @@ export const RightFormDiv = styled.div`
       font-size: 1.1rem;
       padding-left: 20px;
       color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    & div {
+      font-size: 17px;
+    }
+  }
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    & div {
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 390px) {
+    & div {
+      font-size: 13px;
     }
   }
 `;
