@@ -11,12 +11,15 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 768px) and (max-width: 1200px) {
     width: 100%;
     flex-direction: column;
+    justify-content: flex-start;
+    margin: 0px;
   }
 
   @media screen and (max-width: 768px) {
     width: 100%;
     flex-direction: column;
-    margin-top: 50px;
+    justify-content: flex-start;
+    margin: 0px;
   }
 `;
 
@@ -35,7 +38,7 @@ export const LeftWrapper = styled.div`
 export const RightWrapper = styled.div`
   width: 1000px;
   height: 700px;
-  margin-left: 50px;
+  margin: 0px 50px;
   position: relative;
   margin-bottom: 50px;
 

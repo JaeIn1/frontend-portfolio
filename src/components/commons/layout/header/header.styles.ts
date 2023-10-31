@@ -15,6 +15,10 @@ export const ItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 1200px) {
+    width: 100%;
+  }
 `;
 export const HeaderIconDiv = styled.div`
   width: 80%;
@@ -32,14 +36,31 @@ export const HeaderIconDiv = styled.div`
     font-weight: bolder;
   }
 
-  @media screen and (max-width: 768px) {
-    padding-left: 10px;
-    padding-top: 5px;
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
     & span {
       display: block;
       width: 100px;
       color: #b173d8;
       font-size: 25px;
+      font-weight: bolder;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 40%;
+    padding-left: 10px;
+    padding-top: 5px;
+
+    & img {
+      width: 50px;
+      height: 50px;
+    }
+
+    & span {
+      display: block;
+      width: 100px;
+      color: #b173d8;
+      font-size: 20px;
       font-weight: bolder;
     }
   }
@@ -50,8 +71,18 @@ export const HeaderSettingDiv = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding-top: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin: 0px 30px;
+
+  @media screen and (min-width: 390px) and (max-width: 1200px) {
+    width: 60%;
+
+    padding-top: 10px;
+  }
+
+  @media screen and (max-width: 390px) {
+    margin: 0px;
+    width: 60%;
+  }
 `;
 export const LoginHeaderSettingDiv = styled.div`
   display: flex;
@@ -96,8 +127,6 @@ export const UserModal = styled(Modal)`
   right: 10%;
 `;
 export const PointModal = styled(Modal)`
-  max-width: 600px;
-
   padding: 20px;
 `;
 export const UserModalDiv = styled.div`

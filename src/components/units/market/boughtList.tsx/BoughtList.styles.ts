@@ -66,26 +66,38 @@ export const BoardBestDiv = styled.div`
   cursor: pointer;
   overflow: hidden;
 
-  @media screen and ((min-width: 1024px)) {
-  }
-
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
     width: 200px;
   }
-  @media screen and ((max-width: 768px)) {
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
     width: 200px;
+    height: 270px;
+  }
+
+  @media screen and ((max-width: 390px)) {
+    width: 150px;
+    height: 200px;
   }
 `;
 export const BoardBestImg = styled.img`
   border-radius: 20px 20px 0px 0px;
   width: 100%;
-  height: 250px;
+  height: 75%;
   padding: 15px;
   object-fit: cover;
 `;
 export const BoardBestSpan = styled.div`
+  width: 100%;
   font-weight: bolder;
   font-size: 80%;
+
+  @media screen and ((max-width: 768px)) {
+    width: 65%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 export const Header = styled.div`
   width: 100%;
@@ -95,8 +107,13 @@ export const Header = styled.div`
   align-items: center;
   padding-bottom: 20px;
   margin: 10px;
+
+  @media screen and ((max-width: 768px)) {
+    margin-top: 0px;
+  }
 `;
 export const AvatarWrapper = styled.div`
+  width: 70%;
   display: flex;
   flex-direction: row;
   margin-left: 15px;
@@ -174,8 +191,7 @@ export const MarketList = styled.div`
   cursor: pointer;
 
   @media screen and ((min-width: 768px) and (max-width: 1024px)) {
-    width: calc(33% - 50px);
-    height: 370px;
+    width: calc(40% - 10px);
   }
   @media screen and ((max-width: 768px)) {
     width: 100%;
@@ -442,4 +458,12 @@ export const ButtonDiv2 = styled.div`
   border-radius: 10px;
   background-color: white;
   color: white;
+`;
+
+export const BestItemSpinnerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

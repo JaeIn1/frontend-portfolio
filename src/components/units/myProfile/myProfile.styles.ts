@@ -11,25 +11,37 @@ export const Wrapper = styled.div`
   @media screen and (min-width: 768px) and (max-width: 1200px) {
     width: 100%;
     flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 0px;
   }
 
   @media screen and (max-width: 768px) {
     width: 100%;
     flex-direction: column;
-    margin-top: 50px;
+    justify-content: flex-start;
+    margin-top: 0px;
   }
 `;
 
 export const RightWrapper = styled.div`
   width: 1000px;
   height: 700px;
-  margin-left: 50px;
+  margin: 0px 50px;
   position: relative;
   margin-bottom: 50px;
 
-  @media screen and (max-width: 1200px) {
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
     width: calc(100% - 10px);
+    margin: 0px 50px;
+    padding-left: 20px;
     padding-right: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 10px);
+    margin: 0px 50px;
+    padding-left: 20px;
+    padding-right: 0px;
   }
 `;
 
@@ -79,13 +91,48 @@ export const RightFormDiv = styled.div`
     }
   }
   @media screen and (min-width: 390px) and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
     & div {
+      width: 100%;
       font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    & input {
+      width: calc(100% - 10px);
+      line-height: 2.5rem;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.03);
+      padding: 10px 20px;
+
+      ::placeholder {
+        font-size: 1.1rem;
+        padding-left: 20px;
+        color: rgba(0, 0, 0, 0.5);
+      }
     }
   }
   @media screen and (max-width: 390px) {
+    display: flex;
+    flex-direction: column;
     & div {
+      width: 100%;
       font-size: 13px;
+    }
+
+    & input {
+      width: calc(100% - 10px);
+      line-height: 2.5rem;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.03);
+      padding: 10px 20px;
+
+      ::placeholder {
+        font-size: 1rem;
+        padding-left: 20px;
+        color: rgba(0, 0, 0, 0.5);
+      }
     }
   }
 `;

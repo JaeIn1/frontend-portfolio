@@ -15,11 +15,12 @@ export const LeftWrapper = styled.div`
 
   @media screen and (min-width: 768px) and (max-width: 1200px) {
     width: 100%;
-    height: 300px;
+    height: 30%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 0px;
+    margin-bottom: 50px;
+    padding-top: 50px;
   }
   @media screen and (max-width: 768px) {
     width: 100%;
@@ -27,7 +28,7 @@ export const LeftWrapper = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 0px;
+    padding-top: 30px;
   }
 `;
 
@@ -62,14 +63,15 @@ export const LeftPageBody = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 60px;
+  align-items: center;
+  margin-bottom: 50px;
 
   @media screen and (max-width: 1200px) {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 20px;
 
     & div {
       margin-left: 10px;
@@ -133,18 +135,10 @@ export const LeftPageFooter = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  @media screen and (min-width: 768px) and (max-width: 1200px) {
+  @media screen and (max-width: 1200px) {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-  }
-
-  @media screen and (max-width: 768px) {
-    width: 390px;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
+    flex-direction: column;
   }
 `;
 
@@ -162,6 +156,7 @@ export const LeftPageFooterMenu = styled.div`
 
   @media screen and (max-width: 1200px) {
     margin-right: 20px;
+    padding-right: 30px;
   }
 `;
 export const LeftPageFooterMenuSpan = styled.span`

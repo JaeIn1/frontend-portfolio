@@ -459,3 +459,11 @@ export const ButtonDiv2 = styled.div`
   background-color: white;
   color: white;
 `;
+
+export const BestItemSpinnerWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

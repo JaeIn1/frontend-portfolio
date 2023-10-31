@@ -5,7 +5,6 @@ import { ISubmitButtonProps } from "./login.types";
 export const BackgroundWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 100, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
