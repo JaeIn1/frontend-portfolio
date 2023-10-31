@@ -5,11 +5,7 @@ export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
 
-  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
-    width: 100%;
-    margin: 20px;
-  }
-  @media screen and ((max-width: 780px)) {
+  @media screen and (max-width: 1200px) {
     width: 100%;
     margin: 20px;
   }
@@ -35,8 +31,7 @@ export const Row = styled.div`
     color: blue;
   }
 
-  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
-    margin: 0px;
+  @media screen and (max-width: 1200px) {
     width: 100%;
     text-align: center;
   }
@@ -44,23 +39,38 @@ export const Row = styled.div`
     margin: 0px;
     width: 100%;
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
   }
 `;
 
 export const ColumnHeaderBasic = styled.div`
   width: 10%;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    width: 25%;
+    text-align: center;
+  }
 `;
 
 export const ColumnHeaderTitle = styled.div`
   width: 70%;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    width: 40%;
+    text-align: center;
+  }
 `;
 
 export const ColumnBasic = styled.div`
   width: 10%;
   text-align: center;
+
+  @media screen and (max-width: 768px) {
+    width: 25%;
+    text-align: center;
+  }
 `;
 
 export const ColumnTitle = styled.div`
@@ -71,16 +81,28 @@ export const ColumnTitle = styled.div`
   :hover {
     color: blue;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 40%;
+    text-align: center;
+  }
 `;
 
 export const Footer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   padding-top: 50px;
+
+  @media screen and (max-width: 1200px) {
+  }
 `;
 
 export const PencilIcon = styled.img``;
+
+export const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 
 export const Button = styled.button`
   width: 171px;
@@ -119,36 +141,47 @@ export const BoardBestTitle = styled.div`
 `;
 export const BoardBestWrapper = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
   margin-bottom: 40px;
 
-  @media screen and ((min-width: 780px) and (max-width: 1200px)) {
-    width: 100%;
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
   }
 
-  @media screen and ((max-width: 780px)) {
+  @media screen and (max-width: 1200px) {
     width: 100%;
   }
 `;
 export const BoardBestDiv = styled.div`
-  width: 24%;
-  height: 200px;
+  width: 280px;
+  height: 310px;
   border-radius: 20px;
-  display: flex;
-  flex-direction: column;
+  display: inline-block;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  margin-right: 20px;
   cursor: pointer;
 
-  @media screen and ((max-width: 380px)) {
-    width: calc(50% - 10px);
+  @media screen and (min-width: 390px) and (max-width: 768px) {
+    width: 220px;
+    height: 270px;
+  }
+
+  @media screen and (max-width: 390px) {
+    width: 220px;
+    height: 270px;
   }
 `;
 export const BoardBestImg = styled.img`
   border-radius: 20px 20px 0px 0px;
   width: 100%;
-  height: 45%;
+  height: 60%;
   object-fit: cover;
 `;
 export const BoardBestSpan = styled.span`
@@ -158,12 +191,17 @@ export const BoardBestSpan = styled.span`
 export const Header = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #bdbdbd;
+  align-items: flex-start;
   padding-bottom: 20px;
   margin: 10px;
+`;
+
+export const BoardBestInfo = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
 `;
 export const AvatarWrapper = styled.div`
   display: flex;
@@ -172,8 +210,8 @@ export const AvatarWrapper = styled.div`
 
 export const Avatar = styled.img`
   margin-right: 10px;
-  width: 20%;
-  height: 20%;
+  width: 40px;
+  height: 40px;
 `;
 export const Info = styled.div`
   display: flex;

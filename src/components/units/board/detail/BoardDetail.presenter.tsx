@@ -57,13 +57,15 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
             </S.ImageWrapper>
           </S.ImageWrapperDiv>
           <S.Contents>{props.data?.fetchBoard?.contents}</S.Contents>
-          {props.data?.fetchBoard.youtubeUrl !== "" && (
-            <S.Youtube
-              url={props.data?.fetchBoard.youtubeUrl ?? ""}
-              width="486px"
-              height="240px"
-            />
-          )}
+          <S.YoutubeWrapper>
+            {props.data?.fetchBoard.youtubeUrl !== "" && (
+              <S.Youtube
+                url={props.data?.fetchBoard.youtubeUrl ?? ""}
+                width="486px"
+                height="240px"
+              />
+            )}
+          </S.YoutubeWrapper>
           <S.BoardLikeDiv>
             <div>
               <S.BoardLikeBtn

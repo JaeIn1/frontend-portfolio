@@ -20,7 +20,8 @@ export interface IBoardWriteUIProps {
   onClickAddressSearch: () => void;
 
   onCompleteAddressSearch: (data: any) => void;
-  onChangeFileUrls: (fileUrls: string, index: number) => void;
+  onChangeFileUrls: (fileUrls: File, imgUrl: string, index: number) => void;
+  onClickDeleteImg?: (() => void) | undefined;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   isActive: boolean;
@@ -29,7 +30,7 @@ export interface IBoardWriteUIProps {
   isOpen: boolean;
   zipcode: string;
   address: string;
-  fileUrls: string[];
+  imgUrls: string[];
 }
 
 export interface ISubmitButtonProps {

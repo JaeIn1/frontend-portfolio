@@ -17,19 +17,22 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
             <S.BoardBestImg
               src={`https://storage.googleapis.com/${el.images?.[0]}`}
             />
-            <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
+
             <S.Header>
-              <S.AvatarWrapper>
-                <S.Avatar src="/images/avatar.png" />
-                <S.Info>
-                  <S.Writer>{el.writer}</S.Writer>
-                  <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
-                </S.Info>
-              </S.AvatarWrapper>
-              <S.BestBoardLikeCountDiv>
-                <img src="/images/board/detail/good.png" />
-                <div>{el.likeCount}</div>
-              </S.BestBoardLikeCountDiv>
+              <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
+              <S.BoardBestInfo>
+                <S.AvatarWrapper>
+                  <S.Avatar src="/images/avatar.png" />
+                  <S.Info>
+                    <S.Writer>{el.writer}</S.Writer>
+                    <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
+                  </S.Info>
+                </S.AvatarWrapper>
+                <S.BestBoardLikeCountDiv>
+                  <img src="/images/board/detail/good.png" />
+                  <div>{el.likeCount}</div>
+                </S.BestBoardLikeCountDiv>
+              </S.BoardBestInfo>
             </S.Header>
           </S.BoardBestDiv>
         ))}
@@ -68,10 +71,12 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
       <S.TableBottom />
       <S.Footer>
         <PagenationPage refetch={props.refetch} count={props.count} />
-        <S.Button onClick={props.onClickMoveToBoardNew}>
-          <S.PencilIcon src="/images/board/list/write.png" />
-          게시물 등록하기
-        </S.Button>
+        <S.ButtonWrapper>
+          <S.Button onClick={props.onClickMoveToBoardNew}>
+            <S.PencilIcon src="/images/board/list/write.png" />
+            게시물 등록하기
+          </S.Button>
+        </S.ButtonWrapper>
       </S.Footer>
     </S.Wrapper>
   );

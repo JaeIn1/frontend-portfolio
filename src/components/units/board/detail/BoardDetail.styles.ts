@@ -5,6 +5,11 @@ import ReactPlayer from "react-player";
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
+
+  @media screen and ((max-width: 1200px)) {
+    width: 95%;
+    margin: 20px 100px;
+  }
 `;
 
 export const CardWrapper = styled.div`
@@ -18,6 +23,18 @@ export const CardWrapper = styled.div`
   align-items: center;
   border: none;
   box-shadow: 0px 0px 10px gray;
+
+  @media screen and ((min-width: 768px) and (max-width: 1200px)) {
+    padding: 60px;
+  }
+
+  @media screen and ((min-width: 390px) and (max-width: 768px)) {
+    padding: 40px;
+  }
+
+  @media screen and ((max-width: 390px)) {
+    padding: 30px;
+  }
 `;
 
 export const Header = styled.div`
@@ -37,12 +54,21 @@ export const AvatarWrapper = styled.div`
 
 export const Avatar = styled.img`
   margin-right: 10px;
+
+  @media screen and ((max-width: 768px)) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media screen and ((max-width: 1200px)) {
+    font-size: 10px;
+  }
 `;
 
 export const Writer = styled.div``;
@@ -61,6 +87,10 @@ export const Title = styled.h1`
 export const Contents = styled.div`
   padding-top: 40px;
   padding-bottom: 120px;
+`;
+
+export const YoutubeWrapper = styled.div`
+  width: 100%;
 `;
 
 export const BottomWrapper = styled.div`

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import type { ChangeEvent } from "react";
-import { useMutation } from "@apollo/client";
+import { empty, useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
 import type {
   IMutation,
   IMutationCreateBoardArgs,
   IMutationUpdateBoardArgs,
+  IMutationUploadFileArgs,
   IUpdateBoardInput,
 } from "../../../../commons/types/generated/types";
 import type { IBoardWriteProps } from "./BoardWrite.types";
@@ -26,7 +27,9 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [imgUrls, setImgUrls] = useState<string[]>(["", "", ""]);
+  // eslint-disable-next-line @typescript-eslint/array-type
+  const [fileUrls, setFileUrls] = useState<(File | string)[]>([]);
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -41,6 +44,11 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     Pick<IMutation, "updateBoard">,
     IMutationUpdateBoardArgs
   >(UPDATE_BOARD);
+
+  const [uploadFile] = useMutation<
+    Pick<IMutation, "uploadFile">,
+    IMutationUploadFileArgs
+  >(UPLOAD_FILE);
 
   const onChangeWriter = (event: ChangeEvent<HTMLInputElement>): void => {
     setWriter(event.target.value);
@@ -128,11 +136,43 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     setIsOpen((prev) => !prev);
   };
 
-  const onChangeFileUrls = (fileUrl: string, index: number): void => {
-    const newFileUrls = [...fileUrls];
-    newFileUrls[index] = fileUrl;
-    setFileUrls(newFileUrls);
+  const onChangeFileUrls = (
+    fileUrl: File,
+    imgUrl: string,
+    index: number
+  ): void => {
+    const tempUrls = [...fileUrls];
+    tempUrls[index] = fileUrl;
+    setFileUrls(tempUrls);
+
+    const tempImgUrls = [...imgUrls];
+    tempImgUrls[index] = imgUrl;
+    setImgUrls(tempImgUrls);
+
+    console.log(tempUrls);
   };
+
+  const onClickDeleteImg = (index: any): void => {
+    const tempImgUrl = [...imgUrls];
+    tempImgUrl[index] = "";
+    setImgUrls(tempImgUrl);
+
+    const tempUrl = [...fileUrls];
+    tempUrl[index] = "";
+    setFileUrls(tempUrl);
+  };
+
+  useEffect(() => {
+    const tempArr = ["", "", ""];
+    const images = props.data?.fetchBoard.images;
+    if (images !== undefined && images !== null) {
+      for (let i = 0; i < tempArr.length; i++) {
+        tempArr[i] = images[i] ?? "";
+      }
+    }
+    setImgUrls(tempArr);
+    setFileUrls(tempArr);
+  }, [props.data]);
 
   useEffect(() => {
     const images = props.data?.fetchBoard.images;
@@ -161,6 +201,18 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
     }
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
+        const results = await Promise.all(
+          fileUrls.map(async (el) => {
+            if (el instanceof File) {
+              const result = await uploadFile({
+                variables: { file: el },
+              });
+              return result;
+              // eslint-disable-next-line no-useless-return
+            } else return;
+          })
+        );
+        const resultUrls = results.map((el) => el?.data?.uploadFile.url ?? "");
         const result = await createBoard({
           variables: {
             createBoardInput: {
@@ -174,7 +226,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
                 address,
                 addressDetail,
               },
-              images: [...fileUrls],
+              images: [...resultUrls],
             },
           },
         });
@@ -225,7 +277,23 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       if (addressDetail !== "")
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-    if (isChangedFiles) updateBoardInput.images = fileUrls;
+
+    for (let i = 0; i < 3; i++) {
+      if (fileUrls[i] === (undefined && empty)) {
+        fileUrls.splice(i, 1);
+      }
+    }
+    const results = await Promise.all(
+      fileUrls.map(async (el) => {
+        if (el instanceof File) {
+          const result = await uploadFile({
+            variables: { file: el },
+          });
+          return result.data?.uploadFile.url ?? "";
+        } else return el ?? "";
+      })
+    );
+    if (isChangedFiles) updateBoardInput.images = results;
 
     try {
       if (typeof router.query.boardId !== "string") {
@@ -266,6 +334,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
       onChangeFileUrls={onChangeFileUrls}
+      onClickDeleteImg={onClickDeleteImg}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isActive={isActive}
@@ -274,7 +343,7 @@ export default function BoardWrite(props: IBoardWriteProps): JSX.Element {
       isOpen={isOpen}
       zipcode={zipcode}
       address={address}
-      fileUrls={fileUrls}
+      imgUrls={imgUrls}
     />
   );
 }

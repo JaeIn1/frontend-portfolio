@@ -4,6 +4,11 @@ import { Rate } from "antd";
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;
+
+  @media screen and (max-width: 1200px) {
+    margin: 0px;
+    width: 100%;
+  }
 `;
 
 export const PencilIcon = styled.img``;

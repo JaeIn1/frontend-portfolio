@@ -204,7 +204,7 @@ export const UploadButtonDiv = styled.div`
 `;
 
 export const OptionWrapper = styled.div`
-  width: 996px;
+  width: 100%;
   padding-top: 40px;
 `;
 
