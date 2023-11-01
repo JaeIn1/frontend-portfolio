@@ -86,6 +86,12 @@ export default function LoginPage(): JSX.Element {
   const onClickMoveSignUp = (): void => {
     void router.push("/signup");
   };
+
+  const onKeyUpLogin = (e: any): void => {
+    if (e.key === "Enter") {
+      void onClickLoginBtn();
+    }
+  };
   return (
     <>
       <LoginPageUI
@@ -96,6 +102,7 @@ export default function LoginPage(): JSX.Element {
         onClickLoginBtn={onClickLoginBtn}
         isActive={isActive}
         onClickMoveSignUp={onClickMoveSignUp}
+        onKeyUpLogin={onKeyUpLogin}
       />
     </>
   );

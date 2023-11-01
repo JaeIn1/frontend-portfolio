@@ -5,6 +5,7 @@ export interface ILoginProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickLoginBtn: () => void;
   onClickMoveSignUp: () => void;
+  onKeyUpLogin: (e: any) => void;
   idError: string;
   passwordError: string;
   isActive: boolean;

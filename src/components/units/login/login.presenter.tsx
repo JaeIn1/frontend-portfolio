@@ -22,6 +22,7 @@ export default function LoginPageUI(props: ILoginProps): JSX.Element {
             type="password"
             placeholder="비밀번호를 입력하세요"
             onChange={props.onChangePassword}
+            onKeyUp={props.onKeyUpLogin}
           />
           <S.Error>{props.passwordError}</S.Error>
           <S.LoginStayDiv>

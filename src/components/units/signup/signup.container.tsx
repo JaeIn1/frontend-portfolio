@@ -32,20 +32,24 @@ export default function SignUpPage(): JSX.Element {
     void router.push("/");
   };
 
-  const onClickSignUpBtn = (data: any): void => {
+  const onClickSignUpBtn = async (data: any): Promise<void> => {
     console.log(data);
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const result = signupUser({
-      variables: {
-        createUserInput: {
-          email: data.email,
-          name: data.name,
-          password: data.password,
+    try {
+      const result = await signupUser({
+        variables: {
+          createUserInput: {
+            email: data.email,
+            name: data.name,
+            password: data.password,
+          },
         },
-      },
-    });
-    setIsOpen((prev) => !prev);
+      });
+      setIsOpen((prev) => !prev);
+    } catch (error) {
+      if (error instanceof Error) alert(error);
+    }
   };
 
   return (
