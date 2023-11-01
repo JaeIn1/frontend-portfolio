@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { IQuery } from "../../../commons/types/generated/types";
 
 export interface IMyPageLeftDivProps {
@@ -16,4 +17,13 @@ export interface IMyPageLeftDivUIProps {
   onClickMoveMyItem: () => void;
   onClickMoveMyPoint: () => void;
   onClickMoveMyProfile: () => void;
+  onClickPoint: () => void;
+  PointToggleModal: () => void;
+  onChangePointPrice: (event: ChangeEvent<HTMLSelectElement>) => void;
+  pointIsOpen: boolean;
+  selectPrice: boolean;
+}
+
+export interface IMypageLestStyleProps {
+  isActive: boolean;
 }

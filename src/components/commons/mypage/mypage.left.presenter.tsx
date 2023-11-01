@@ -6,6 +6,38 @@ export default function MyPageLeftDivUIPage(
 ): JSX.Element {
   return (
     <S.LeftWrapper>
+      {props.pointIsOpen && (
+        <S.PointModal
+          open={true}
+          onOk={props.PointToggleModal}
+          onCancel={props.PointToggleModal}
+          footer={null}
+        >
+          <S.PointModalWrapper>
+            <S.PointModalHeader>
+              <img src="/images/layout/header/eggplant.png" />
+              <S.PointModalHeaderText>
+                <span>충전하실 금액을 선택헤주세요</span>
+              </S.PointModalHeaderText>
+            </S.PointModalHeader>
+            <S.PointModalBodyWrapper>
+              <select onChange={props.onChangePointPrice}>
+                <option value={10000}>10000원</option>
+                <option value={30000}>30000원</option>
+                <option value={50000}>50000원</option>
+              </select>
+            </S.PointModalBodyWrapper>
+            <S.PointModalFooterWrapper>
+              <S.PointModalFooterBtn
+                onClick={props.onClickPoint}
+                isActive={props.selectPrice}
+              >
+                충전하기
+              </S.PointModalFooterBtn>
+            </S.PointModalFooterWrapper>
+          </S.PointModalWrapper>
+        </S.PointModal>
+      )}
       <S.LeftPageHeader>
         <span>MYPAGE</span>
       </S.LeftPageHeader>
@@ -24,6 +56,20 @@ export default function MyPageLeftDivUIPage(
               </span>
             </S.LeftPageBodyPoint>
           </div>
+          <S.LeftPagePay>
+            <S.LeftPagePayHeader>
+              <S.LeftPagePayHeaderIcon>
+                <img src="/images/layout/header/eggplant.png" />
+                <span>pay</span>
+              </S.LeftPagePayHeaderIcon>
+              <S.LeftPagePayHeaderText>
+                새로운 방법 가지페이 {`>`}
+              </S.LeftPagePayHeaderText>
+            </S.LeftPagePayHeader>
+            <S.LeftPagePayBtn onClick={props.PointToggleModal}>
+              + 충전하기
+            </S.LeftPagePayBtn>
+          </S.LeftPagePay>
         </S.LeftPageBody>
         <S.LeftPageFooter>
           <S.LeftPageFooterMenu>

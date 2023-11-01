@@ -13,3 +13,14 @@ export const FETCH_USER_INFO = gql`
     }
   }
 `;
+
+export const POINT_RECHARGE = gql`
+  mutation createPointTransactionOfLoading($impUid: ID!) {
+    createPointTransactionOfLoading(impUid: $impUid) {
+      _id
+      impUid
+      amount
+      createdAt
+    }
+  }
+`;
