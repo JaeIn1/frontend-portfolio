@@ -7,7 +7,7 @@ import TodayWatchPage from "./TodayWatched";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import MarketListCommenPage from "../../../commons/market/list/marketList.container";
-import { ClipLoader } from "react-spinners";
+import { PuffLoader } from "react-spinners";
 
 export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
   const [todayWatch] = useRecoilState(todayWatchItem);
@@ -49,7 +49,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 onClick={props.onClickMarketItem(el)}
               >
                 <div>
-                  <ClipLoader color="#B173D8" loading={true} size={150} />
+                  <PuffLoader color="#B173D8" loading={true} size={150} />
                 </div>
               </S.BoardBestDiv>
             )
@@ -125,7 +125,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                     onClick={props.onClickMarketItem(el)}
                   >
                     <div>
-                      <ClipLoader color="#B173D8" loading={true} size={150} />
+                      <PuffLoader color="#B173D8" loading={true} size={150} />
                     </div>
                   </S.MarketList>
                 )

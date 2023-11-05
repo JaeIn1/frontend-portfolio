@@ -12,6 +12,7 @@ import {
   FETCH_MARKET_ITEM,
   PICK_ITEM,
   BOUGHT_ITEM,
+  FETCH_USER_INFO,
 } from "./MarketDetail.queries";
 import MarketDetailUI from "./MarketDetail.presenter";
 import { useEffect, useState } from "react";
@@ -40,10 +41,12 @@ export default function MarketDetail(): JSX.Element {
   const router = useRouter();
   const [isOpenBuy, setIsOpenBuy] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenEggplant, setIsOpenEggplant] = useState(false);
   const [zipcode, setZipcode] = useState("");
   const [address, setAddress] = useState("");
   const [postError, setPostError] = useState("");
   const [myPick, setMyPick] = useState(false);
+  const [pointBtn, setPointBtn] = useState(false);
 
   if (typeof router.query.marketId !== "string") return <></>;
 
@@ -51,6 +54,9 @@ export default function MarketDetail(): JSX.Element {
     Pick<IQuery, "fetchUseditem">,
     IQueryFetchUseditemArgs
   >(FETCH_MARKET_ITEM, { variables: { useditemId: router.query.marketId } });
+
+  const { data: userPoint } =
+    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_INFO);
 
   const [pickItem] = useMutation<
     Pick<IMutation, "toggleUseditemPick">,
@@ -96,6 +102,11 @@ export default function MarketDetail(): JSX.Element {
   const onClickToggle = (): void => {
     setIsOpenBuy((prev) => !prev);
   };
+
+  const onClickToggleEgg = (): void => {
+    setIsOpenEggplant((prev) => !prev);
+  };
+
   const onClickBuyItem = (buyerInfo: any): void => {
     if (zipcode === "") {
       setPostError("주소입력은 필수입니다.");
@@ -118,14 +129,13 @@ export default function MarketDetail(): JSX.Element {
         buyer_addr: address,
         buyer_postcode: zipcode,
       },
-      (rsp: any) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           // 결제 성공 시 로직,
-          console.log(rsp);
           // 백엔드에 결제관련 데이터 넘겨주기 => 즉 mutationt실행하기
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const result = boughtItme({
+          const result = await boughtItme({
             variables: {
               useritemId: String(router.query.marketId),
             },
@@ -136,9 +146,40 @@ export default function MarketDetail(): JSX.Element {
           });
         } else {
           // 결제 실패 시 로직,
+          alert("결제에 실패하였습니다,,");
         }
       }
     );
+  };
+  const onClickBuyItemPoint = async (): Promise<void> => {
+    // esint-disable-next-line @typescript-eslint/no-unused-vars
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const result = await boughtItme({
+        variables: {
+          useritemId: String(router.query.marketId),
+        },
+      });
+    } catch (error) {
+      alert(error);
+    }
+    onClickToggle();
+    Modal.success({
+      content: "결제에 성공하였습니다.",
+    });
+  };
+
+  const testBuy = (): void => {
+    if (
+      Number(data?.fetchUseditem.price) >
+      Number(userPoint?.fetchUserLoggedIn.userPoint?.amount)
+    ) {
+      setPointBtn(true);
+      setIsOpenEggplant(true);
+    } else {
+      setPointBtn(false);
+      setIsOpenEggplant(true);
+    }
   };
 
   const onClickAddressSearch = (): void => {
@@ -209,6 +250,12 @@ export default function MarketDetail(): JSX.Element {
         handleSubmit={handleSubmit}
         formState={formState}
         onClickPickItem={onClickPickItem}
+        testBuy={testBuy}
+        isOpenEggplant={isOpenEggplant}
+        onClickToggleEgg={onClickToggleEgg}
+        userPoint={userPoint}
+        onClickBuyItemPoint={onClickBuyItemPoint}
+        pointBtn={pointBtn}
       />
     </>
   );

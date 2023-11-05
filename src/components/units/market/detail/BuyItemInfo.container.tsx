@@ -59,7 +59,20 @@ export default function BuyItemInfoPage(props: IBuyItemProps): JSX.Element {
               {props.formState.errors.email?.message}
             </S.ErrorText>
           </S.BodyDiv>
-          <S.BuyBtn isActive={props.formState.isValid}>결제하기</S.BuyBtn>
+          <S.BuyBtn
+            isActive={props.formState.isValid}
+            onClick={props.onClickBuyItem}
+          >
+            <img src="/images/layout/header/kakaopay.png" />
+            <span>Kakaopay</span>
+          </S.BuyBtn>
+          <S.BuyBtn2
+            isActive={props.formState.isValid}
+            onClick={props.handleSubmit(props.testBuy)}
+          >
+            <img src="/images/layout/header/eggplant.png" />
+            <span>결제하기</span>
+          </S.BuyBtn2>
         </form>
       </body>
     </>

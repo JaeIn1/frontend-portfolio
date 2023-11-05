@@ -46,7 +46,6 @@ export default function MarketWrite(props: IMarketWriteProps): JSX.Element {
   const [contentsError, setContentsError] = useState("");
   const [pricesError, setPriceError] = useState("");
   const [tagsError, setTagsError] = useState("");
-
   const [uploadFile] = useMutation<
     Pick<IMutation, "uploadFile">,
     IMutationUploadFileArgs

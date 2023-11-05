@@ -13,40 +13,44 @@ export const BackgroundWrapper = styled.div`
 
 export const Wrapper = styled.div`
   background-color: white;
-  width: 600px;
   padding: 20px;
-  //border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  align-items: center;
 `;
 
 export const HeaderWrapper = styled.div`
+  height: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 1%;
+  margin-right: 40px;
 `;
 
 export const HeaderDiv = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
+  padding-bottom: 10px;
+
+  & img {
+    width: 190px;
+    height: 190px;
+  }
 
   & span {
+    text-align: center;
     color: #b173d8;
-    font-size: 30px;
-    margin-top: 10px;
-    margin-left: 5px;
-    font-weight: bold;
+    font-size: 36px;
+    font-family: "Jua", sans-serif;
   }
 `;
 
 export const BodyWrapper = styled.div`
-  margin-top: 30px;
+  padding: 40px;
+  padding-right: 0px;
+  padding-bottom: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,6 +66,8 @@ export const BodyInputDid = styled.div`
   & span {
     padding-left: 10px;
     margin-bottom: 3px;
+    font-weight: 600;
+    margin-bottom: 10px;
   }
 `;
 
@@ -121,12 +127,17 @@ export const SignUpModalBtn = styled.button`
 `;
 
 export const SignupInput = styled.input`
-  width: 500px;
-  padding: 17px 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 400px;
+  line-height: 3.5rem;
+  border: none;
+  border: 2px solid #b173d8;
   border-radius: 10px;
   margin-bottom: 10px;
-  margin-top: 10px;
+  padding-left: 20px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const SignupError = styled.div`

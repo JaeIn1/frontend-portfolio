@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./signup.styles";
 import { schema } from "./signup.validation";
+import Head from "next/head";
 
 interface IFormData {
   email: string;
@@ -37,6 +38,7 @@ export default function SignUpPage(): JSX.Element {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const result = await signupUser({
         variables: {
           createUserInput: {
@@ -54,6 +56,14 @@ export default function SignUpPage(): JSX.Element {
 
   return (
     <S.BackgroundWrapper>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jua&family=Roboto+Condensed&family=Ubuntu:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <S.Wrapper>
         {isOpen && (
           <S.SignUpModal open={true} onCancel={ToggleModal} footer={null}>
@@ -64,54 +74,56 @@ export default function SignUpPage(): JSX.Element {
         <S.HeaderWrapper>
           <S.HeaderDiv>
             <img src="/images/layout/header/eggplant.png" />
-            <span>회원가입</span>
+            <span>가지마켓</span>
           </S.HeaderDiv>
         </S.HeaderWrapper>
-        <S.BodyWrapper>
-          <form onSubmit={handleSubmit(onClickSignUpBtn)}>
-            <S.BodyInputDid>
-              <span>이메일</span>
-              <S.SignupInput
-                type="text"
-                {...register("email")}
-                placeholder="이메일을 입력해주새요"
-              />
-              <S.SignupError>{formState.errors.email?.message}</S.SignupError>
-            </S.BodyInputDid>
-            <S.BodyInputDid>
-              <span>이름</span>
-              <S.SignupInput
-                type="text"
-                {...register("name")}
-                placeholder="이름을 입력해주새요"
-              />
-              <S.SignupError>{formState.errors.name?.message}</S.SignupError>
-            </S.BodyInputDid>
-            <S.BodyInputDid>
-              <span>비밀번호</span>
-              <S.SignupInput
-                type="password"
-                {...register("password")}
-                placeholder="비밀번호를 입력해주새요"
-              />
-              <S.SignupError>
-                {formState.errors.password?.message}
-              </S.SignupError>
-            </S.BodyInputDid>
-            <S.BodyInputDid>
-              <span>비밀번호확인</span>
-              <S.SignupInput
-                type="password"
-                {...register("passwordCheck")}
-                placeholder="비밀번호를 확인해주세요"
-              />
-              <S.SignupError>
-                {formState.errors.passwordCheck?.message}
-              </S.SignupError>
-            </S.BodyInputDid>
-            <S.LoginBtn isActive={formState.isValid}>회원가입하기</S.LoginBtn>
-          </form>
-        </S.BodyWrapper>
+        <div>
+          <S.BodyWrapper>
+            <form onSubmit={handleSubmit(onClickSignUpBtn)}>
+              <S.BodyInputDid>
+                <span>이메일</span>
+                <S.SignupInput
+                  type="text"
+                  {...register("email")}
+                  placeholder="이메일을 입력해주새요"
+                />
+                <S.SignupError>{formState.errors.email?.message}</S.SignupError>
+              </S.BodyInputDid>
+              <S.BodyInputDid>
+                <span>이름</span>
+                <S.SignupInput
+                  type="text"
+                  {...register("name")}
+                  placeholder="이름을 입력해주새요"
+                />
+                <S.SignupError>{formState.errors.name?.message}</S.SignupError>
+              </S.BodyInputDid>
+              <S.BodyInputDid>
+                <span>비밀번호</span>
+                <S.SignupInput
+                  type="password"
+                  {...register("password")}
+                  placeholder="비밀번호를 입력해주새요"
+                />
+                <S.SignupError>
+                  {formState.errors.password?.message}
+                </S.SignupError>
+              </S.BodyInputDid>
+              <S.BodyInputDid>
+                <span>비밀번호확인</span>
+                <S.SignupInput
+                  type="password"
+                  {...register("passwordCheck")}
+                  placeholder="비밀번호를 확인해주세요"
+                />
+                <S.SignupError>
+                  {formState.errors.passwordCheck?.message}
+                </S.SignupError>
+              </S.BodyInputDid>
+              <S.LoginBtn isActive={formState.isValid}>회원가입하기</S.LoginBtn>
+            </form>
+          </S.BodyWrapper>
+        </div>
       </S.Wrapper>
     </S.BackgroundWrapper>
   );

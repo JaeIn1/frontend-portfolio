@@ -1,5 +1,15 @@
 import { gql } from "@apollo/client";
 
+export const FETCH_USER_INFO = gql`
+  query {
+    fetchUserLoggedIn {
+      _id
+      userPoint {
+        amount
+      }
+    }
+  }
+`;
 export const FETCH_MARKET_ITEM = gql`
   query fetchUseditem($useditemId: ID!) {
     fetchUseditem(useditemId: $useditemId) {

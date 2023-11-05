@@ -12,40 +12,43 @@ export const BackgroundWrapper = styled.div`
 
 export const Wrapper = styled.div`
   background-color: white;
-  width: 600px;
   padding: 20px;
-  //border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
+  align-items: center;
 `;
 
 export const HeaderWrapper = styled.div`
+  height: 100%;
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 1%;
+  margin-right: 60px;
 `;
 
 export const HeaderDiv = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
+  padding-top: 50px;
+
+  & img {
+    width: 190px;
+    height: 190px;
+  }
 
   & span {
+    text-align: center;
     color: #b173d8;
-    font-size: 30px;
-    margin-top: 10px;
-    margin-left: 5px;
-    font-weight: bold;
+    font-size: 36px;
+    font-family: "Jua", sans-serif;
   }
 `;
 
 export const BodyWrapper = styled.div`
-  padding: 30px;
+  padding: 40px;
+  padding-right: 0px;
   padding-bottom: 0px;
   display: flex;
   flex-direction: column;
@@ -53,12 +56,29 @@ export const BodyWrapper = styled.div`
 `;
 
 export const BodyInput = styled.input`
-  width: 100%;
+  width: 450px;
   line-height: 3.5rem;
-  border-radius: 15px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: none;
+  border-bottom: 3px solid #b173d8;
+  margin: 30px 0px;
+  padding-left: 20px;
+
+  &:focus {
+    outline: none;
+  }
+`;
+export const BodyInput2 = styled.input`
+  width: 450px;
+  line-height: 3.5rem;
+  border: none;
+  border-bottom: 3px solid #b173d8;
+  margin: 30px 0px;
   margin-bottom: 10px;
   padding-left: 20px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const LoginStayImg = styled(CheckCircleOutlined)`
@@ -85,6 +105,7 @@ export const LoginBtn = styled.button`
   border: none;
   padding: 15px 20px;
   cursor: pointer;
+  margin-top: 40px;
 
   background-color: ${(props: ISubmitButtonProps) =>
     props.isActive ? "#B173D8" : "none"};
@@ -92,7 +113,7 @@ export const LoginBtn = styled.button`
 `;
 
 export const FooteWrapper = styled.div`
-  padding: 30px;
+  width: 450px;
 `;
 
 export const breakLine = styled.div`
@@ -102,7 +123,7 @@ export const breakLine = styled.div`
 
 export const LoginSettingDiv = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 export const Error = styled.div`
@@ -115,8 +136,9 @@ export const Error = styled.div`
 `;
 
 export const SettingSpan = styled.span`
+  margin: 0px 15px;
   font-size: 15px;
+  font-weight: 700;
   color: rgba(0, 0, 0, 0.5);
-  margin: 15px;
   cursor: pointer;
 `;

@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 import Slider from "react-slick";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { IMarketDetailStylesProps } from "./MarketDetail.types";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -319,3 +321,94 @@ export const KaKaoMapDetail = styled.div`
 `;
 
 export const BuyModal = styled(Modal)``;
+
+export const PointModalWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const PointModalHeader = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & img {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+  }
+`;
+
+export const PointModalHeaderText = styled.div`
+  & span {
+    font-size: 25px;
+    font-family: "Jua", sans-serif;
+    color: #b173d8;
+  }
+`;
+
+export const PointModalBodyWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+export const PointModalBodyDiv = styled.div`
+  padding: 0px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+export const PointModalBodySpan = styled.div`
+  font-size: 16px;
+`;
+
+export const PointDiv = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+`;
+export const PointModalFooterWrapper = styled.div`
+  width: 100%;
+  padding: 10px;
+
+  & button {
+    border: ${(props: IMarketDetailStylesProps) =>
+      props.isActive ? "none" : "1px solid rgba(0, 0, 0, 0.2)"};
+    border-radius: ${(props: IMarketDetailStylesProps) =>
+      props.isActive ? "" : "10px"};
+    background-color: ${(props: IMarketDetailStylesProps) =>
+      props.isActive ? "" : "white"};
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    & img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+`;
+
+export const EggPointIcon = styled(AttachMoneyIcon)`
+  color: #ffcd01;
+`;
+
+export const PointErrorDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 50px;
+  color: red;
+`;

@@ -63,7 +63,8 @@ export default function MyPageLeftDivUIPage(
                 <span>pay</span>
               </S.LeftPagePayHeaderIcon>
               <S.LeftPagePayHeaderText>
-                새로운 방법 가지페이 {`>`}
+                <span>새로운 방법</span>
+                <span>가지페이 {`>`}</span>
               </S.LeftPagePayHeaderText>
             </S.LeftPagePayHeader>
             <S.LeftPagePayBtn onClick={props.PointToggleModal}>

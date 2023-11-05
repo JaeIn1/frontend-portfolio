@@ -105,15 +105,51 @@ export const AddressModal = styled(Modal)``;
 export const AddressSearchInput = styled(DaumPostcode)``;
 
 export const BuyBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  background-color: ${(props: IBuyBtnProps) =>
-    props.isActive ? "#B173D8" : ""};
-  color: white;
+  background-color: ${(props: IBuyBtnProps) => (props.isActive ? "white" : "")};
+
+  color: ${(props: IBuyBtnProps) =>
+    props.isActive ? "black" : "rgba(0, 0, 0, 0.7)"};
+  border: ${(props: IBuyBtnProps) =>
+    props.isActive ? "1px solid rgba(0,0,0,0.1)" : "none"};
+  border-radius: 5px;
   padding: 15px 20px;
-  border: none;
+  font-weight: bolder;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  & img {
+    width: 70px;
+    height: 30px;
+    margin-right: 10px;
+  }
+`;
+
+export const BuyBtn2 = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: ${(props: IBuyBtnProps) => (props.isActive ? "white" : "")};
+  color: ${(props: IBuyBtnProps) =>
+    props.isActive ? "black" : "rgba(0, 0, 0, 0.7)"};
+  padding: 15px 20px;
+  border: ${(props: IBuyBtnProps) =>
+    props.isActive ? "1px solid rgba(0,0,0,0.1)" : "none"};
   border-radius: 5px;
   font-weight: bolder;
+  font-size: 20px;
   cursor: pointer;
+  margin-bottom: 10px;
+
+  & img {
+    width: 33px;
+    height: 33px;
+  }
 `;
 export const ErrorText = styled.div`
   color: red;

@@ -135,6 +135,7 @@ export const LeftPagePay = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   margin-bottom: 50px;
+  margin-top: 30px;
 
   @media screen and (max-width: 1200px) {
     display: none;
@@ -155,6 +156,7 @@ export const LeftPagePayHeaderIcon = styled.div`
   align-items: center;
   color: #b173d8;
   padding-left: 20px;
+  font-size: 17px;
 
   & img {
     width: 30px;
@@ -162,6 +164,8 @@ export const LeftPagePayHeaderIcon = styled.div`
   }
 `;
 export const LeftPagePayHeaderText = styled.div`
+  display: flex;
+  flex-direction: column;
   font-size: 0.9rem;
   color: rgba(0, 0, 0, 0.5);
   padding-right: 10px;

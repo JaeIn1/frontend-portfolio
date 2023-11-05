@@ -20,6 +20,7 @@ export interface IBuyItemProps {
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData, undefined>;
   formState: FormState<IFormData>;
+  testBuy: () => void;
 }
 
 export interface IBuyBtnProps {

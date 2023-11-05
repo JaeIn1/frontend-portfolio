@@ -4,6 +4,7 @@ import type { IMarketDetailUIProps } from "./MarketDetail.types";
 import { Tooltip } from "antd";
 import DOMPurify from "dompurify";
 import BuyItemInfoPage from "./BuyItemInfo.container";
+import Head from "next/head";
 
 export default function MarketDetailUI(
   props: IMarketDetailUIProps
@@ -28,6 +29,86 @@ export default function MarketDetailUI(
 
   return (
     <S.Wrapper>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jua&family=Roboto+Condensed&family=Ubuntu:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+      {props.isOpenEggplant && (
+        <S.BuyModal
+          open={true}
+          onCancel={props.onClickToggleEgg}
+          okButtonProps={{ style: { display: "none" } }}
+          cancelButtonProps={{ style: { display: "none" } }}
+        >
+          <S.PointModalWrapper>
+            <S.PointModalHeader>
+              <img src="/images/layout/header/eggplant.png" />
+              <S.PointModalHeaderText>
+                <span>가지페이</span>
+              </S.PointModalHeaderText>
+            </S.PointModalHeader>
+            <S.PointModalBodyWrapper>
+              <S.PointModalBodyDiv>
+                <S.PointModalBodySpan>
+                  사용가능한 포인트 {`>`}
+                </S.PointModalBodySpan>
+                <S.PointDiv>
+                  <S.EggPointIcon />
+                  <span>
+                    {props.userPoint?.fetchUserLoggedIn.userPoint?.amount.toLocaleString()}
+                    원
+                  </span>
+                </S.PointDiv>
+              </S.PointModalBodyDiv>
+              <S.PointModalBodyDiv>
+                <S.PointModalBodySpan>사용할 포인트 {`>`}</S.PointModalBodySpan>
+                <S.PointDiv>
+                  <S.EggPointIcon />
+                  <span>
+                    {props.data?.fetchUseditem.price?.toLocaleString()}원
+                  </span>
+                </S.PointDiv>
+              </S.PointModalBodyDiv>
+              {Number(props.userPoint?.fetchUserLoggedIn.userPoint?.amount) >
+              Number(props.data?.fetchUseditem.price) ? (
+                <S.PointModalBodyDiv>
+                  <S.PointModalBodySpan>
+                    사용후 남은 포인트 {`>`}
+                  </S.PointModalBodySpan>
+                  <S.PointDiv>
+                    <S.EggPointIcon />
+                    <span>
+                      {(
+                        Number(
+                          props.userPoint?.fetchUserLoggedIn.userPoint?.amount
+                        ) - Number(props.data?.fetchUseditem.price)
+                      ).toLocaleString()}
+                      원
+                    </span>
+                  </S.PointDiv>
+                </S.PointModalBodyDiv>
+              ) : (
+                <S.PointErrorDiv>
+                  <span>포인트가 부족합니다</span>
+                </S.PointErrorDiv>
+              )}
+            </S.PointModalBodyWrapper>
+            <S.PointModalFooterWrapper isActive={props.pointBtn}>
+              <button
+                onClick={props.onClickBuyItemPoint}
+                disabled={props.pointBtn}
+              >
+                <img src="/images/layout/header/eggplant.png" />
+                <span>결제하기</span>
+              </button>
+            </S.PointModalFooterWrapper>
+          </S.PointModalWrapper>
+        </S.BuyModal>
+      )}
       {props.isOpenBuy && (
         <S.BuyModal
           open={true}
@@ -48,6 +129,7 @@ export default function MarketDetailUI(
             register={props.register}
             handleSubmit={props.handleSubmit}
             formState={props.formState}
+            testBuy={props.testBuy}
           />
         </S.BuyModal>
       )}
@@ -126,11 +208,7 @@ export default function MarketDetailUI(
       </S.CardWrapper>
       <S.BottomWrapper>
         <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
-        <S.Button
-          /* onClick={props.onClickBuyItem} */ onClick={props.onClickToggle}
-        >
-          구매하기
-        </S.Button>
+        <S.Button onClick={props.onClickToggle}>구매하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>
   );

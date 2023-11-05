@@ -26,4 +26,14 @@ export interface IMarketDetailUIProps {
   handleSubmit: UseFormHandleSubmit<IFormData, undefined>;
   formState: FormState<IFormData>;
   onClickPickItem: () => void;
+  testBuy: () => void;
+  isOpenEggplant: boolean;
+  onClickToggleEgg: () => void;
+  userPoint: Pick<IQuery, "fetchUserLoggedIn"> | undefined;
+  onClickBuyItemPoint: () => Promise<void>;
+  pointBtn: boolean;
+}
+
+export interface IMarketDetailStylesProps {
+  isActive: boolean;
 }
