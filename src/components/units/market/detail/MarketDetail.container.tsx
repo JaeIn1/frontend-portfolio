@@ -160,13 +160,14 @@ export default function MarketDetail(): JSX.Element {
           useritemId: String(router.query.marketId),
         },
       });
+      onClickToggle();
+      onClickToggleEgg();
+      Modal.success({
+        content: "결제에 성공하였습니다.",
+      });
     } catch (error) {
       alert(error);
     }
-    onClickToggle();
-    Modal.success({
-      content: "결제에 성공하였습니다.",
-    });
   };
 
   const testBuy = (): void => {

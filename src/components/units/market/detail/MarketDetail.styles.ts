@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { Modal } from "antd";
 import Slider from "react-slick";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { IMarketDetailStylesProps } from "./MarketDetail.types";
 
 export const Wrapper = styled.div`
@@ -400,10 +399,6 @@ export const PointModalFooterWrapper = styled.div`
       height: 40px;
     }
   }
-`;
-
-export const EggPointIcon = styled(AttachMoneyIcon)`
-  color: #ffcd01;
 `;
 
 export const PointErrorDiv = styled.div`

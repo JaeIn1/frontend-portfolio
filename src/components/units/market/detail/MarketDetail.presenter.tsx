@@ -57,7 +57,7 @@ export default function MarketDetailUI(
                   사용가능한 포인트 {`>`}
                 </S.PointModalBodySpan>
                 <S.PointDiv>
-                  <S.EggPointIcon />
+                  <img src="/images/mypage/mypage_point_pig.png" />
                   <span>
                     {props.userPoint?.fetchUserLoggedIn.userPoint?.amount.toLocaleString()}
                     원
@@ -67,7 +67,7 @@ export default function MarketDetailUI(
               <S.PointModalBodyDiv>
                 <S.PointModalBodySpan>사용할 포인트 {`>`}</S.PointModalBodySpan>
                 <S.PointDiv>
-                  <S.EggPointIcon />
+                  <img src="/images/mypage/mypage_point_pig.png" />
                   <span>
                     {props.data?.fetchUseditem.price?.toLocaleString()}원
                   </span>
@@ -80,7 +80,7 @@ export default function MarketDetailUI(
                     사용후 남은 포인트 {`>`}
                   </S.PointModalBodySpan>
                   <S.PointDiv>
-                    <S.EggPointIcon />
+                    <img src="/images/mypage/mypage_point_pig.png" />
                     <span>
                       {(
                         Number(

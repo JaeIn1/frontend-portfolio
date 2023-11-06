@@ -18,7 +18,7 @@ export default function MyPickPageSoldItem(
         <span>{props.el.name}</span>
         <S.ColumnTitleSold>판매완료</S.ColumnTitleSold>
       </S.ColumnTitle>
-      <S.ColumnBasic>\{props.el.price?.toLocaleString()}</S.ColumnBasic>
+      <S.ColumnBasic>￦ {props.el.price?.toLocaleString()}</S.ColumnBasic>
       <S.ColumnBasic>{getDate(props.el.createdAt)}</S.ColumnBasic>
     </S.Row>
   );
