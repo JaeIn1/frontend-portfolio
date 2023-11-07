@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 export const ItemWrapper = styled.div`
   width: 1500px;
@@ -33,7 +33,8 @@ export const HeaderIconDiv = styled.div`
     width: 130px;
     color: #b173d8;
     font-size: 30px;
-    font-weight: bolder;
+
+    font-family: "Jua", sans-serif;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1200px) {

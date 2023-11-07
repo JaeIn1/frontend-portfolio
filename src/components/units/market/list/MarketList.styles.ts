@@ -34,9 +34,11 @@ export const PencilIcon = styled.img``;
 export const MarketBestTitle = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 500;
   margin-bottom: 30px;
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(54, 54, 54);
 
   @media screen and ((max-width: 768px)) {
   }

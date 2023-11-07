@@ -127,9 +127,10 @@ export const TextToken = styled.span`
 export const BoardBestTitle = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 35px;
   margin-bottom: 30px;
+  font-family: "Courier New", Courier, monospace;
+  color: rgb(54, 54, 54);
 
   @media screen and ((max-width: 380px)) {
     width: 100%;

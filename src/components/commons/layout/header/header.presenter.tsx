@@ -1,10 +1,19 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
+import Head from "next/head";
 import * as S from "./header.styles";
 import { IHeaderProps } from "./header.types";
 
 export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
   return (
     <S.Wrapper>
+      <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Jua&family=Roboto+Condensed&family=Ubuntu:ital,wght@0,400;1,300&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <S.ItemWrapper>
         {props.isOpen && (
           <S.UserModal
@@ -60,7 +69,6 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
         <S.HeaderIconDiv>
           <img src="/images/layout/header/eggplant.png" />
           <span>가지마켓</span>
-          {/* <input type="text" placeholder="물품을 검색하세요!" /> */}
         </S.HeaderIconDiv>
 
         {props.data ? (

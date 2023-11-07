@@ -10,7 +10,7 @@ const SECRET = "@#$%";
 export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
   return (
     <S.Wrapper>
-      <S.BoardBestTitle>베스트 게시글</S.BoardBestTitle>
+      <S.BoardBestTitle>BEST</S.BoardBestTitle>
       <S.BoardBestWrapper>
         {props.dataBest?.fetchBoardsOfTheBest.map((el) => (
           <S.BoardBestDiv key={el._id} onClick={props.onClickBestBoard(el)}>
