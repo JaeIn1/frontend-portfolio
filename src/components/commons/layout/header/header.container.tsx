@@ -67,6 +67,10 @@ export default function LayoutHeader(): JSX.Element {
     void router.push("/signup");
   };
 
+  const onClickMoveMainPage = (): void => {
+    void router.push("/markets");
+  };
+
   const ToggleModal = (): void => {
     setIsOpen((prev) => !prev);
   };
@@ -146,6 +150,7 @@ export default function LayoutHeader(): JSX.Element {
         pointIsOpen={pointIsOpen}
         onChangePointPrice={onChangePointPrice}
         selectPrice={selectPrice}
+        onClickMoveMainPage={onClickMoveMainPage}
       />
     </>
   );

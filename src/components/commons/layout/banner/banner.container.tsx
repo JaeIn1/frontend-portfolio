@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const Wrapper = styled.div`
-  height: 400px;
+  height: 250px;
   background-color: white;
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@ const StyledSlider = styled(Slider)`
 const SlickItem = styled.img`
   margin: 0;
   width: 100%;
-  height: 400px;
+  height: 250px;
   object-fit: inherit;
 `;
 const Pre = styled.div`
@@ -79,10 +79,10 @@ export default function LayoutBanner(): JSX.Element {
     <Wrapper>
       <StyledSlider {...settings}>
         <div>
-          <SlickItem src="https://cdn.imweb.me/thumbnail/20231105/6ffb3ce5740e0.jpg" />
+          <SlickItem src="https://cdn.imweb.me/thumbnail/20211014/ac9c7e74b7db2.png" />
         </div>
         <div>
-          <SlickItem src="https://cdn.imweb.me/thumbnail/20211014/ac9c7e74b7db2.png" />
+          <SlickItem src="https://cdn.imweb.me/thumbnail/20231105/6ffb3ce5740e0.jpg" />
         </div>
       </StyledSlider>
     </Wrapper>

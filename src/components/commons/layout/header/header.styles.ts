@@ -27,7 +27,7 @@ export const HeaderIconDiv = styled.div`
   align-items: center;
   padding-left: 60px;
   padding-top: 20px;
-
+  cursor: pointer;
   & span {
     display: block;
     width: 130px;

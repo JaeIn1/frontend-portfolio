@@ -14,7 +14,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
   const newAry = [...todayWatch];
   return (
     <S.Wrapper>
-      <S.MarketBestTitle>베스트 상품</S.MarketBestTitle>
+      <S.MarketBestTitle>BEST</S.MarketBestTitle>
       <S.BoardBestWrapper>
         {(props.dataBest?.fetchUseditemsOfTheBest ?? new Array(4).fill(1)).map(
           (el) =>
@@ -48,9 +48,9 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 key={el._id}
                 onClick={props.onClickMarketItem(el)}
               >
-                <div>
+                <S.BestItemSpinnerWrapper>
                   <PuffLoader color="#B173D8" loading={true} size={150} />
-                </div>
+                </S.BestItemSpinnerWrapper>
               </S.BoardBestDiv>
             )
         )}

@@ -66,7 +66,7 @@ export default function LayoutHeaderUI(props: IHeaderProps): JSX.Element {
             </S.PointModalWrapper>
           </S.PointModal>
         )}
-        <S.HeaderIconDiv>
+        <S.HeaderIconDiv onClick={props.onClickMoveMainPage}>
           <img src="/images/layout/header/eggplant.png" />
           <span>가지마켓</span>
         </S.HeaderIconDiv>
