@@ -17,7 +17,44 @@
     * 이미지 미리보기(임시 URL생성)
     * 다중 이미지 업로드에 Promise.all()을 사용
   * Reflow , Repaint
+<br/>
+<br/>
 
 ## 개발 환경
 
-* Front : HTML, React, styled-components, Recoil
+* Front : TypeScript, React, Next.js, GraphQL , Apollo , Recoil , Emotion
+* Back-end : 제공된 API 활용
+<br/>
+<br/>
+
+
+
+## 채택한 개발 기술
+  TypeScript, React , Next.js, GraphQL , Emotion
+  * TypeScript
+    * TypeScript을 사용하여 코드 작성 중 타입 에러를 미리 감지하여 코드의 안정성을 향상시킬 수 있습니다.
+    * TypeScript로 인해 변수나 함수에 대한 자동 완성 기능을 활용하여 빠르게 개발할 수 있습니다.
+    * 안정적이고 유지보수가 쉬운 코드를 작성할 수 있습니다.
+  * React
+    * 컴포넌트화를 통해 추후 유지보수와 재사용성을 고려했습니다.
+    * 상품 등록 및 수정, 헤더 와 배너 부분이 중복되어 사용되는 부분이 많아 컴포넌트화를 통해 리소스 절약이 가능했습니다.
+  * Next.js
+    * Next.js를 채택한 것은 React기반의 웹 애플리케이션을 개발하는데 많은 이점을 주기 때문입니다.
+    * Next.js는 페이지 레벨에서 SSR을 지원하여 초기 로딩 성능이 개선되고 SEO에 도움을 줍니다.
+    * 코드 분할(Code Splitting)자동화를 통해 성능 최적화에 도움을 줍니다.
+  * GraphQL
+    * GraphQL은 Rest API와 달리 원하는 데이터 필드만 클라이언트에서 주도적으로 요청 할 수 있으며, 이로 인해 HTTP 요청횟수와 사이즈를 줄일 수 있습니다.
+  * Emotion
+     * SSR에서 다른 설정 없이 동작이 가능합니다.
+     * props를 이용한 조건부 스타일링을 활용하여 상황에 알맞은 스타일을 적용시킬 수 있었습니다.
+     * 고유한 클래스 이름을 부여하여 네이밍 컨벤션을 정하는 비용을 절약 할 수 있습니다.
+   * Recoil
+     * Recoil을 사용하여 Props Drilling을 해결 할 수 있습니다.
+     * 사용법이 useState와 비슷하고 기존의 Redux보다 적은 코드로 작동 가능합니다.
+     * Recoil을 사용하여 페이지 별 로그인 권한 체크를 하였습니다.
+<br/>
+<br/>
+
+## 페이지별 기능
+
+     
