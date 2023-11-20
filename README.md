@@ -2,7 +2,7 @@
 <br/>
 
 
-<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b4ae484e-5696-4083-a1b0-f5f7a6873361"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b4ae484e-5696-4083-a1b0-f5f7a6873361" width="800" height="800"/>
 
 ## 프로젝트 소개
 * 가지마켓은 사용자들이 자유롭게 소통할 수 있는 자유게시판과 쉽게 구매하고 판매 할 수 있는 중고마켓으로 구성되어있습니다.
@@ -69,6 +69,43 @@
 * 상세페이지에서 게시글 확인 및 댓글작성 가능합니다.
 <br/>
 <br/>
+
+### 로그인화면
+* 이메일로 로그인 할 수 있습니다.
+* 렌더링 이슈를 해결하기 위해 react-hook-form을 사용하였습니다.
+* 유효성 검사 라이브러리인 yup을 사용하여 오류를 검증하였습니다.
+* 모두 입력시 버튼이 활성화됩니다.
+* 비밀번호 찾기는 구현되어있지 않습니다.
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/7b084055-f87b-4889-aebe-989d87664f48" width="600" height="300"/> 
+
+<br/>
+<br/>
+
+### 회원가입 화면
+* 로그인 페이지에서 '회원가입'을 누르거나 메인화면 우상단 회원가입 버튼을 누르면 회원가입 화면이 나타납니다.
+* 렌더링 이슈를 해결하기 위해 react-hook-form을 사용하였습니다.
+* 유효성 검사 라이브러리인 yup을 사용하여 오류를 검증하였습니다.
+* 모두 입력시 버튼이 활성화됩니다.
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/c1fcc4a9-fc7a-4021-8592-175b29e4b816" width="500" height="600"/>
+
+<br/>
+<br/>
+
+<br/>
+<br/>
+
+### 자유게시판 검색기능
+* 입력시 자동으로 검색 결과가 표시
+* 해당 텍스트는 빨간색으로 표시
+* 검색 성능 최적화를 위해 Debouncing 사용
+* 검색에 해당되는 게시글 수에 따라 페이지 숫자 변경
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/44669bd0-dc0a-437f-85bf-20266ea2d35d" width="800" height="500"/>
+
+
+### 게시글 등록 및 수정 , 상세페이지
+* 중고마켓에 동일한 기능이 있기 때문에 중고마켓 부분에서 실행
+
+
 
 
      
