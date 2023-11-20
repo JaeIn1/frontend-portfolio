@@ -67,6 +67,7 @@
 * 디바운싱을 활용한 검색기능 , 해당 텍스트를 빨간색으로 출력하였습니다.
 * 구현한 페이지네이션 및 게시긇 등록 버튼이 있습니다.
 * 상세페이지에서 게시글 확인 및 댓글작성 가능합니다.
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/ec0edfc8-6aaa-4945-9e6e-5ebf9e33394b" height="700"/> 
 <br/>
 <br/>
 
@@ -91,8 +92,6 @@
 <br/>
 <br/>
 
-<br/>
-<br/>
 
 ### 자유게시판 검색기능
 * 입력시 자동으로 검색 결과가 표시
@@ -101,9 +100,36 @@
 * 검색에 해당되는 게시글 수에 따라 페이지 숫자 변경
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/44669bd0-dc0a-437f-85bf-20266ea2d35d" width="800" height="500"/>
 
+<br/>
+<br/>
 
-### 게시글 등록 및 수정 , 상세페이지
+### 게시글 등록 및 수정 , 상세페이지, 댓글기능
 * 중고마켓에 동일한 기능이 있기 때문에 중고마켓 부분에서 실행
+
+<br/>
+<br/>
+
+### 중고마켓 메인화면
+* 베스트 상품확인
+* 무한스크롤로 상품 목록 표시
+* 이미지 없을 경우 대체 이미지 사용
+* 새로고침 시 상품 로딩중 구현
+  * react-spinners 사용
+* 상품 클릭시 상세페이지로 이동
+* 우측 하단 +버튼을 눌러 상품 등록 가능
+* 우측에 오늘 본 상품 구현
+* 검색에 해당되는 상품 수에 따라 페이지 숫자 변경
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/a34bc55c-6572-4bfd-b10e-da4764ffd98a" height="700"/>
+
+<br/>
+<br/>
+
+### 중고마켓 검색기능 및 무한스크롤
+* 자유게시판과 동일
+* 검색 성능 최적화를 위해 Debouncing 사용
+* 무한스크롤에 성능최적화를 위해 Throttling적용
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/a26f2b85-b6dc-4c5b-bc53-d1f3968849be" height="700"/>
+
 
 
 
