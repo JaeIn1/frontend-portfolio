@@ -158,6 +158,17 @@
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b5427156-6a9a-4dd5-a08a-352acaf4404f" width="30%"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/5b4736e5-484c-46db-8445-69a0b53bf63d" width="30%"/>
 
+### 마이페이지
+* 내 상품 , 찜목록 , 구매 및 판매 목록 , 프로필 변경 페이지가 있습니다.
+* 상품 수정 및 삭제는 마이페이지 안에서 가능합니다.
+* 중고마켓과 같은 원리의 검색기능이 있습니다.
+* 가지페이는 마이페이지에서 충전 가능합니다.
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b4aea4e7-e50e-433f-972a-d3f788a1e82e" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/d4951d6f-b47b-4a55-b6c1-845dbde23acd" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/918b8a13-1e30-47cb-b63c-97baba66e472" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b8853c8d-7d5d-40c8-85a1-a8307e5936d6" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/20406bfb-9e4c-46d6-b4c1-9303e42a0d7a" width="45%"/>
+
 
 
 
