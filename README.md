@@ -131,10 +131,10 @@
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/a26f2b85-b6dc-4c5b-bc53-d1f3968849be" height="700"/>
 
 ### 중고마켓 상품등록
-* 등록버튼 누를때 입력값이 없으면 에러메세지 출력
-* 등록중 진행중일때 로딩중 모달 구현 및 등록완료 모달 구현
-* react-quill을 사용한 웹 애디터 구현
-* react-daum-postcode으로 주소 찾은 후 카카오지도로 위치 보여주도록 구현
+* 등록버튼 누를때 입력값이 없으면 에러메세지 출력됩니다,
+* 등록중 진행중일때 로딩중 모달 구현 및 등록완료 모달 구현했습니다.
+* react-quill을 사용한 웹 애디터 구현했습니다.
+* react-daum-postcode으로 주소 찾은 후 카카오지도로 위치 보여주도록 구현했습니다.
 * 이미지 성능최적화
   * 임시 미리보기 url
   * Promise.all()을 사용하여 다중 이미지 처리
@@ -142,6 +142,21 @@
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/3c9ab93c-1c71-4afc-b8c6-ef7036560a36" width="45%" height="450"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/bad15576-69da-4023-b5a8-9b02883edbd2" width="45%" height="450"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/7988c67e-6905-4259-84fa-c2da6bb30c2b" width="45%" height="450"/>
+
+### 중고마켓 상세페이지
+* 상품정보 및 위치를 확인 할 수 있습니다.
+* 하트아이콘을 눌러 찜 추가 및 삭제를 할 수 있습니다.
+* 구매허기 버튼을 누르면 결제하기 모달이 나옵니다.
+   * 포트원을 사용하여 결제를 구현했습니다.
+   * 결제 모달에 이름 , 주소 , 연락처 , 이메일을 입력합니다.
+   * 카카오페이 , 가지페이(포인트결제)중 선택할 수 있습니다.
+   * 가지페이는 포인트 부족시 에러메세지 출력 및 버튼 비활성화됩니다.
+* 댓글 및 대댓글 기능이 있습니다.
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/68a6a60d-96d2-4810-ab25-b8bcb46bfa89" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/571f19ef-f4f9-472c-a998-987213ea6cb9" width="45%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/6826c1a2-24e6-4e8c-a6f5-68ec3dfaee79" width="30%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b5427156-6a9a-4dd5-a08a-352acaf4404f" width="30%"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/5b4736e5-484c-46db-8445-69a0b53bf63d" width="30%"/>
 
 
 
