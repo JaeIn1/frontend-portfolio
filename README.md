@@ -130,6 +130,19 @@
 * 무한스크롤에 성능최적화를 위해 Throttling적용
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/a26f2b85-b6dc-4c5b-bc53-d1f3968849be" height="700"/>
 
+### 중고마켓 상품등록
+* 등록버튼 누를때 입력값이 없으면 에러메세지 출력
+* 등록중 진행중일때 로딩중 모달 구현 및 등록완료 모달 구현
+* react-quill을 사용한 웹 애디터 구현
+* react-daum-postcode으로 주소 찾은 후 카카오지도로 위치 보여주도록 구현
+* 이미지 성능최적화
+  * 임시 미리보기 url
+  * Promise.all()을 사용하여 다중 이미지 처리
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/02e93476-699e-4e3f-9a07-a72bc6072e7e" width="45%" height="450"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/3c9ab93c-1c71-4afc-b8c6-ef7036560a36" width="45%" height="450"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/bad15576-69da-4023-b5a8-9b02883edbd2" width="45%" height="450"/>
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/7988c67e-6905-4259-84fa-c2da6bb30c2b" width="45%" height="450"/>
+
 
 
 
