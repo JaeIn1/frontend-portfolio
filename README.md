@@ -168,7 +168,7 @@
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/918b8a13-1e30-47cb-b63c-97baba66e472" width="45%"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/b8853c8d-7d5d-40c8-85a1-a8307e5936d6" width="45%"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/20406bfb-9e4c-46d6-b4c1-9303e42a0d7a" width="45%"/>
-
+<img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/3e0be671-fdc7-455e-a885-ab8c66cb88b4" width="45%"/>
 
 
 
