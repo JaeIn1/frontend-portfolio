@@ -48,7 +48,7 @@ export default function MarketDetail(): JSX.Element {
   const [myPick, setMyPick] = useState(false);
   const [pointBtn, setPointBtn] = useState(false);
 
-  if (typeof router.query.marketId !== "string") return <></>;
+  // if (typeof router.query.marketId !== "string") return <></>;
 
   const { data } = useQuery<
     Pick<IQuery, "fetchUseditem">,
@@ -73,30 +73,32 @@ export default function MarketDetail(): JSX.Element {
   };
 
   useEffect(() => {
-    window.kakao.maps.load(() => {
-      const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
-      const options = {
-        // 지도를 생성할 때 필요한 기본 옵션
-        center: new window.kakao.maps.LatLng(
+    if (typeof window !== "undefined" && window.kakao && window.kakao.maps) {
+      window.kakao.maps.load(() => {
+        const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
+        const options = {
+          // 지도를 생성할 때 필요한 기본 옵션
+          center: new window.kakao.maps.LatLng(
+            data?.fetchUseditem.useditemAddress?.lat,
+            data?.fetchUseditem.useditemAddress?.lng
+          ), // 지도의 중심좌표.
+          level: 5, // 지도의 레벨(확대, 축소 정도)
+        };
+        const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+
+        const coords = new window.kakao.maps.LatLng(
           data?.fetchUseditem.useditemAddress?.lat,
           data?.fetchUseditem.useditemAddress?.lng
-        ), // 지도의 중심좌표.
-        level: 5, // 지도의 레벨(확대, 축소 정도)
-      };
-      const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
+        );
 
-      const coords = new window.kakao.maps.LatLng(
-        data?.fetchUseditem.useditemAddress?.lat,
-        data?.fetchUseditem.useditemAddress?.lng
-      );
-
-      // 결과값으로 받은 위치를 마커로 표시합니다
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const marker = new window.kakao.maps.Marker({
-        map,
-        position: coords,
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const marker = new window.kakao.maps.Marker({
+          map,
+          position: coords,
+        });
       });
-    });
+    }
   });
 
   const onClickToggle = (): void => {

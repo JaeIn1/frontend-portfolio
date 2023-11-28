@@ -79,13 +79,13 @@ export default function LayoutBanner(): JSX.Element {
     <Wrapper>
       <StyledSlider {...settings}>
         <div>
-          <SlickItem src="./images/layout/banner/banner-img03.png" />
+          <SlickItem src="/images/layout/banner/banner-img03.png" />
         </div>
         <div>
-          <SlickItem src="./images/layout/banner/banner-img02.png" />
+          <SlickItem src="/images/layout/banner/banner-img02.png" />
         </div>
         <div>
-          <SlickItem src="./images/layout/banner/banner-img01.png" />
+          <SlickItem src="/images/layout/banner/banner-img01.png" />
         </div>
       </StyledSlider>
     </Wrapper>

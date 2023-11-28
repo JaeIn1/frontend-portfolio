@@ -167,6 +167,7 @@ export const BoardBestDiv = styled.div`
   display: inline-block;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   margin-right: 20px;
+  overflow-x: hidden;
   cursor: pointer;
 
   @media screen and (min-width: 390px) and (max-width: 768px) {
