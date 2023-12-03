@@ -18,14 +18,12 @@ export interface IMarketListUIProps {
   onChangeKeyword: (value: string) => void;
   onLoadMore: () => void;
   onClickMarketItem: (el: IUseditem) => () => void;
-  onClickMoveToMarketNew: () => void;
   refetch?: (
     variables?: Partial<IQueryFetchUseditemsArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 
   newItemobj: string[];
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
-  onClickTodayWatch: (el: string) => () => void;
   isBought?: boolean;
 }
 
@@ -36,7 +34,6 @@ export interface ITextTokenProps {
 export interface ITodayWatchProps {
   el: string;
   onEmptyImg: (e: ChangeEvent<HTMLImageElement>) => void;
-  onClickTodayWatch: (el: string) => () => void;
 }
 
 export interface IMarketListStyleProps {

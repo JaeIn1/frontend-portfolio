@@ -12,8 +12,6 @@ export interface IMyPickProps {
 
 export interface IMyPickUIProps {
   data: Pick<IQuery, "fetchUseditemsIPicked"> | undefined;
-  onClickMoveMyItem: () => void;
-  onclickMyPageMyPicked: () => void;
   refetch: (
     variables?: Partial<IQueryFetchUseditemsIPickedArgs> | undefined
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditemsIPicked">>>;

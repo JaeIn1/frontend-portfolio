@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/client";
-import { useRouter } from "next/router";
 import { IMyPickProps } from "./mypick.types";
 import {
   IQuery,
@@ -12,7 +11,6 @@ import { useState } from "react";
 export default function MyPick(props: IMyPickProps): JSX.Element {
   const [, setKeyword] = useState("");
 
-  const router = useRouter();
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchUseditemsIPicked">,
     IQueryFetchUseditemsIPickedArgs
@@ -30,20 +28,11 @@ export default function MyPick(props: IMyPickProps): JSX.Element {
     setKeyword(value);
   };
 
-  const onClickMoveMyItem = (): void => {
-    void router.push("/mypages");
-  };
-  const onclickMyPageMyPicked = (): void => {
-    void router.push("/mypages/myPick");
-  };
-
   return (
     <MyPickUI
       data={data}
       refetch={refetch}
       refetchItemCount={refetchItemCount}
-      onClickMoveMyItem={onClickMoveMyItem}
-      onclickMyPageMyPicked={onclickMyPageMyPicked}
       onChangeKeyword={onChangeKeyword}
       count={dataCount?.fetchUseditemsCountIPicked}
       isMyPage={props.isMyPage}

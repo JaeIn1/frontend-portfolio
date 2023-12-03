@@ -5,6 +5,7 @@ import { Tooltip } from "antd";
 import DOMPurify from "dompurify";
 import BuyItemInfoPage from "./BuyItemInfo.container";
 import Head from "next/head";
+import Link from "next/link";
 
 export default function MarketDetailUI(
   props: IMarketDetailUIProps
@@ -119,8 +120,6 @@ export default function MarketDetailUI(
           <BuyItemInfoPage
             onClickAddressSearch={props.onClickAddressSearch}
             onCompleteAddressSearch={props.onCompleteAddressSearch}
-            onchangeBuyerName={props.onchangeBuyerName}
-            onchangeBuyerEmail={props.onchangeBuyerEmail}
             onClickBuyItem={props.onClickBuyItem}
             isOpen={props.isOpen}
             zipcode={props.zipcode}
@@ -207,7 +206,9 @@ export default function MarketDetailUI(
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
-        <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
+        <Link href="/markets">
+          <S.Button>목록으로</S.Button>
+        </Link>
         <S.Button onClick={props.onClickToggle}>구매하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>

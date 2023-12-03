@@ -26,7 +26,5 @@ export interface IMarketListCommenUIProps {
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
 
   onChangeKeyword: (value: string) => void;
-  onClickMoveBought: () => void;
-  onClickMarketList: () => void;
   isBought?: boolean;
 }

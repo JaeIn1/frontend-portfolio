@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import MarketListCommenPage from "../../../commons/market/list/marketList.container";
 import { PuffLoader } from "react-spinners";
+import Link from "next/link";
 
 export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
   const [todayWatch] = useRecoilState(todayWatchItem);
@@ -71,7 +72,6 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 <TodayWatchPage
                   key={el}
                   el={el}
-                  onClickTodayWatch={props.onClickTodayWatch}
                   onEmptyImg={props.onEmptyImg}
                 />
               ))}
@@ -134,13 +134,12 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
         </S.MarketScrollerDiv>
       </S.MarketListWrapper>
       <S.Footer>
-        <S.Button
-          onClick={props.onClickMoveToMarketNew}
-          onMouseOver={props.onMouseOverBtn}
-        >
-          <S.ButtonDiv1></S.ButtonDiv1>
-          <S.ButtonDiv2></S.ButtonDiv2>
-        </S.Button>
+        <Link href="/markets/new">
+          <S.Button>
+            <S.ButtonDiv1></S.ButtonDiv1>
+            <S.ButtonDiv2></S.ButtonDiv2>
+          </S.Button>
+        </Link>
       </S.Footer>
     </S.Wrapper>
   );

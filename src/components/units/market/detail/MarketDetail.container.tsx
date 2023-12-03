@@ -68,10 +68,6 @@ export default function MarketDetail(): JSX.Element {
     IMutationCreatePointTransactionOfBuyingAndSellingArgs
   >(BOUGHT_ITEM);
 
-  const onClickReturnList = (): void => {
-    void router.push("/markets");
-  };
-
   useEffect(() => {
     if (typeof window !== "undefined" && window.kakao && window.kakao.maps) {
       window.kakao.maps.load(() => {
@@ -239,7 +235,6 @@ export default function MarketDetail(): JSX.Element {
     <>
       <MarketDetailUI
         data={data}
-        onClickReturnList={onClickReturnList}
         onClickBuyItem={onClickBuyItem}
         onClickToggle={onClickToggle}
         isOpenBuy={isOpenBuy}

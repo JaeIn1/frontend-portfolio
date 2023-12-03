@@ -1,4 +1,5 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
+import Link from "next/link";
 import MyPageLeftDivPage from "../../commons/mypage/mypage.left";
 import PagenationPageMyPick from "../../commons/pagination/B_Pick/paginationB.Pick.container";
 import Searchbars02MyPick from "../../commons/searchbars/02_myPick/Searchbars02.container";
@@ -14,16 +15,15 @@ export default function MyPickUI(props: IMyPickUIProps): JSX.Element {
       <S.RightWrapper>
         <S.RightHeader>
           <S.RightHeaderLeft>
-            <S.RightHeaderSpan onClick={props.onClickMoveMyItem}>
-              나의상품
-            </S.RightHeaderSpan>
+            <Link href="/mypages">
+              <S.RightHeaderSpan>나의상품</S.RightHeaderSpan>
+            </Link>
             |
-            <S.RightHeaderSpan
-              onClick={props.onclickMyPageMyPicked}
-              isMyPick={props.isMyPick}
-            >
-              마이찜
-            </S.RightHeaderSpan>
+            <Link href="/mypages/myPick">
+              <S.RightHeaderSpan isMyPick={props.isMyPick}>
+                마이찜
+              </S.RightHeaderSpan>
+            </Link>
           </S.RightHeaderLeft>
           <Searchbars02MyPick
             refetch={props.refetch}

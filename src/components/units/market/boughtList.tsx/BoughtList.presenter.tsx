@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import MarketListCommenPage from "../../../commons/market/list/marketList.container";
 import { PuffLoader } from "react-spinners";
+import Link from "next/link";
 
 export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
   const [todayWatch] = useRecoilState(todayWatchItem);
@@ -49,7 +50,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 onClick={props.onClickMarketItem(el)}
               >
                 <S.BestItemSpinnerWrapper>
-                  <PuffLoader color="#B173D8" loading={true} size={150} />
+                  <PuffLoader color="#B173D8" loading={true} size={100} />
                 </S.BestItemSpinnerWrapper>
               </S.BoardBestDiv>
             )
@@ -58,8 +59,8 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
       <MarketListCommenPage
         isMarketList={props.isMarketList}
         refetch={props.refetch}
-        isBought={props.isBought}
         onChangeKeyword={props.onChangeKeyword}
+        isBought={props.isBought}
       />
       <S.MarketListWrapper>
         {JSON.stringify(newAry) !== "[]" ? (
@@ -72,7 +73,6 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                 <TodayWatchPage
                   key={el}
                   el={el}
-                  onClickTodayWatch={props.onClickTodayWatch}
                   onEmptyImg={props.onEmptyImg}
                 />
               ))}
@@ -125,7 +125,7 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
                     onClick={props.onClickMarketItem(el)}
                   >
                     <div>
-                      <PuffLoader color="#B173D8" loading={true} size={150} />
+                      <PuffLoader color="#B173D8" loading={true} size={100} />
                     </div>
                   </S.MarketList>
                 )
@@ -135,10 +135,12 @@ export default function MarketListUI(props: IMarketListUIProps): JSX.Element {
         </S.MarketScrollerDiv>
       </S.MarketListWrapper>
       <S.Footer>
-        <S.Button onClick={props.onClickMoveToMarketNew}>
-          <S.ButtonDiv1></S.ButtonDiv1>
-          <S.ButtonDiv2></S.ButtonDiv2>
-        </S.Button>
+        <Link href="/markets/new">
+          <S.Button>
+            <S.ButtonDiv1></S.ButtonDiv1>
+            <S.ButtonDiv2></S.ButtonDiv2>
+          </S.Button>
+        </Link>
       </S.Footer>
     </S.Wrapper>
   );

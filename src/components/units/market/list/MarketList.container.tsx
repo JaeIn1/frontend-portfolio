@@ -11,7 +11,6 @@ import MarketListUI from "./MarketList.presenter";
 import { useRecoilState } from "recoil";
 import { todayWatchItem } from "../../../../commons/stores";
 import { IMarketListProps } from "./MarketList.types";
-import Link from "next/link";
 
 export default function MarketList(props: IMarketListProps): JSX.Element {
   let newItemobj: string[] = [];
@@ -73,22 +72,9 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
     setTodayWatch(newItemobj);
   };
 
-  const onClickMoveToMarketNew = (): void => {
-    void router.push("/markets/new");
-  };
-
   const onEmptyImg = (e: ChangeEvent<HTMLImageElement>): void => {
     e.target.src =
       "https://previews.123rf.com/images/julynx/julynx1408/julynx140800023/30746516-%EC%82%AC%EC%9A%A9%ED%95%A0-%EC%88%98-%EC%97%86%EA%B1%B0%EB%82%98-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%AC%EC%A7%84-%EC%97%86%EC%9D%8C.jpg";
-  };
-
-  const onClickTodayWatch = (el: string) => (): void => {
-    void router.push(`/markets/${el}`);
-  };
-
-  const onMouseOverBtn = (): void => {
-    console.log("hello");
-    void router.prefetch("/markets/new");
   };
 
   return (
@@ -100,13 +86,10 @@ export default function MarketList(props: IMarketListProps): JSX.Element {
         onChangeKeyword={onChangeKeyword}
         onLoadMore={onLoadMore}
         onClickMarketItem={onClickMarketItem}
-        onClickMoveToMarketNew={onClickMoveToMarketNew}
         refetch={refetch}
         newItemobj={newItemobj}
         onEmptyImg={onEmptyImg}
-        onClickTodayWatch={onClickTodayWatch}
         isMarketList={props.isMarketList}
-        onMouseOverBtn={onMouseOverBtn}
       />
     </>
   );

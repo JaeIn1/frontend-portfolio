@@ -1,4 +1,3 @@
-import { ChangeEvent } from "react";
 import { Address } from "react-daum-postcode";
 import {
   UseFormRegister,
@@ -14,8 +13,6 @@ export interface IBuyItemProps {
   zipcode: string;
   address: string;
   postError: string;
-  onchangeBuyerName: (event: ChangeEvent<HTMLInputElement>) => void;
-  onchangeBuyerEmail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickBuyItem: (data: any) => void;
   register: UseFormRegister<IFormData>;
   handleSubmit: UseFormHandleSubmit<IFormData, undefined>;

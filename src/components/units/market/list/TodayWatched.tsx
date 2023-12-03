@@ -6,6 +6,7 @@ import {
 } from "../../../../commons/types/generated/types";
 import { FETCH_MARKET_ITEM_TODAY } from "./MarketList.queries";
 import * as S from "./TodayWatched.styles";
+import Link from "next/link";
 
 export default function TodayWatchPage(props: ITodayWatchProps): JSX.Element {
   const { data } = useQuery<
@@ -15,24 +16,26 @@ export default function TodayWatchPage(props: ITodayWatchProps): JSX.Element {
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression
-    <S.TodayDiv onClick={props.onClickTodayWatch(props.el)}>
-      <S.TodayHeader>
-        <img src="/images/market/marketItem_love.png" />
-        <span>{data?.fetchUseditem.pickedCount}</span>
-      </S.TodayHeader>
-      <S.TodayBody>
-        <S.TodayImg
-          src={`https://storage.googleapis.com/${data?.fetchUseditem.images[0]}`}
-          onError={props.onEmptyImg}
-        />
-        <S.TodayItemInfoWrapper>
-          <S.TodayItemName>{data?.fetchUseditem.name}</S.TodayItemName>
-          <S.TodayItemRemark>{data?.fetchUseditem.remarks}</S.TodayItemRemark>
-          <S.TodayItemPrice>
-            {data?.fetchUseditem.price?.toLocaleString()}원
-          </S.TodayItemPrice>
-        </S.TodayItemInfoWrapper>
-      </S.TodayBody>
-    </S.TodayDiv>
+    <Link href={`/markets/${props.el}`}>
+      <S.TodayDiv>
+        <S.TodayHeader>
+          <img src="/images/market/marketItem_love.png" />
+          <span>{data?.fetchUseditem.pickedCount}</span>
+        </S.TodayHeader>
+        <S.TodayBody>
+          <S.TodayImg
+            src={`https://storage.googleapis.com/${data?.fetchUseditem.images[0]}`}
+            onError={props.onEmptyImg}
+          />
+          <S.TodayItemInfoWrapper>
+            <S.TodayItemName>{data?.fetchUseditem.name}</S.TodayItemName>
+            <S.TodayItemRemark>{data?.fetchUseditem.remarks}</S.TodayItemRemark>
+            <S.TodayItemPrice>
+              {data?.fetchUseditem.price?.toLocaleString()}원
+            </S.TodayItemPrice>
+          </S.TodayItemInfoWrapper>
+        </S.TodayBody>
+      </S.TodayDiv>
+    </Link>
   );
 }

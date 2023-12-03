@@ -1,5 +1,6 @@
 // import Searchbars02 from "../../commons/searchbars/02/Searchbars02.container";
 
+import Link from "next/link";
 import MyPageLeftDivPage from "../../../commons/mypage/mypage.left";
 import PagenationPage from "../../../commons/pagination/B/paginationB.container";
 import Searchbars02MyItem from "../../../commons/searchbars/02_myItem/Searchbars02.container";
@@ -19,9 +20,9 @@ export default function MyPagePageUI(props: IMypageUIProps): JSX.Element {
               나의상품
             </S.RightHeaderSpan>
             |
-            <S.RightHeaderSpan onClick={props.onclickMyPageMyPicked}>
-              마이찜
-            </S.RightHeaderSpan>
+            <Link href={"mypages/myPick"}>
+              <S.RightHeaderSpan>마이찜</S.RightHeaderSpan>
+            </Link>
           </S.RightHeaderLeft>
           <Searchbars02MyItem
             refetch={props.refetch}
