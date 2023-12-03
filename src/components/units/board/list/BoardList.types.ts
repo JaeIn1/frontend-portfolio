@@ -9,7 +9,6 @@ import type {
 export interface IBoardListUIProps {
   data?: Pick<IQuery, "fetchBoards">;
   dataBest?: Pick<IQuery, "fetchBoardsOfTheBest">;
-  onClickMoveToBoardNew: () => void;
   onClickMoveToBoardDetail: (event: MouseEvent<HTMLDivElement>) => void;
   refetch: (
     variables?: Partial<IQueryFetchBoardsArgs> | undefined

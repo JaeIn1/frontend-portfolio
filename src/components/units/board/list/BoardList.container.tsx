@@ -32,9 +32,9 @@ export default function BoardList(): JSX.Element {
     IQueryFetchBoardsCountArgs
   >(FETCH_BOARDS_COUNT);
 
-  const onClickMoveToBoardNew = (): void => {
+  /* const onClickMoveToBoardNew = (): void => {
     void router.push("/boards/new");
-  };
+  }; */
 
   const onClickMoveToBoardDetail = (
     event: MouseEvent<HTMLDivElement>
@@ -60,7 +60,6 @@ export default function BoardList(): JSX.Element {
       <BoardListUI
         data={data}
         dataBest={dataBest}
-        onClickMoveToBoardNew={onClickMoveToBoardNew}
         onClickMoveToBoardDetail={onClickMoveToBoardDetail}
         refetch={refetch}
         refetchBoardsCount={refetchBoardsCount}

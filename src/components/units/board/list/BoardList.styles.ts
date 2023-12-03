@@ -167,7 +167,6 @@ export const BoardBestDiv = styled.div`
   display: inline-block;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15);
   margin-right: 20px;
-  overflow-x: hidden;
   cursor: pointer;
 
   @media screen and (min-width: 390px) and (max-width: 768px) {
@@ -189,6 +188,8 @@ export const BoardBestImg = styled.img`
 export const BoardBestSpan = styled.span`
   margin: 10px;
   font-weight: bolder;
+  width: 90%;
+  overflow-x: hidden;
 `;
 export const Header = styled.div`
   width: 100%;
@@ -231,4 +232,8 @@ export const BestBoardLikeCountDiv = styled.div`
     color: #ffd600;
     font-weight: bolder;
   }
+`;
+
+export const CreateBoard = styled.a`
+  text-decoration: none;
 `;

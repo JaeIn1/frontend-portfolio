@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getDate } from "../../../../commons/libraries/utils";
 import PagenationPage from "../../../commons/pagination/A/paginationA.container";
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
@@ -72,10 +73,12 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
       <S.Footer>
         <PagenationPage refetch={props.refetch} count={props.count} />
         <S.ButtonWrapper>
-          <S.Button onClick={props.onClickMoveToBoardNew}>
-            <S.PencilIcon src="/images/board/list/write.png" />
-            게시물 등록하기
-          </S.Button>
+          <Link href="/boards/new">
+            <S.Button>
+              <S.PencilIcon src="/images/board/list/write.png" />
+              <S.CreateBoard>게시글 등록하기</S.CreateBoard>
+            </S.Button>
+          </Link>
         </S.ButtonWrapper>
       </S.Footer>
     </S.Wrapper>
