@@ -15,10 +15,11 @@
 * 마이페이지에서 내 상품, 찜 목록, 구매 목록, 판매 목록을 확인 할 수 있습니다.
 * 마이페이지에서 포인트 충전이 가능합니다.
 * 성능최적화
+  * Image 및 Link 태그 사용으로 SEO 향상
   * 이미지 성능 최적화
     * 이미지 미리보기(임시 URL생성)
     * 다중 이미지 업로드에 Promise.all()을 사용
-  * Reflow , Repaint
+  * Reflow , Repaint 최소화
 <br/>
 <br/>
 
@@ -136,7 +137,7 @@
 * react-quill을 사용한 웹 애디터 구현했습니다.
 * react-daum-postcode으로 주소 찾은 후 카카오지도로 위치 보여주도록 구현했습니다.
 * 이미지 성능최적화
-  * 임시 미리보기 url
+  * 임시 미리보기 url로 이미지 등록 속도 향상
   * Promise.all()을 사용하여 다중 이미지 처리
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/02e93476-699e-4e3f-9a07-a72bc6072e7e" width="45%" height="450"/>
 <img src="https://github.com/JaeIn1/frontend-portfolio/assets/97165077/3c9ab93c-1c71-4afc-b8c6-ef7036560a36" width="45%" height="450"/>
