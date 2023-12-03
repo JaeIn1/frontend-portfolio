@@ -5,18 +5,14 @@ import {
   FETCH_BOARDS_COUNT,
   FETCH_BOARD_BEST,
 } from "./BoardList.queries";
-import { useRouter } from "next/router";
 import type {
-  IBoard,
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
 } from "../../../../commons/types/generated/types";
 import { useEffect, useState } from "react";
-import type { MouseEvent } from "react";
 
 export default function BoardList(): JSX.Element {
-  const router = useRouter();
   const [keyword, setKeyword] = useState("");
 
   const { data, refetch } = useQuery<
@@ -36,19 +32,10 @@ export default function BoardList(): JSX.Element {
     void router.push("/boards/new");
   }; */
 
-  const onClickMoveToBoardDetail = (
-    event: MouseEvent<HTMLDivElement>
-  ): void => {
-    void router.push(`/boards/${event.currentTarget.id}`);
-  };
-
   const onChangeKeyword = (value: string): void => {
     setKeyword(value);
   };
 
-  const onClickBestBoard = (el: IBoard) => (): void => {
-    void router.push(`boards/${el._id}`);
-  };
   useEffect(() => {
     // 5.localStorage에 데이터를 JSON 자료형으로 저장한다.
     const item = localStorage.getItem("watched");
@@ -60,13 +47,11 @@ export default function BoardList(): JSX.Element {
       <BoardListUI
         data={data}
         dataBest={dataBest}
-        onClickMoveToBoardDetail={onClickMoveToBoardDetail}
         refetch={refetch}
         refetchBoardsCount={refetchBoardsCount}
         count={dataBoardsCount?.fetchBoardsCount}
         keyword={keyword}
         onChangeKeyword={onChangeKeyword}
-        onClickBestBoard={onClickBestBoard}
       />
     </>
   );

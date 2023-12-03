@@ -14,28 +14,30 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
       <S.BoardBestTitle>BEST</S.BoardBestTitle>
       <S.BoardBestWrapper>
         {props.dataBest?.fetchBoardsOfTheBest.map((el) => (
-          <S.BoardBestDiv key={el._id} onClick={props.onClickBestBoard(el)}>
-            <S.BoardBestImg
-              src={`https://storage.googleapis.com/${el.images?.[0]}`}
-            />
+          <Link key={el._id} href={`/boards/${el._id}`}>
+            <S.BoardBestDiv>
+              <S.BoardBestImg
+                src={`https://storage.googleapis.com/${el.images?.[0]}`}
+              />
 
-            <S.Header>
-              <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
-              <S.BoardBestInfo>
-                <S.AvatarWrapper>
-                  <S.Avatar src="/images/avatar.png" />
-                  <S.Info>
-                    <S.Writer>{el.writer}</S.Writer>
-                    <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
-                  </S.Info>
-                </S.AvatarWrapper>
-                <S.BestBoardLikeCountDiv>
-                  <img src="/images/board/detail/good.png" />
-                  <div>{el.likeCount}</div>
-                </S.BestBoardLikeCountDiv>
-              </S.BoardBestInfo>
-            </S.Header>
-          </S.BoardBestDiv>
+              <S.Header>
+                <S.BoardBestSpan>{el.title}</S.BoardBestSpan>
+                <S.BoardBestInfo>
+                  <S.AvatarWrapper>
+                    <S.Avatar src="/images/avatar.png" />
+                    <S.Info>
+                      <S.Writer>{el.writer}</S.Writer>
+                      <S.CreatedAt>Date: {getDate(el.createdAt)}</S.CreatedAt>
+                    </S.Info>
+                  </S.AvatarWrapper>
+                  <S.BestBoardLikeCountDiv>
+                    <img src="/images/board/detail/good.png" />
+                    <div>{el.likeCount}</div>
+                  </S.BestBoardLikeCountDiv>
+                </S.BoardBestInfo>
+              </S.Header>
+            </S.BoardBestDiv>
+          </Link>
         ))}
       </S.BoardBestWrapper>
       <Searchbars01
@@ -51,23 +53,25 @@ export default function BoardListUI(props: IBoardListUIProps): JSX.Element {
         <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
       </S.Row>
       {props.data?.fetchBoards.map((el) => (
-        <S.Row key={el._id}>
-          <S.ColumnBasic>
-            {String(el._id).slice(-4).toUpperCase()}
-          </S.ColumnBasic>
-          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title
-              .replaceAll(props.keyword, `${SECRET}${props.keyword}${SECRET}`)
-              .split(SECRET)
-              .map((el) => (
-                <S.TextToken key={uuidv4()} isMatched={props.keyword === el}>
-                  {el}
-                </S.TextToken>
-              ))}
-          </S.ColumnTitle>
-          <S.ColumnBasic>{el.writer}</S.ColumnBasic>
-          <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
-        </S.Row>
+        <Link key={el._id} href={`/boards/${el._id}`}>
+          <S.Row>
+            <S.ColumnBasic>
+              {String(el._id).slice(-4).toUpperCase()}
+            </S.ColumnBasic>
+            <S.ColumnTitle>
+              {el.title
+                .replaceAll(props.keyword, `${SECRET}${props.keyword}${SECRET}`)
+                .split(SECRET)
+                .map((el) => (
+                  <S.TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                    {el}
+                  </S.TextToken>
+                ))}
+            </S.ColumnTitle>
+            <S.ColumnBasic>{el.writer}</S.ColumnBasic>
+            <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
+          </S.Row>
+        </Link>
       ))}
       <S.TableBottom />
       <S.Footer>

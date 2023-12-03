@@ -3,6 +3,7 @@ import { getDate } from "../../../../../src/commons/libraries/utils";
 import type { IBoardDetailUIProps } from "./BoardDetail.types";
 import { Tooltip, Modal } from "antd";
 import Slider from "react-slick";
+import Link from "next/link";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
   return (
@@ -89,8 +90,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps): JSX.Element {
         </S.Body>
       </S.CardWrapper>
       <S.BottomWrapper>
-        <S.Button onClick={props.onClickReturnList}>목록으로</S.Button>
-        <S.Button onClick={props.onClickMoveToBoardEdit}>수정하기</S.Button>
+        <Link href="/boards">
+          <S.Button>목록으로</S.Button>
+        </Link>
+        <Link href={`/boards/${props.data?.fetchBoard._id}/edit`}>
+          <S.Button>수정하기</S.Button>
+        </Link>
         <S.Button onClick={props.onClickDeleteModal}>삭제하기</S.Button>
       </S.BottomWrapper>
     </S.Wrapper>

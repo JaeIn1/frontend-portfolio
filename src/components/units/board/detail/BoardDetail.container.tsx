@@ -41,19 +41,6 @@ export default function BoardDetail(): JSX.Element {
     IMutationDislikeBoardArgs
   >(DISLIKE_BOARD);
 
-  const onClickMoveToBoardEdit = (): void => {
-    if (typeof router.query.boardId !== "string") {
-      alert("시스템에 문제가 있습니다.");
-      return;
-    }
-
-    void router.push(`/boards/${router.query.boardId}/edit`);
-  };
-
-  const onClickReturnList = (): void => {
-    void router.push("/boards");
-  };
-
   const onClickDeleteList = (): any => {
     if (typeof router.query.boardId !== "string") return <></>;
     const result = deleteBoard({
@@ -108,8 +95,6 @@ export default function BoardDetail(): JSX.Element {
   return (
     <BoardDetailUI
       data={data}
-      onClickMoveToBoardEdit={onClickMoveToBoardEdit}
-      onClickReturnList={onClickReturnList}
       onClickDeleteList={onClickDeleteList}
       onClickDeleteModal={onClickDeleteModal}
       onClickBoardLike={onClickBoardLike}
